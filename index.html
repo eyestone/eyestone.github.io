@@ -14,18 +14,18 @@
 
    	
     
-        <link rel="stylesheet" href="http://eyestone.github.io//css/theme/flatly.css">
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
     
 
-    <link rel="stylesheet" href="http://eyestone.github.io//css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
 
    	
-   	<link rel="stylesheet" href="http://eyestone.github.io//css/style.css">
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
 
 
     
-    <script src="http://eyestone.github.io//js/jquery.min-2.1.4.js"></script>
-    <script src="http://eyestone.github.io//js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
     <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
     <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
     <script>hljs.initHighlightingOnLoad();</script>
@@ -38,13 +38,13 @@
     <div class="row">
         <div class="navbar navbar-default navbar-inverse" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="http://eyestone.github.io/">项目文档库</a>
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="http://eyestone.github.io/">首页</a></li>
-                    <li><a href="http://eyestone.github.io//post/">文章</a></li>
-                    <li><a href="http://eyestone.github.io//life/">Life</a></li>
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
                     
                 </ul>
             </div>
@@ -62,24 +62,18 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/first/">first</a></h3>
+					<h3><a href="http://eyestone.github.io/post/first/">github博客使用说明</a></h3>
 						<small><span class="label label-primary">
 							
 								18056.54.518
 							</span>&nbsp;in
 							
 								
-								<a href="/categories/category1">category1</a>
-							
-								 , 
-								<a href="/categories/category2">category2</a>
+								<a href="/categories/%E6%95%99%E7%A8%8B">教程</a>
 							 using tags
 							
 								
-							<a href="/tags/tag1">tag1</a>
-						
-								 , 
-							<a href="/tags/tag2">tag2</a>
+							<a href="/tags/blog">blog</a>
 						
 					</small>
 				</div>
@@ -88,7 +82,64 @@
 				<div class="col-md-offset-1 col-md-10">
 					<br>
 					
-						<p>Content of the file goes here</p>
+						
+
+<h3 id="1-概述:e8fb9c67eba912c72729806db31eaa1b">1.概述</h3>
+
+<p>本博客系统由hugo（go语言本地博客系统）结合github pages组成，采用markdown格式编辑，用hugo命令自动生成静态网页，采用git命令行进行发布。</p>
+
+<h3 id="2-系统安装:e8fb9c67eba912c72729806db31eaa1b">2.系统安装</h3>
+
+<ul>
+<li><p>hugo 安装
+<a href="https://github.com/spf13/hugo/releases">hugo</a>,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统<code>brew install hugo</code>, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。</p></li>
+
+<li><p>git 安装（略）</p></li>
+
+<li><p>blog 模版安装</p></li>
+</ul>
+
+<p>将公司共享服务器中blog目录复制到本机</p>
+
+<ul>
+<li><p>第一次使用时，克隆远程库</p>
+
+<pre><code>cd blog
+git clone https://github.com/eyestone/eyestone.github.io.git 
+</code></pre>
+
+<h3 id="用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">用markdown语法撰写博客</h3></li>
+
+<li><p>在blog目录下，运行如下命令行</p></li>
+</ul>
+
+<pre><code>hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
+</code></pre>
+
+<ul>
+<li>模版文件格式如下
+```
++++
+title         = &ldquo;文章标题&rdquo;
+tags         = [&ldquo;标签1&rdquo;, &ldquo;标签2&rdquo;]
+categories    = [&ldquo;分类1&rdquo;,&ldquo;分类2&rdquo;]
+date        = &ldquo;2015-01-01&rdquo;
++++</li>
+</ul>
+
+<p>你的正文</p>
+
+<pre><code>这时，使用任意的文本编辑器即可书写博客了。
+
+* 发布到github
+</code></pre>
+
+<p>hugo
+cd public
+git add -A
+git commit -m &ldquo;add file title&rdquo;
+git push
+```</p>
 
 					
 				</div>
@@ -123,7 +174,7 @@
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io//license">License</a>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
                     </p>
                 </div>
 

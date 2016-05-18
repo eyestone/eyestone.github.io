@@ -12,12 +12,69 @@
       
         
           <item>
-            <title>first</title>
+            <title>github博客使用说明</title>
             <link>http://eyestone.github.io/post/first/</link>
             <pubDate>Wed, 18 May 2016 21:20:54 +0800</pubDate>
             
             <guid>http://eyestone.github.io/post/first/</guid>
-            <description>&lt;p&gt;Content of the file goes here&lt;/p&gt;
+            <description>
+
+&lt;h3 id=&#34;1-概述:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;1.概述&lt;/h3&gt;
+
+&lt;p&gt;本博客系统由hugo（go语言本地博客系统）结合github pages组成，采用markdown格式编辑，用hugo命令自动生成静态网页，采用git命令行进行发布。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-系统安装:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;2.系统安装&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;hugo 安装
+&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;hugo&lt;/a&gt;,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统&lt;code&gt;brew install hugo&lt;/code&gt;, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;git 安装（略）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;blog 模版安装&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;将公司共享服务器中blog目录复制到本机&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第一次使用时，克隆远程库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd blog
+git clone https://github.com/eyestone/eyestone.github.io.git 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;用markdown语法撰写博客&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在blog目录下，运行如下命令行&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;模版文件格式如下
+```
++++
+title         = &amp;ldquo;文章标题&amp;rdquo;
+tags         = [&amp;ldquo;标签1&amp;rdquo;, &amp;ldquo;标签2&amp;rdquo;]
+categories    = [&amp;ldquo;分类1&amp;rdquo;,&amp;ldquo;分类2&amp;rdquo;]
+date        = &amp;ldquo;2015-01-01&amp;rdquo;
++++&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;你的正文&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;这时，使用任意的文本编辑器即可书写博客了。
+
+* 发布到github
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;hugo
+cd public
+git add -A
+git commit -m &amp;ldquo;add file title&amp;rdquo;
+git push
+```&lt;/p&gt;
 </description>
           </item>
         
