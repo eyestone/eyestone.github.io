@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Category1 on 项目文档库</title>
+    <link>http://eyestone.github.io/categories/category1/</link>
+    <description>Recent content in Category1 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 May 2016 21:20:54 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/categories/category1/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>first</title>
+            <link>http://eyestone.github.io/post/first/</link>
+            <pubDate>Wed, 18 May 2016 21:20:54 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/first/</guid>
+            <description>&lt;p&gt;Content of the file goes here&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
