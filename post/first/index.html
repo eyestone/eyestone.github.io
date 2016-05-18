@@ -82,9 +82,12 @@
 <h3 id="2-系统安装:e8fb9c67eba912c72729806db31eaa1b">2.系统安装</h3>
 
 <ul>
-<li><p>hugo 安装
-<a href="https://github.com/spf13/hugo/releases">hugo</a>,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统<code>brew install hugo</code>, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。</p></li>
+<li>hugo 安装</li>
+</ul>
 
+<p><a href="https://github.com/spf13/hugo/releases">hugo</a>,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统<code>brew install hugo</code>, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。</p>
+
+<ul>
 <li><p>git 安装（略）</p></li>
 
 <li><p>blog 模版安装</p></li>
@@ -93,18 +96,20 @@
 <p>将公司共享服务器中blog目录复制到本机</p>
 
 <ul>
-<li><p>第一次使用时，克隆远程库</p>
-
-<pre><code>cd blog
-git clone https://github.com/eyestone/eyestone.github.io.git 
-</code></pre>
-
-<h3 id="3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">3.用markdown语法撰写博客</h3></li>
-
-<li><p>在blog目录下，运行如下命令行</p></li>
+<li>第一次使用时，克隆远程库
+<code>
+$ cd blog
+$ git clone https://github.com/eyestone/eyestone.github.io.git 
+</code></li>
 </ul>
 
-<pre><code>hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
+<h3 id="3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">3.用markdown语法撰写博客</h3>
+
+<ul>
+<li>在blog目录下，运行如下命令行</li>
+</ul>
+
+<pre><code>$ hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
 </code></pre>
 
 <ul>
@@ -127,12 +132,12 @@ date        = &quot;2015-01-01&quot;
 <li>发布到github</li>
 </ul>
 
-<pre><code>cd blog //注意，一定好回到blog根目录
-hugo
-cd public
-git add -A
-git commit -m &quot;add file title&quot;
-git push
+<pre><code>$ cd blog //注意，一定好回到blog根目录
+$ hugo
+$ cd public
+$ git add -A
+$ git commit -m &quot;add file title&quot;
+$ git push
 </code></pre>
 
         </div>
