@@ -48,7 +48,7 @@
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;$ cd blog
-$ git clone https://github.com/eyestone/eyestone.github.io.git 
+$ git clone https://github.com/eyestone/eyestone.github.io.git public 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;3.用markdown语法撰写博客&lt;/h3&gt;
