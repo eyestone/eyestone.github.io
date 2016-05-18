@@ -23,41 +23,45 @@
 
 &lt;p&gt;本博客系统由hugo（go语言本地博客系统）结合github pages组成，采用markdown格式编辑，用hugo命令自动生成静态网页，采用git命令行进行发布。&lt;/p&gt;
 
+&lt;p&gt;善用本系统可获得如下好处，一个是本地编辑好过网页编辑，特别是网站很慢网络不稳定的时候; 另一个是markdown 格式的编写，可以让作者不再关注鼠标式的排版问题，真正聚焦于内容创作上。&lt;/p&gt;
+
+&lt;p&gt;博客访问地址为&lt;code&gt;eyestone.github.io&lt;/code&gt;&lt;/p&gt;
+
 &lt;h3 id=&#34;2-系统安装:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;2.系统安装&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;hugo 安装&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hugo 安装&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;hugo&lt;/a&gt;,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统&lt;code&gt;brew install hugo&lt;/code&gt;, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;git 安装（略）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;git 安装（略）&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;blog 模版安装&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;blog 模版安装&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;将公司共享服务器中blog目录复制到本机&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;第一次使用时，克隆远程库
-&lt;code&gt;
-$ cd blog
-$ git clone https://github.com/eyestone/eyestone.github.io.git 
-&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第一次使用时，克隆远程库&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd blog
+$ git clone https://github.com/eyestone/eyestone.github.io.git 
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;3.用markdown语法撰写博客&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;在blog目录下，运行如下命令行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在blog目录下，运行如下命令行&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;$ hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;模版文件格式如下&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模版文件格式如下&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;+++
@@ -73,16 +77,49 @@ date        = &amp;quot;2015-01-01&amp;quot;
 &lt;p&gt;这时，使用任意的文本编辑器即可书写博客了。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;发布到github&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;博客预览&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;$ cd blog //注意，一定好回到blog根目录
+&lt;p&gt;blog目录下运行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./show.sh   // mac or linux 平台
+
+$ show      // windows 平台
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打开网页浏览器，输入地址&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;localhost:1313
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;发布到github&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;发布后的访问地址为&lt;code&gt;eyestone.github.io&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;手动发布&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注：当前目录为blog 目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git pull   //养成习惯，先更新库
 $ hugo
 $ cd public
 $ git add -A
 $ git commit -m &amp;quot;add file title&amp;quot;
 $ git push
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;自动发布&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./deploy.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;进阶，有兴趣者也可以考虑自行写windows批处理文件.&lt;/p&gt;
 </description>
           </item>
         
