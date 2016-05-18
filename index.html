@@ -94,23 +94,17 @@
 
 <h3 id="2-系统安装:e8fb9c67eba912c72729806db31eaa1b">2.系统安装</h3>
 
-<ul>
-<li><strong>hugo 安装</strong></li>
-</ul>
+<p><strong>hugo 安装</strong></p>
 
 <p><a href="https://github.com/spf13/hugo/releases">hugo</a>,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统<code>brew install hugo</code>, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。</p>
 
-<ul>
-<li><p><strong>git 安装（略）</strong></p></li>
+<p><strong>git 安装（略）</strong></p>
 
-<li><p><strong>blog 模版安装</strong></p></li>
-</ul>
+<p><strong>blog 模版安装</strong></p>
 
 <p>将公司共享服务器中blog目录复制到本机</p>
 
-<ul>
-<li><strong>第一次使用时，克隆远程库</strong></li>
-</ul>
+<p><strong>第一次使用时，克隆远程库</strong></p>
 
 <pre><code>$ cd blog
 $ git clone https://github.com/eyestone/eyestone.github.io.git public 
@@ -118,16 +112,12 @@ $ git clone https://github.com/eyestone/eyestone.github.io.git public
 
 <h3 id="3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">3.用markdown语法撰写博客</h3>
 
-<ul>
-<li><strong>在blog目录下，运行如下命令行</strong></li>
-</ul>
+<p><strong>在blog目录下，运行如下命令行</strong></p>
 
 <pre><code>$ hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
 </code></pre>
 
-<ul>
-<li><strong>模版文件格式如下</strong></li>
-</ul>
+<p><strong>模版文件格式如下</strong></p>
 
 <pre><code>+++
 title         = &quot;文章标题&quot;
@@ -141,9 +131,7 @@ date        = &quot;2015-01-01&quot;
 
 <p>这时，使用任意的文本编辑器即可书写博客了。</p>
 
-<ul>
-<li><strong>博客预览</strong></li>
-</ul>
+<p><strong>博客预览</strong></p>
 
 <p>blog目录下运行</p>
 
@@ -157,17 +145,11 @@ $ show      // windows 平台
 <pre><code>localhost:1313
 </code></pre>
 
-<ul>
-<li><strong>发布到github</strong></li>
-</ul>
-
-<p>发布后的访问地址为<code>eyestone.github.io</code></p>
+<p><strong>发布到github</strong></p>
 
 <ul>
-<li>手动发布</li>
+<li>手动发布(当前目录为blog 目录)</li>
 </ul>
-
-<p>注：当前目录为blog 目录</p>
 
 <pre><code>$ git pull   //养成习惯，先更新库
 $ hugo
