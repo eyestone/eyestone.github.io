@@ -108,7 +108,7 @@
 git clone https://github.com/eyestone/eyestone.github.io.git 
 </code></pre>
 
-<h3 id="用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">用markdown语法撰写博客</h3></li>
+<h3 id="3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">3.用markdown语法撰写博客</h3></li>
 
 <li><p>在blog目录下，运行如下命令行</p></li>
 </ul>
@@ -117,29 +117,32 @@ git clone https://github.com/eyestone/eyestone.github.io.git
 </code></pre>
 
 <ul>
-<li>模版文件格式如下
-```
-+++
-title         = &ldquo;文章标题&rdquo;
-tags         = [&ldquo;标签1&rdquo;, &ldquo;标签2&rdquo;]
-categories    = [&ldquo;分类1&rdquo;,&ldquo;分类2&rdquo;]
-date        = &ldquo;2015-01-01&rdquo;
-+++</li>
+<li>模版文件格式如下</li>
 </ul>
 
-<p>你的正文</p>
+<pre><code>+++
+title         = &quot;文章标题&quot;
+tags         = [&quot;标签1&quot;, &quot;标签2&quot;]
+categories    = [&quot;分类1&quot;,&quot;分类2&quot;]
+date        = &quot;2015-01-01&quot;
++++
 
-<pre><code>这时，使用任意的文本编辑器即可书写博客了。
-
-* 发布到github
+你的正文
 </code></pre>
 
-<p>hugo
+<p>这时，使用任意的文本编辑器即可书写博客了。</p>
+
+<ul>
+<li>发布到github</li>
+</ul>
+
+<pre><code>cd blog //注意，一定好回到blog根目录
+hugo
 cd public
 git add -A
-git commit -m &ldquo;add file title&rdquo;
+git commit -m &quot;add file title&quot;
 git push
-```</p>
+</code></pre>
 
 					
 				</div>

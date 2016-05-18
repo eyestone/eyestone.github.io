@@ -43,7 +43,7 @@
 git clone https://github.com/eyestone/eyestone.github.io.git 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;用markdown语法撰写博客&lt;/h3&gt;&lt;/li&gt;
+&lt;h3 id=&#34;3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;3.用markdown语法撰写博客&lt;/h3&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;在blog目录下，运行如下命令行&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -52,29 +52,32 @@ git clone https://github.com/eyestone/eyestone.github.io.git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;模版文件格式如下
-```
-+++
-title         = &amp;ldquo;文章标题&amp;rdquo;
-tags         = [&amp;ldquo;标签1&amp;rdquo;, &amp;ldquo;标签2&amp;rdquo;]
-categories    = [&amp;ldquo;分类1&amp;rdquo;,&amp;ldquo;分类2&amp;rdquo;]
-date        = &amp;ldquo;2015-01-01&amp;rdquo;
-+++&lt;/li&gt;
+&lt;li&gt;模版文件格式如下&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;你的正文&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+++
+title         = &amp;quot;文章标题&amp;quot;
+tags         = [&amp;quot;标签1&amp;quot;, &amp;quot;标签2&amp;quot;]
+categories    = [&amp;quot;分类1&amp;quot;,&amp;quot;分类2&amp;quot;]
+date        = &amp;quot;2015-01-01&amp;quot;
++++
 
-&lt;pre&gt;&lt;code&gt;这时，使用任意的文本编辑器即可书写博客了。
-
-* 发布到github
+你的正文
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;hugo
+&lt;p&gt;这时，使用任意的文本编辑器即可书写博客了。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;发布到github&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;cd blog //注意，一定好回到blog根目录
+hugo
 cd public
 git add -A
-git commit -m &amp;ldquo;add file title&amp;rdquo;
+git commit -m &amp;quot;add file title&amp;quot;
 git push
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
