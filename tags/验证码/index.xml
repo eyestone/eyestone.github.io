@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>验证码 on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+    <description>Recent content in 验证码 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 May 2016 10:44:39 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>企业用户邀请码验证流程</title>
+            <link>http://eyestone.github.io/post/discuss-loginWorkFlow/</link>
+            <pubDate>Fri, 20 May 2016 10:44:39 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-loginWorkFlow/</guid>
+            <description>
+
+&lt;h4 id=&#34;流程:c3d737271291e416175d535fdd08de68&#34;&gt;流程&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;企业收集员工的手机号&amp;ndash;&amp;gt;提供到来福&amp;ndash;&amp;gt;从后台录入并分配邀请码（放到invite_code表中）&lt;/li&gt;
+&lt;li&gt;用户打开app&amp;ndash;&amp;gt;点击邀请码验证&amp;ndash;&amp;gt;输入手机号和邀请码&amp;ndash;&amp;gt;查询邀请码存在&amp;ndash;&amp;gt;生成用户&amp;ndash;&amp;gt;关联公司&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;使用场景:c3d737271291e416175d535fdd08de68&#34;&gt;使用场景&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证过程中，用户已生成但是未完成信息修改：
+&amp;gt; 认为用户未完成验证，下次打开app的时候重新进行验证&lt;/li&gt;
+&lt;li&gt;用户使用A手机号获取邀请码完成注册，之后将手机号修改成B。A手机号被另一个人使用来获取邀请码。
+&amp;gt; 应该让其正常通过验证&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;备注:c3d737271291e416175d535fdd08de68&#34;&gt;备注&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用邀请码和激活码用户的区别：使用邀请码验证的用户是那一类信息比较少的，一般指没有身份证号，更多的是只提供了手机号码的一类；使用激活码的用户指信息比较全的用户，一般指包括身份证号都存在的用户，由后台上传用户信息，用户自己激活。&lt;/li&gt;
+&lt;li&gt;激活码目前不适用数据库中的激活码，而是使用短信验证码。&lt;/li&gt;
+&lt;li&gt;使用邀请码的用户不需要再激活。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;*记录人:陆文金&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>保险 on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/%E4%BF%9D%E9%99%A9/</link>
+    <description>Recent content in 保险 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 May 2016 10:40:29 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/%E4%BF%9D%E9%99%A9/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于保险升档和试算页面细节的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-shendaang2/</link>
+            <pubDate>Fri, 20 May 2016 10:40:29 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shendaang2/</guid>
+            <description>
+
+&lt;h4 id=&#34;问题提出:aa1486aae297c44767f8d9ba804921d9&#34;&gt;问题提出&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对于已签约但是已过期的用户是否算升档&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;问题演变:aa1486aae297c44767f8d9ba804921d9&#34;&gt;问题演变&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户不知道自己该升档还是该试算的时候，如果要买重疾，必须买够4份意外，但是对于已购2份意外的情况，所以需要历史数据。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;需要确定的问题:aa1486aae297c44767f8d9ba804921d9&#34;&gt;需要确定的问题&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;app鉴别试算和升档：只要买有未过期的已签约保险就算升档，否则算签约&lt;/li&gt;
+&lt;li&gt;最终鉴别新申请和升档：线下确定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;讨论结果:aa1486aae297c44767f8d9ba804921d9&#34;&gt;讨论结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;界面仍保留现在的方案&lt;/li&gt;
+&lt;li&gt;如果不满足升档条件，升档按钮不可点击&lt;/li&gt;
+&lt;li&gt;试算页面不显示已申请的历史记录&lt;/li&gt;
+&lt;li&gt;升档页面在保险种类下面显示已申请的历史信息供参考&lt;/li&gt;
+&lt;li&gt;升档页面计算份数和总量的时候调用历史申请记录&lt;/li&gt;
+&lt;li&gt;申请记录：显示企业团险和交通意外险两个大类&lt;/li&gt;
+&lt;li&gt;申请记录可以删除&lt;/li&gt;
+&lt;li&gt;申请记录可以点击进去，跳转到试算页面，显示份数，提交可更新到服务器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;参与人:aa1486aae297c44767f8d9ba804921d9&#34;&gt;参与人&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;freeopen&lt;/li&gt;
+&lt;li&gt;liyan&lt;/li&gt;
+&lt;li&gt;luwj&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;recorder: luwj&lt;/em&gt;&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>关于保险升档页面的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-shendaang/</link>
+            <pubDate>Fri, 20 May 2016 10:40:29 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shendaang/</guid>
+            <description>
+
+&lt;h4 id=&#34;不确定点:e5a7cbca26aa9c314aa0f264d65ad094&#34;&gt;不确定点&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;李艳回忆说马老师要求显示关系&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;讨论结果:e5a7cbca26aa9c314aa0f264d65ad094&#34;&gt;讨论结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择人员部分直接显示人名，用备注的方式显示和用户的关系&lt;/li&gt;
+&lt;li&gt;选择人员部分保留一行，可显示多个名字，当要查看选择更多的受益人的时候点开加号，出现浮动选择框（当收受益人只有一个时，加号不显示）&lt;/li&gt;
+&lt;li&gt;已选择的保险可以点击修改和删除&lt;/li&gt;
+&lt;li&gt;从服务器获取和用户相关的人员的保险购买信息，用来确定其是否满足升档条件&lt;/li&gt;
+&lt;li&gt;对于不满足条件的保险项目，app应禁止选择，服务器也要做相应检查&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;todo:e5a7cbca26aa9c314aa0f264d65ad094&#34;&gt;TODO&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;按照讨论结果设计界面&lt;/li&gt;
+&lt;li&gt;和马老师确定不确定点&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;记录人: 陆文金&lt;/em&gt;&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

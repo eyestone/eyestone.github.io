@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="关于保险升档和试算页面细节的讨论">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>关于保险升档和试算页面细节的讨论 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>关于保险升档和试算页面细节的讨论</h3>
+                <span class="label label-primary">Fri, May 20, 2016</span> in 
+                
+                
+                <a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+                 using tags
+                
+                
+                <a href="/tags/%E4%BF%9D%E9%99%A9">保险</a>
+                
+                 , 
+                <a href="/tags/%E5%8D%87%E6%A1%A3">升档</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<h4 id="问题提出:aa1486aae297c44767f8d9ba804921d9">问题提出</h4>
+
+<ul>
+<li>对于已签约但是已过期的用户是否算升档</li>
+</ul>
+
+<h4 id="问题演变:aa1486aae297c44767f8d9ba804921d9">问题演变</h4>
+
+<ul>
+<li>用户不知道自己该升档还是该试算的时候，如果要买重疾，必须买够4份意外，但是对于已购2份意外的情况，所以需要历史数据。</li>
+</ul>
+
+<h4 id="需要确定的问题:aa1486aae297c44767f8d9ba804921d9">需要确定的问题</h4>
+
+<ul>
+<li>app鉴别试算和升档：只要买有未过期的已签约保险就算升档，否则算签约</li>
+<li>最终鉴别新申请和升档：线下确定</li>
+</ul>
+
+<h4 id="讨论结果:aa1486aae297c44767f8d9ba804921d9">讨论结果</h4>
+
+<ul>
+<li>界面仍保留现在的方案</li>
+<li>如果不满足升档条件，升档按钮不可点击</li>
+<li>试算页面不显示已申请的历史记录</li>
+<li>升档页面在保险种类下面显示已申请的历史信息供参考</li>
+<li>升档页面计算份数和总量的时候调用历史申请记录</li>
+<li>申请记录：显示企业团险和交通意外险两个大类</li>
+<li>申请记录可以删除</li>
+<li>申请记录可以点击进去，跳转到试算页面，显示份数，提交可更新到服务器</li>
+</ul>
+
+<h4 id="参与人:aa1486aae297c44767f8d9ba804921d9">参与人</h4>
+
+<ul>
+<li>freeopen</li>
+<li>liyan</li>
+<li>luwj</li>
+</ul>
+
+<p><em>recorder: luwj</em></p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/discuss-shendaang2/" data-title="关于保险升档和试算页面细节的讨论" data-url="http://eyestone.github.io/post/discuss-shendaang2/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
