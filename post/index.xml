@@ -29,11 +29,20 @@
 &lt;h4 id=&#34;使用场景:c3d737271291e416175d535fdd08de68&#34;&gt;使用场景&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;验证过程中，用户已生成但是未完成信息修改：
-&amp;gt; 认为用户未完成验证，下次打开app的时候重新进行验证&lt;/li&gt;
-&lt;li&gt;用户使用A手机号获取邀请码完成注册，之后将手机号修改成B。A手机号被另一个人使用来获取邀请码。
-&amp;gt; 应该让其正常通过验证&lt;/li&gt;
+&lt;li&gt;验证过程中，用户已生成但是未完成信息修改：&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;认为用户未完成验证，下次打开app的时候重新进行验证&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户使用A手机号获取邀请码完成注册，之后将手机号修改成B。A手机号被另一个人使用来获取邀请码。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;应该让其正常通过验证&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h4 id=&#34;备注:c3d737271291e416175d535fdd08de68&#34;&gt;备注&lt;/h4&gt;
 
@@ -43,7 +52,7 @@
 &lt;li&gt;使用邀请码的用户不需要再激活。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;*记录人:陆文金&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;记录人:陆文金&lt;/em&gt;&lt;/p&gt;
 </description>
           </item>
         
