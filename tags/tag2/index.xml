@@ -6,18 +6,21 @@
     <description>Recent content in Tag2 on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 May 2016 21:20:54 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 May 2016 12:05:51 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
-            <title>first</title>
-            <link>http://eyestone.github.io/post/first/</link>
-            <pubDate>Wed, 18 May 2016 21:20:54 +0800</pubDate>
+            <title>lwjtest</title>
+            <link>http://eyestone.github.io/post/lwjtest/</link>
+            <pubDate>Sun, 22 May 2016 12:05:51 +0800</pubDate>
             
-            <guid>http://eyestone.github.io/post/first/</guid>
+            <guid>http://eyestone.github.io/post/lwjtest/</guid>
             <description>&lt;p&gt;Content of the file goes here&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;test&lt;/strong&gt;
+- 测试&lt;/p&gt;
 </description>
           </item>
         
