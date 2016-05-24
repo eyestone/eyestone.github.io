@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>提示 on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/%E6%8F%90%E7%A4%BA/</link>
+    <description>Recent content in 提示 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 May 2016 19:10:23 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/%E6%8F%90%E7%A4%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于升档页面有未保存的编辑数据时的提交的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-shengdang3/</link>
+            <pubDate>Tue, 24 May 2016 19:10:23 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shengdang3/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;问题提出&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;按照之前的设计，在点击添加人的时候会默认将当前编辑的人的信息保存&lt;/li&gt;
+&lt;li&gt;可是“我”并不想保存这个人的信息&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;讨论结果&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.人名右边的点击按钮只作为展开人名列表之用&lt;/li&gt;
+&lt;li&gt;2.下面的“添加一人”按钮用做保存已编辑的信息&lt;/li&gt;
+&lt;li&gt;3.修改已保存的列表中的信息时，如果有未保存的人的信息，提示“放弃|保存”&lt;/li&gt;
+&lt;li&gt;4.点击“提交”按钮时，如果有未保存的人的信息，提示“放弃|提交”&lt;/li&gt;
+&lt;li&gt;5.如果选择放弃即将未保存的信息忽略，其他信息照常处理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;参与人&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;李艳&lt;/li&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;记录&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
