@@ -103,8 +103,3 @@ $ ./deploy.sh
 * 再到浏览器的书签图标中点击“订阅”
 
 android手机的订阅说明，请其它有兴趣的同学继续补充。
-
----
-
-经测试，基于苹果手机浏览器的订阅模式还不够好，因为新文章发布后，并不能看到及时的提醒。
-这里，强烈建议大家在手机上安装专业的RSS阅读器，其中android手机推荐Quote 和 Press, iphone手机推荐Reeder 3、Newsify、Unread、Fiery Feeds等阅读器。

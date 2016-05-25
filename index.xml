@@ -264,6 +264,34 @@
       
         
           <item>
+            <title>testFlow</title>
+            <link>http://eyestone.github.io/post/testFlow/</link>
+            <pubDate>Tue, 24 May 2016 18:37:21 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/testFlow/</guid>
+            <description>&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;
+st=&amp;gt;start: Start
+e=&amp;gt;end: End
+op1=&amp;gt;operation: lwj1
+sub1=&amp;gt;subroutine: lwjs
+cond=&amp;gt;condition: succeed
+io=&amp;gt;inputoutput: input1
+
+st-&amp;gt;op1-&amp;gt;cond
+cond(yes)-&amp;gt;io-&amp;gt;e
+cond(no)-&amp;gt;sub1(right)-&amp;gt;op1
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;[x] dddd&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>企业用户邀请码验证流程</title>
             <link>http://eyestone.github.io/post/discuss-loginWorkFlow/</link>
             <pubDate>Fri, 20 May 2016 10:44:39 +0800</pubDate>
@@ -512,11 +540,6 @@ $ git push
 &lt;/ul&gt;
 
 &lt;p&gt;android手机的订阅说明，请其它有兴趣的同学继续补充。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;经测试，基于苹果手机浏览器的订阅模式还不够好，因为新文章发布后，并不能看到及时的提醒。
-这里，强烈建议大家在手机上安装专业的RSS阅读器，其中android手机推荐Quote 和 Press, iphone手机推荐Reeder 3、Newsify、Unread、Fiery Feeds等阅读器。&lt;/p&gt;
 </description>
           </item>
         
