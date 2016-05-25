@@ -264,34 +264,6 @@
       
         
           <item>
-            <title>testFlow</title>
-            <link>http://eyestone.github.io/post/testFlow/</link>
-            <pubDate>Tue, 24 May 2016 18:37:21 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/testFlow/</guid>
-            <description>&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;
-st=&amp;gt;start: Start
-e=&amp;gt;end: End
-op1=&amp;gt;operation: lwj1
-sub1=&amp;gt;subroutine: lwjs
-cond=&amp;gt;condition: succeed
-io=&amp;gt;inputoutput: input1
-
-st-&amp;gt;op1-&amp;gt;cond
-cond(yes)-&amp;gt;io-&amp;gt;e
-cond(no)-&amp;gt;sub1(right)-&amp;gt;op1
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;[x] dddd&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
             <title>企业用户邀请码验证流程</title>
             <link>http://eyestone.github.io/post/discuss-loginWorkFlow/</link>
             <pubDate>Fri, 20 May 2016 10:44:39 +0800</pubDate>
