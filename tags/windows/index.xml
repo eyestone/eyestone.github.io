@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/windows/</link>
+    <description>Recent content in Windows on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 May 2016 11:45:30 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>在windows下使用hugo写博客</title>
+            <link>http://eyestone.github.io/post/useBlogOnWindows/</link>
+            <pubDate>Wed, 25 May 2016 11:45:30 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/useBlogOnWindows/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具&lt;/li&gt;
+&lt;li&gt;输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:&lt;/li&gt;
+&lt;li&gt;输入 D: 回车  这个是切换到相应的盘&lt;/li&gt;
+&lt;li&gt;输入 cd dir 回车  dir为要进入的目录，比如你的blog目录放在D:/blog就直接输入 cd blog&lt;/li&gt;
+&lt;li&gt;新建文件 hugo new post/filename.md 这样就会在blog/content/post目录下创建一个filename.md文件&lt;/li&gt;
+&lt;li&gt;用文本编辑器打开要编辑的文件进行编辑保存&lt;/li&gt;
+&lt;li&gt;在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档&lt;/li&gt;
+&lt;li&gt;使用deploy.cmd命令，可以将本地文档同步到服务器&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
