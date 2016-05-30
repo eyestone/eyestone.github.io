@@ -467,6 +467,7 @@ cond(no)-&amp;gt;sub1(right)-&amp;gt;op1
 
 &lt;pre&gt;&lt;code&gt;$ cd blog
 $ git clone https://github.com/eyestone/eyestone.github.io.git public 
+$ git clone https://github.com/eyestone/blog-content.git content 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;3.用markdown语法撰写博客&lt;/h3&gt;
@@ -540,6 +541,10 @@ $ git push
 &lt;/ul&gt;
 
 &lt;p&gt;android手机的订阅说明，请其它有兴趣的同学继续补充。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
 </description>
           </item>
         
