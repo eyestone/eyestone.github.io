@@ -122,8 +122,11 @@ $ git push
 
 &lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
 
-&lt;p&gt;-[] hello
--[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[] hello&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
