@@ -6,8 +6,36 @@
     <description>Recent content in Posts on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 May 2016 10:21:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2016 14:38:51 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>福米兑换场流程和相关接口的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-fumiCashing/</link>
+            <pubDate>Tue, 31 May 2016 14:38:51 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-fumiCashing/</guid>
+            <description>
+
+&lt;h4 id=&#34;问题提出:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;问题提出&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对于即将开展的工作内容的常规讨论&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;讨论结果:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;讨论结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.流程图如下，图中备注为需要用到的接口，打钩的表示已经实现的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/福米兑换场流程.png&#34; width = &#34;300&#34;  alt=&#34;福米兑换场流程&#34; align=center /&gt;&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -59,8 +87,6 @@
             
             <guid>http://eyestone.github.io/post/todo-list/</guid>
             <description>
-
-&lt;p&gt;&lt;img src=&#34;http://hiphotos.baidu.com/zhidao/pic/item/cefc1e178a82b90165852782708da9773912ef53.jpg&#34; width = &#34;300&#34; height = &#34;200&#34; alt=&#34;图片名称&#34; align=center /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;方法:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/h3&gt;
 
