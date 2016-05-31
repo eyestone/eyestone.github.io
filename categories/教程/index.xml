@@ -122,11 +122,28 @@ $ git push
 
 &lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;[] hello&lt;/p&gt;&lt;/li&gt;
+&lt;hr /&gt;
 
-&lt;li&gt;&lt;p&gt;[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;markdown 新功能测试&lt;/p&gt;
+
+&lt;p&gt;-[] hello
+-[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;st=&amp;gt;start: Start|past:&amp;gt;&lt;a href=&#34;http://www.google.com[blank&#34;&gt;http://www.google.com[blank&lt;/a&gt;]
+e=&amp;gt;end: End:&amp;gt;&lt;a href=&#34;http://www.google.com&#34;&gt;http://www.google.com&lt;/a&gt;
+op1=&amp;gt;operation: My Operation|past
+op2=&amp;gt;operation: Stuff|current
+sub1=&amp;gt;subroutine: My Subroutine|invalid
+cond=&amp;gt;condition: Yes
+or No?|approved:&amp;gt;&lt;a href=&#34;http://www.baidu.com&#34;&gt;http://www.baidu.com&lt;/a&gt;
+c2=&amp;gt;condition: Good idea|rejected
+io=&amp;gt;inputoutput: catch something&amp;hellip;|request&lt;/p&gt;
+
+&lt;p&gt;st-&amp;gt;op1(right)-&amp;gt;cond
+cond(yes, right)-&amp;gt;c2
+cond(no)-&amp;gt;sub1(left)-&amp;gt;op1
+c2(yes)-&amp;gt;io-&amp;gt;e
+c2(no)-&amp;gt;op2-&amp;gt;e&lt;/p&gt;
 </description>
           </item>
         

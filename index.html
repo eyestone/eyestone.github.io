@@ -754,11 +754,28 @@ $ git push
 
 <p>经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.</p>
 
-<ul>
-<li><p>[] hello</p></li>
+<hr />
 
-<li><p>[X] <del>good morning</del></p></li>
-</ul>
+<p>markdown 新功能测试</p>
+
+<p>-[] hello
+-[X] <del>good morning</del></p>
+
+<p>st=&gt;start: Start|past:&gt;<a href="http://www.google.com[blank">http://www.google.com[blank</a>]
+e=&gt;end: End:&gt;<a href="http://www.google.com">http://www.google.com</a>
+op1=&gt;operation: My Operation|past
+op2=&gt;operation: Stuff|current
+sub1=&gt;subroutine: My Subroutine|invalid
+cond=&gt;condition: Yes
+or No?|approved:&gt;<a href="http://www.baidu.com">http://www.baidu.com</a>
+c2=&gt;condition: Good idea|rejected
+io=&gt;inputoutput: catch something&hellip;|request</p>
+
+<p>st-&gt;op1(right)-&gt;cond
+cond(yes, right)-&gt;c2
+cond(no)-&gt;sub1(left)-&gt;op1
+c2(yes)-&gt;io-&gt;e
+c2(no)-&gt;op2-&gt;e</p>
 
 					
 				</div>
