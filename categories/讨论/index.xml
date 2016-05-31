@@ -53,6 +53,12 @@
 &lt;li&gt;2.实现相关接口&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h4 id=&#34;问题:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;问题&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.考虑多商品订单如果往新的表（分子表）中存放，会出现什么问题？&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&#34;参与人:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;参与人&lt;/h4&gt;
 
 &lt;ul&gt;
