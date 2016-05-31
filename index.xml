@@ -6,8 +6,26 @@
     <description>Recent content on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 May 2016 11:45:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2016 10:21:34 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于hugo中markdown格式的兼容性问题</title>
+            <link>http://eyestone.github.io/post/hugo-issues/</link>
+            <pubDate>Tue, 31 May 2016 10:21:34 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/hugo-issues/</guid>
+            <description>&lt;p&gt;目前hugo并不兼容markdown的高级格式功能，比如todo list和流程图。&lt;/p&gt;
+
+&lt;p&gt;经检查源码，发现是markdown的解码问题，原理为通过识别markdown标识，解析成对应html格式，而是流程图功能，为markdown扩展功能，用到了html5的矢量图特性。这类的功能增强要么我们自己扩展，要么坐等官方更新。&lt;/p&gt;
+
+&lt;p&gt;仅作记录，空了继续补充。&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -41,6 +59,8 @@
             
             <guid>http://eyestone.github.io/post/todo-list/</guid>
             <description>
+
+&lt;p&gt;&lt;img src=&#34;http://hiphotos.baidu.com/zhidao/pic/item/cefc1e178a82b90165852782708da9773912ef53.jpg&#34; width = &#34;300&#34; height = &#34;200&#34; alt=&#34;图片名称&#34; align=center /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;方法:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/h3&gt;
 
@@ -106,18 +126,20 @@
 
 &lt;ul&gt;
 &lt;li&gt;1.读取所有保险详情列表解析问题  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;2.测试所有保险相关接口&lt;/li&gt;
+&lt;li&gt;2.测试所有保险相关接口 &amp;ndash; &lt;em&gt;done : 暂时没有发现问题，随时有问题随时响应&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;3.设计和实现升档部分接口：需要增加一个获取历史信息的接口  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;4.用户使用邀请码验证通过后应该关联公司和用户  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;5.添加关于试算修改的讨论记录—&amp;gt;添加两个接口：修改和删除  &amp;mdash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;6.数据库表中的保险申请，添加一个type字段，标明是试算的还是升档的  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;7.&lt;/li&gt;
+&lt;li&gt;7.写福米兑换场讨论结果文档，包括整个流程 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.写签证部分文档&lt;/li&gt;
+&lt;li&gt;9.写福米兑换场相关的接口文档到showdoc&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-1:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.福米兑换场&lt;/li&gt;
+&lt;li&gt;1.福米兑换场 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;2.签证：暂时没有资源&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -526,11 +548,24 @@ $ git push
 
 &lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;[] hello&lt;/p&gt;&lt;/li&gt;
+&lt;hr /&gt;
 
-&lt;li&gt;&lt;p&gt;[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;markdown 新功能测试&lt;/p&gt;
+
+&lt;p&gt;-[] hello
+-[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;st=&amp;gt;start: Start:&amp;gt;https://www.zybuluo.com
+io=&amp;gt;inputoutput: verification
+op=&amp;gt;operation: Your Operation
+cond=&amp;gt;condition: Yes or No?
+sub=&amp;gt;subroutine: Your Subroutine
+e=&amp;gt;end
+
+st-&amp;gt;io-&amp;gt;op-&amp;gt;cond
+cond(yes)-&amp;gt;e
+cond(no)-&amp;gt;sub-&amp;gt;io
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

@@ -122,11 +122,24 @@ $ git push
 
 &lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;[] hello&lt;/p&gt;&lt;/li&gt;
+&lt;hr /&gt;
 
-&lt;li&gt;&lt;p&gt;[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;markdown 新功能测试&lt;/p&gt;
+
+&lt;p&gt;-[] hello
+-[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;st=&amp;gt;start: Start:&amp;gt;https://www.zybuluo.com
+io=&amp;gt;inputoutput: verification
+op=&amp;gt;operation: Your Operation
+cond=&amp;gt;condition: Yes or No?
+sub=&amp;gt;subroutine: Your Subroutine
+e=&amp;gt;end
+
+st-&amp;gt;io-&amp;gt;op-&amp;gt;cond
+cond(yes)-&amp;gt;e
+cond(no)-&amp;gt;sub-&amp;gt;io
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
