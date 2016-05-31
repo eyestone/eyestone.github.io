@@ -44,7 +44,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="http://eyestone.github.io">首页</a></li>
                     <li><a href="http://eyestone.github.io/post/">文章</a></li>
-                    <li><a href="http://eyestone.github.io/life/">生活</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
                     
                 </ul>
             </div>
@@ -185,21 +185,17 @@ $ git push
 <p>-[] hello
 -[X] <del>good morning</del></p>
 
-<p>st=&gt;start: Start|past:&gt;<a href="http://www.google.com[blank">http://www.google.com[blank</a>]
-e=&gt;end: End:&gt;<a href="http://www.google.com">http://www.google.com</a>
-op1=&gt;operation: My Operation|past
-op2=&gt;operation: Stuff|current
-sub1=&gt;subroutine: My Subroutine|invalid
-cond=&gt;condition: Yes
-or No?|approved:&gt;<a href="http://www.baidu.com">http://www.baidu.com</a>
-c2=&gt;condition: Good idea|rejected
-io=&gt;inputoutput: catch something&hellip;|request</p>
+<pre><code class="language-flow">st=&gt;start: Start:&gt;https://www.zybuluo.com
+io=&gt;inputoutput: verification
+op=&gt;operation: Your Operation
+cond=&gt;condition: Yes or No?
+sub=&gt;subroutine: Your Subroutine
+e=&gt;end
 
-<p>st-&gt;op1(right)-&gt;cond
-cond(yes, right)-&gt;c2
-cond(no)-&gt;sub1(left)-&gt;op1
-c2(yes)-&gt;io-&gt;e
-c2(no)-&gt;op2-&gt;e</p>
+st-&gt;io-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;sub-&gt;io
+</code></pre>
 
         </div>
     </div>

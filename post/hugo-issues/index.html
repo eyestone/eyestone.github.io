@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="在windows下使用hugo写博客">
+    <meta name="description" content="关于hugo中markdown格式的兼容性问题">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>在windows下使用hugo写博客 &middot; 项目文档库</title>
+    <title>关于hugo中markdown格式的兼容性问题 &middot; 项目文档库</title>
 
    	
     
@@ -57,21 +57,18 @@
     <div class="container col-md-9">
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <h3>在windows下使用hugo写博客</h3>
-                <span class="label label-primary">Wed, May 25, 2016</span> in 
+                <h3>关于hugo中markdown格式的兼容性问题</h3>
+                <span class="label label-primary">Tue, May 31, 2016</span> in 
                 
                 
-                <a href="/categories/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>
-                
-                 , 
-                <a href="/categories/windows">windows</a>
+                <a href="/categories/hugo">hugo</a>
                  using tags
                 
                 
-                <a href="/tags/blog">blog</a>
+                <a href="/tags/hugo">hugo</a>
                 
                  , 
-                <a href="/tags/windows">windows</a>
+                <a href="/tags/markdown">markdown</a>
                 
             </small>
         </div>
@@ -79,16 +76,11 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <br>
-            <ul>
-<li>运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具</li>
-<li>输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:</li>
-<li>输入 D: 回车  这个是切换到相应的盘</li>
-<li>输入 cd dir 回车  dir为要进入的目录，比如你的blog目录放在D:/blog就直接输入 cd blog</li>
-<li>新建文件 hugo new post/filename.md 这样就会在blog/content/post目录下创建一个filename.md文件</li>
-<li>用文本编辑器打开要编辑的文件进行编辑保存</li>
-<li>在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档</li>
-<li>使用deploy.cmd命令，可以将本地文档同步到服务器</li>
-</ul>
+            <p>目前hugo并不兼容markdown的高级格式功能，比如todo list和流程图。</p>
+
+<p>经检查源码，发现是markdown的解码问题，原理为通过识别markdown标识，解析成对应html格式，而是流程图功能，为markdown扩展功能，用到了html5的矢量图特性。这类的功能增强要么我们自己扩展，要么坐等官方更新。</p>
+
+<p>仅作记录，空了继续补充。</p>
 
         </div>
     </div>
@@ -98,7 +90,7 @@
         </div>
     </div>
     <section id="comments" class="themeform">
-    <div class="ds-thread" data-thread-key="/post/useBlogOnWindows/" data-title="在windows下使用hugo写博客" data-url="http://eyestone.github.io/post/useBlogOnWindows/"></div>
+    <div class="ds-thread" data-thread-key="/post/hugo-issues/" data-title="关于hugo中markdown格式的兼容性问题" data-url="http://eyestone.github.io/post/hugo-issues/"></div>
     <script type="text/javascript">
 var duoshuoQuery = {short_name:"Zen"};
 (function() {

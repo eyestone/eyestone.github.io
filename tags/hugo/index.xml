@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 May 2016 10:21:34 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于hugo中markdown格式的兼容性问题</title>
+            <link>http://eyestone.github.io/post/hugo-issues/</link>
+            <pubDate>Tue, 31 May 2016 10:21:34 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/hugo-issues/</guid>
+            <description>&lt;p&gt;目前hugo并不兼容markdown的高级格式功能，比如todo list和流程图。&lt;/p&gt;
+
+&lt;p&gt;经检查源码，发现是markdown的解码问题，原理为通过识别markdown标识，解析成对应html格式，而是流程图功能，为markdown扩展功能，用到了html5的矢量图特性。这类的功能增强要么我们自己扩展，要么坐等官方更新。&lt;/p&gt;
+
+&lt;p&gt;仅作记录，空了继续补充。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

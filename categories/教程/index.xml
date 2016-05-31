@@ -129,21 +129,17 @@ $ git push
 &lt;p&gt;-[] hello
 -[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
 
-&lt;p&gt;st=&amp;gt;start: Start|past:&amp;gt;&lt;a href=&#34;http://www.google.com[blank&#34;&gt;http://www.google.com[blank&lt;/a&gt;]
-e=&amp;gt;end: End:&amp;gt;&lt;a href=&#34;http://www.google.com&#34;&gt;http://www.google.com&lt;/a&gt;
-op1=&amp;gt;operation: My Operation|past
-op2=&amp;gt;operation: Stuff|current
-sub1=&amp;gt;subroutine: My Subroutine|invalid
-cond=&amp;gt;condition: Yes
-or No?|approved:&amp;gt;&lt;a href=&#34;http://www.baidu.com&#34;&gt;http://www.baidu.com&lt;/a&gt;
-c2=&amp;gt;condition: Good idea|rejected
-io=&amp;gt;inputoutput: catch something&amp;hellip;|request&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;st=&amp;gt;start: Start:&amp;gt;https://www.zybuluo.com
+io=&amp;gt;inputoutput: verification
+op=&amp;gt;operation: Your Operation
+cond=&amp;gt;condition: Yes or No?
+sub=&amp;gt;subroutine: Your Subroutine
+e=&amp;gt;end
 
-&lt;p&gt;st-&amp;gt;op1(right)-&amp;gt;cond
-cond(yes, right)-&amp;gt;c2
-cond(no)-&amp;gt;sub1(left)-&amp;gt;op1
-c2(yes)-&amp;gt;io-&amp;gt;e
-c2(no)-&amp;gt;op2-&amp;gt;e&lt;/p&gt;
+st-&amp;gt;io-&amp;gt;op-&amp;gt;cond
+cond(yes)-&amp;gt;e
+cond(no)-&amp;gt;sub-&amp;gt;io
+&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
