@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="福米兑换场流程和相关接口的讨论">
+    <meta name="description" content="在windows下使用hugo写博客">
     <meta name="author" content="">
 
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>福米兑换场流程和相关接口的讨论 &middot; 项目文档库</title>
+    <title>在windows下使用hugo写博客 &middot; 项目文档库</title>
 
    	
     
@@ -57,18 +57,21 @@
     <div class="container col-md-9">
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <h3>福米兑换场流程和相关接口的讨论</h3>
-                <span class="label label-primary">Tue, May 31, 2016</span> in 
+                <h3>在windows下使用hugo写博客</h3>
+                <span class="label label-primary">Wed, May 25, 2016</span> in 
                 
                 
-                <a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+                <a href="/categories/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>
+                
+                 , 
+                <a href="/categories/windows">windows</a>
                  using tags
                 
                 
-                <a href="/tags/%E7%A6%8F%E7%B1%B3%E5%85%91%E6%8D%A2%E5%9C%BA">福米兑换场</a>
+                <a href="/tags/blog">blog</a>
                 
                  , 
-                <a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+                <a href="/tags/windows">windows</a>
                 
             </small>
         </div>
@@ -76,85 +79,15 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <br>
-            
-
-<h4 id="问题提出:35f38fbbf3cae5068faaee2eb90e91ea">问题提出</h4>
-
-<ul>
-<li>对于即将开展的工作内容的常规讨论</li>
-</ul>
-
-<h4 id="讨论结果:35f38fbbf3cae5068faaee2eb90e91ea">讨论结果</h4>
-
-<ul>
-<li>1.流程图如下，图中备注为需要用到的接口，打钩的表示已经实现的</li>
-</ul>
-
-<p><img src="https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/fumiExchangeFlowChart.png" width = "550"  alt="福米兑换场流程" align=center /></p>
-
-<ul>
-<li>2.在旧版本的代码中实现相关接口</li>
-<li>3.使用spring web flow技术实现订单部分内容</li>
-<li>4.对数据库表进行了相应的修改</li>
-
-<li><p>5.order_status表中增加1个状态：已处理，表示我们平台已经将信息提交到供应商。</p>
-
-<ul>
-<li>name　　　　value　　　　remark<br /></li>
-<li>已删除　　　　0<br /></li>
-<li>未付款　　　　1</li>
-<li>已付款　　　　2</li>
-<li>已取消　　　　3</li>
-<li>已消费　　　　4</li>
-<li>申请退款中　　5</li>
-<li>已退款　　　　6</li>
-<li>已评价　　　　7</li>
-<li>已处理　　　　8　　　　　　表示我们平台已经将订单通知到供应商，可能需要改编号</li>
-</ul></li>
-
-<li><p>6.order_v2表中增加一个exception_code字段，用于记录异常信息。</p>
-
-<ul>
-<li>name　　　　value　　　　remark</li>
-<li>正常　　　　　0</li>
-<li>订单缺货　　　1</li>
-</ul></li>
-
-<li><p>7.订单过程，因为目前没有办法监控供应商和物流，所以对于我们来说，用户付款就认为交易完成。</p></li>
-</ul>
-
-<h4 id="数据库相关:35f38fbbf3cae5068faaee2eb90e91ea">数据库相关</h4>
-
-<ul>
-<li>1.购物车：bills，charge_record，collection，service_invoke_record</li>
-<li>2.订单：order_pay(暂时不用)，order_detail，link_type，order_v2(在用)，order(旧表，不建议用)，order_status，order_ticket_link，user_delivery_info</li>
-<li>3.merchandise_off_price(不建议用，在相关的表中使用tags字段作为另一个价格)，merchandise_specification，merchandise_type，merchandise_qualification，merchandise</li>
-</ul>
-
-<h4 id="todo:35f38fbbf3cae5068faaee2eb90e91ea">TODO</h4>
-
-<ul>
-<li>1.增加收货地址表，设置：userUuid，address，consignee，default，modifyTime字段</li>
-<li>2.实现相关接口</li>
-</ul>
-
-<h4 id="问题:35f38fbbf3cae5068faaee2eb90e91ea">问题</h4>
-
-<ul>
-<li>1.考虑多商品订单如果往新的表（分子表）中存放，会出现什么问题？</li>
-</ul>
-
-<h4 id="参与人:35f38fbbf3cae5068faaee2eb90e91ea">参与人</h4>
-
-<ul>
-<li>林欣灏</li>
-<li>陆文金</li>
-</ul>
-
-<h4 id="记录:35f38fbbf3cae5068faaee2eb90e91ea">记录</h4>
-
-<ul>
-<li>陆文金</li>
+            <ul>
+<li>运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具</li>
+<li>输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:</li>
+<li>输入 D: 回车  这个是切换到相应的盘</li>
+<li>输入 cd dir 回车  dir为要进入的目录，比如你的blog目录放在D:/blog就直接输入 cd blog</li>
+<li>新建文件 hugo new post/filename.md 这样就会在blog/content/post目录下创建一个filename.md文件</li>
+<li>用文本编辑器打开要编辑的文件进行编辑保存</li>
+<li>在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档</li>
+<li>使用deploy.cmd命令，可以将本地文档同步到服务器</li>
 </ul>
 
         </div>
@@ -165,7 +98,7 @@
         </div>
     </div>
     <section id="comments" class="themeform">
-    <div class="ds-thread" data-thread-key="/post/discuss-fumiCashing/" data-title="福米兑换场流程和相关接口的讨论" data-url="http://eyestone.github.io/post/discuss-fumiCashing/"></div>
+    <div class="ds-thread" data-thread-key="/post/tutorial-UseBlogOnWindows/" data-title="在windows下使用hugo写博客" data-url="http://eyestone.github.io/post/tutorial-UseBlogOnWindows/"></div>
     <script type="text/javascript">
 var duoshuoQuery = {short_name:"Zen"};
 (function() {

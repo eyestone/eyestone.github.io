@@ -62,6 +62,51 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/common-terms/">common terms</a></h3>
+						<small><span class="label label-primary">
+							
+								Thu, Jun 2, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/category1">category1</a>
+							
+								 , 
+								<a href="/categories/category2">category2</a>
+							 using tags
+							
+								
+							<a href="/tags/tag1">tag1</a>
+						
+								 , 
+							<a href="/tags/tag2">tag2</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p>Content of the file goes here</p>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/discuss-fumiCashing/">福米兑换场流程和相关接口的讨论</a></h3>
 						<small><span class="label label-primary">
 							
@@ -103,7 +148,33 @@
 
 <ul>
 <li>2.在旧版本的代码中实现相关接口</li>
-<li>3.新的订单系统框架暂时不用道老的代码，直接使用到springboot代码中，先测试再整体迁移</li>
+<li>3.使用spring web flow技术实现订单部分内容</li>
+<li>4.对数据库表进行了相应的修改</li>
+
+<li><p>5.order_status表中增加1个状态：已处理，表示我们平台已经将信息提交到供应商。</p>
+
+<ul>
+<li>name　　　　value　　　　remark<br /></li>
+<li>已删除　　　　0<br /></li>
+<li>未付款　　　　1</li>
+<li>已付款　　　　2</li>
+<li>已取消　　　　3</li>
+<li>已消费　　　　4</li>
+<li>申请退款中　　5</li>
+<li>已退款　　　　6</li>
+<li>已评价　　　　7</li>
+<li>已处理　　　　8　　　　　　表示我们平台已经将订单通知到供应商，可能需要改编号</li>
+</ul></li>
+
+<li><p>6.order_v2表中增加一个exception_code字段，用于记录异常信息。</p>
+
+<ul>
+<li>name　　　　value　　　　remark</li>
+<li>正常　　　　　0</li>
+<li>订单缺货　　　1</li>
+</ul></li>
+
+<li><p>7.订单过程，因为目前没有办法监控供应商和物流，所以对于我们来说，用户付款就认为交易完成。</p></li>
 </ul>
 
 <h4 id="数据库相关:35f38fbbf3cae5068faaee2eb90e91ea">数据库相关</h4>
@@ -203,7 +274,7 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/useBlogOnWindows/">在windows下使用hugo写博客</a></h3>
+					<h3><a href="http://eyestone.github.io/post/tutorial-UseBlogOnWindows/">在windows下使用hugo写博客</a></h3>
 						<small><span class="label label-primary">
 							
 								Wed, May 25, 2016
