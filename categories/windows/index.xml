@@ -13,10 +13,10 @@
         
           <item>
             <title>在windows下使用hugo写博客</title>
-            <link>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</link>
+            <link>http://eyestone.github.io/post/useBlogOnWindows/</link>
             <pubDate>Wed, 25 May 2016 11:45:30 +0800</pubDate>
             
-            <guid>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</guid>
+            <guid>http://eyestone.github.io/post/useBlogOnWindows/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具&lt;/li&gt;
 &lt;li&gt;输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:&lt;/li&gt;

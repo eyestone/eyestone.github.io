@@ -6,148 +6,157 @@
     <description>Recent content in Posts on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Jun 2016 16:55:50 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jun 2016 09:21:36 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
-            <title>术语说明</title>
-            <link>http://eyestone.github.io/post/common-terms/</link>
-            <pubDate>Thu, 02 Jun 2016 16:55:50 +0800</pubDate>
+            <title>服务器代码的进化史</title>
+            <link>http://eyestone.github.io/post/server-upgrade/</link>
+            <pubDate>Fri, 03 Jun 2016 09:21:36 +0800</pubDate>
             
-            <guid>http://eyestone.github.io/post/common-terms/</guid>
-            <description>&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;术语　　　　 　　　&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;解释 　　　&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;订单进程&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;指编程相关的流程控制，在订单系统中，涉及到springWebFlow的流程&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;订单过程&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;指一个订单从选购商品到最后成交的用户和系统交互的过程。目前整理的过程包括：选购商品-&amp;gt;加入购物车-&amp;gt;确认订单-&amp;gt;支付订单-&amp;gt;发货-&amp;gt;物流-&amp;gt;签收&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;付款码&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;用于表明用户已购买身份的码。比如用户在我们平台上购买了一个健身卡，平台给用户分配一个付款码，用户凭此付款码就可以到相关的健身房健身。&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;参与码&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;对于一些付费或者有限制条件的活动，用户报名后平台给用户分配一个参与码，用户凭这个码可以参与活动&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;　　&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;记录&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>福米兑换场流程和相关接口的讨论</title>
-            <link>http://eyestone.github.io/post/discuss-fumiCashing/</link>
-            <pubDate>Tue, 31 May 2016 14:38:51 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/discuss-fumiCashing/</guid>
+            <guid>http://eyestone.github.io/post/server-upgrade/</guid>
             <description>
 
-&lt;h4 id=&#34;问题提出:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;问题提出&lt;/h4&gt;
+&lt;p&gt;代码之美如同数学之美，好的代码通常是结构清晰，简单优雅的。
+代码如同生命，需要时间的磨砺和进化，下面将对我们的服务器代码需进化的方向做系列分析。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-运行零配置:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;1. 运行零配置&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;一般服务器代码需要部署到容器之中才能正常运行，这不太符合拿来即用的原则。本地环境复杂化一向不是我推崇的方法，中国人自有最优秀的设计基因，比如中国的筷子就是比老外的刀叉更优秀的设计，所以复杂的代码系统不仅仅是功能设计，还需要优秀的配置管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;已搞定&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;目前，通过对gradle脚本的改造，已经实现“运行零配置”的目标，方法为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd welfare
+gradle tomcatRunWar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你可以说，上面的代码还不完全是零配置，还需要安装gradle才能运行，当然不是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd welfare
+../gradlew tomcatRunWar 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gradlew 命令是在project根目录下的命令行，会自动在线下载gradle的运行环境，当然第一次执行时因为下载会比较费时。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决的问题&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;对于即将开展的工作内容的常规讨论&lt;/li&gt;
+&lt;li&gt;代码中缓存系统memcached关闭后，tomcat启动时仍在不停的连接12345端口，这意味着代码中memcached的连接存在不能关闭的隐患&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;讨论结果:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;讨论结果&lt;/h4&gt;
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;2-session共享:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;2. session共享&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;session通常记录用户的登录信息，保持用户的登录状态。&lt;/p&gt;
+
+&lt;p&gt;现在的session系统采用spring默认的http session，只能自己用，不能分享给别人用，这种情况不利于未来微架构系统的分布式部署。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;采用spring-session框架, 将session由内存数据库redis接管。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;3-紧耦合的session和权限管理:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;3. 紧耦合的session和权限管理&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为实现标题中的功能，把代码写得到处都是，代价是不易维护，增加各种潜在隐患。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;采用切面技术将session和权限功能进行接管。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;4-丑陋的memcached:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;4. 丑陋的memcached&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;先声明，其实memcached作为一个缓存技术，一点也不丑陋，这里的丑陋是指我们的使用它的代码丑陋。我们的使用方法是先写了一个数据库工具框架，然后在框架中嵌入memcached调用，要对那个表数据缓存，就把该表增加到insert，update，delete三个基本操作中。在很多年前，这样的设计是最优秀的方法之一，但时至今日，这样的设计不够灵活，现在增加一个缓存可以到方法上，简单到增加一个注解即可。&lt;/p&gt;
+
+&lt;p&gt;其二，对于缓存系统的使用，我更倾向于被广泛使用且兼容性好的。比如现在redis的被支持率明显高于memcached，很多框架代码缺省支持redis，如果我们想继续使用memcached，必须自行寻找各种支持库，麻烦费时。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;用redis代替memcached，但由于涉及到数据库处理层的修改，需要保持极度谨慎。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;5-多环境零配置:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;5. 多环境零配置&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;现有的代码环境，简单分为开发环境和生产环境，而开发环境指向的域名为laifucard.net,生产环境为.com，在gradle编译时只需要通过snapshot和release参数就能区分产生不同环境的运行时war文件。&lt;/p&gt;
+
+&lt;p&gt;但，实际代码的实现方式却不优雅。仅仅是为了在不同编译参数时采用不同的域名，居然在service子项目中写了两个bean，同时还在两个xml文件中分别进行配置，想想就心塞。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.流程图如下，图中备注为需要用到的接口，打钩的表示已经实现的&lt;/li&gt;
+&lt;li&gt;将代码环境分为 开发环境 生产环境 和 本地开发环境，因为目前的开发环境主要适用于laifucard.net环境&lt;/li&gt;
+&lt;li&gt;环境变量写到文本配置文件中，目前主要包括域名配置和数据库配置信息&lt;/li&gt;
+&lt;li&gt;由程序自动选择性读取不同的环境变量，可采用spring的profile特性&lt;/li&gt;
+&lt;li&gt;gradle脚本增加一个编译选项，命名为local&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/fumiExchangeFlowChart.png&#34; width = &#34;550&#34;  alt=&#34;福米兑换场流程&#34; align=center /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;6-自动化测试:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;6. 自动化测试&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;目前代码并没有养成单元测试的习惯，服务器端的单元测试大量集中于对接口的测试，实现技术主要采用google的mokito框架。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;2.在旧版本的代码中实现相关接口&lt;/li&gt;
-&lt;li&gt;3.使用spring web flow技术实现订单部分内容&lt;/li&gt;
-&lt;li&gt;4.对数据库表进行了相应的修改&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;5.order_status表中增加1个状态：已处理，表示我们平台已经将信息提交到供应商。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;name　　　　value　　　　remark&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;已删除　　　　0&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;未付款　　　　1&lt;/li&gt;
-&lt;li&gt;已付款　　　　2&lt;/li&gt;
-&lt;li&gt;已取消　　　　3&lt;/li&gt;
-&lt;li&gt;已消费　　　　4&lt;/li&gt;
-&lt;li&gt;申请退款中　　5&lt;/li&gt;
-&lt;li&gt;已退款　　　　6&lt;/li&gt;
-&lt;li&gt;已评价　　　　7&lt;/li&gt;
-&lt;li&gt;已处理　　　　8　　　　　　表示我们平台已经将订单通知到供应商，可能需要改编号&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;6.order_v2表中增加一个exception_code字段，用于记录异常信息。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;name　　　　value　　　　remark&lt;/li&gt;
-&lt;li&gt;正常　　　　　0&lt;/li&gt;
-&lt;li&gt;订单缺货　　　1&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;7.订单过程，因为目前没有办法监控供应商和物流，所以对于我们来说，用户付款就认为交易完成。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;针对已有接口写单元测试模板，供大家参考&lt;/li&gt;
+&lt;li&gt;gradle脚本增加集成测试编译选项，使其自动化&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;数据库相关:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;数据库相关&lt;/h4&gt;
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;7-代码检查:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;7. 代码检查&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;目前的代码检查方案是checkstyle,我原来已经做过检查。问题在于该工具的检查深度不够，我们需要更高级的工具帮我们来改善代码质量.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.购物车：bills，charge_record，collection，service_invoke_record&lt;/li&gt;
-&lt;li&gt;2.订单：order_pay(暂时不用)，order_detail，link_type，order_v2(在用)，order(旧表，不建议用)，order_status，order_ticket_link，user_delivery_info&lt;/li&gt;
-&lt;li&gt;3.merchandise_off_price(不建议用，在相关的表中使用tags字段作为另一个价格)，merchandise_specification，merchandise_type，merchandise_qualification，merchandise&lt;/li&gt;
+&lt;li&gt;启用sonarqube技术，对源码做最全面的检查&lt;/li&gt;
+&lt;li&gt;根据检查结果，消除隐患，清除代码冗余&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;todo:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;TODO&lt;/h4&gt;
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;8-异步消息系统:b1e14c958e519618679260e8b94cfa96&#34;&gt;&lt;strong&gt;8. 异步消息系统&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;待解决&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;服务器系统中有短信通知、邮件通知、app通知等多种通知模式，在现阶段没什么用户的情况下问题不大，但当用户基数上去以后，最好将通知系统由异步消息系统接管，才能进一步提高服务器效率。&lt;/p&gt;
+
+&lt;p&gt;所谓异步消息系统就好比一个邮局，服务器程序只需要把通知内容交给邮局，就可以忙自己的其他事情了，剩下的事情都交给邮局自行处理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.增加收货地址表，设置：userUuid，address，consignee，default，modifyTime字段&lt;/li&gt;
-&lt;li&gt;2.实现相关接口&lt;/li&gt;
+&lt;li&gt;服务器端部署消息代理系统&lt;/li&gt;
+&lt;li&gt;改造msg-push子项目，进行xml文件配置即可&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;问题:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;问题&lt;/h4&gt;
+&lt;hr /&gt;
 
-&lt;ul&gt;
-&lt;li&gt;1.考虑多商品订单如果往新的表（分子表）中存放，会出现什么问题？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;参与人:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;参与人&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;林欣灏&lt;/li&gt;
-&lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;记录:35f38fbbf3cae5068faaee2eb90e91ea&#34;&gt;记录&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;(未完，待续)&lt;/p&gt;
 </description>
           </item>
         
@@ -175,10 +184,10 @@
         
           <item>
             <title>在windows下使用hugo写博客</title>
-            <link>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</link>
+            <link>http://eyestone.github.io/post/useBlogOnWindows/</link>
             <pubDate>Wed, 25 May 2016 11:45:30 +0800</pubDate>
             
-            <guid>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</guid>
+            <guid>http://eyestone.github.io/post/useBlogOnWindows/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具&lt;/li&gt;
 &lt;li&gt;输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:&lt;/li&gt;
@@ -237,22 +246,21 @@
 &lt;h5 id=&#34;待改:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h5&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.修改手势密码，改为先验证手势密码，然后设置新的 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;2.试算页面不够活泼 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;3.我的账单部分分收入和支出 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;4.我的订单：&amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;5.修改升档部分的设计 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;6.申请记录修改为只显示企业团险和交通意外险两大类，可删除，点进去可修改 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;7.调整android界面，一些图片的大小 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.修改手势密码，改为先验证手势密码，然后设置新的&lt;/li&gt;
+&lt;li&gt;2.试算页面不够活泼&lt;/li&gt;
+&lt;li&gt;3.我的账单部分分收入和支出&lt;/li&gt;
+&lt;li&gt;4.我的订单：ing&lt;/li&gt;
+&lt;li&gt;5.修改升档部分的设计&lt;/li&gt;
+&lt;li&gt;6.申请记录修改为只显示企业团险和交通意外险两大类，可删除，点进去可修改&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.付款成功页面未做 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;2.购物车添加下箭头，可以点开进行修改 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;3.我的活动 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;4.心愿单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.付款成功页面未做&lt;/li&gt;
+&lt;li&gt;2.购物车添加下箭头，可以点开进行修改&lt;/li&gt;
+&lt;li&gt;3.我的活动&lt;/li&gt;
+&lt;li&gt;4.心愿单&lt;/li&gt;
 &lt;li&gt;5.我的特权&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -267,21 +275,18 @@
 &lt;h4 id=&#34;待改-1:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.读取所有保险详情列表解析问题  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;2.测试所有保险相关接口 &amp;ndash; &lt;em&gt;done : 暂时没有发现问题，随时有问题随时响应&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;3.设计和实现升档部分接口：需要增加一个获取历史信息的接口  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;4.用户使用邀请码验证通过后应该关联公司和用户  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;5.添加关于试算修改的讨论记录—&amp;gt;添加两个接口：修改和删除  &amp;mdash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;6.数据库表中的保险申请，添加一个type字段，标明是试算的还是升档的  &amp;ndash;  &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;7.写福米兑换场讨论结果文档，包括整个流程 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;8.写签证部分文档&lt;/li&gt;
-&lt;li&gt;9.写福米兑换场相关的接口文档到showdoc &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.读取所有保险详情列表解析问题  &amp;ndash;  &lt;em&gt;解决&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;2.测试所有保险相关接口&lt;/li&gt;
+&lt;li&gt;3.设计和实现升档部分接口：需要增加一个获取历史信息的接口  &amp;ndash;  &lt;em&gt;完成&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.用户使用邀请码验证通过后应该关联公司和用户  &amp;ndash;  &lt;em&gt;编码完成，待测试&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;5.添加关于试算修改的讨论记录—&amp;gt;添加两个接口：修改和删除  &amp;mdash;  &lt;em&gt;完成&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.数据库表中的保险申请，添加一个type字段，标明是试算的还是升档的  &amp;ndash;  &lt;em&gt;进行中&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-1:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.福米兑换场 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.福米兑换场&lt;/li&gt;
 &lt;li&gt;2.签证：暂时没有资源&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -290,9 +295,8 @@
 &lt;h3 id=&#34;管理端web:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;管理端web：&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.熟悉angular框架 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;2.整理缺失的表单逻辑 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;3.写ajax参数跨域转换函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.熟悉angular框架&lt;/li&gt;
+&lt;li&gt;2.整理缺失的表单逻辑&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;待改-2:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h4&gt;
@@ -329,7 +333,7 @@
 &lt;li&gt;7.反馈：放到个人信息页&lt;/li&gt;
 &lt;li&gt;8.账户余额:修改和效果图一致&lt;/li&gt;
 &lt;li&gt;9.试算页面：添加一人后，不能修改信息&lt;/li&gt;
-&lt;li&gt;10.升档页面跟进设计稿修改 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;10.升档页面跟进设计稿修改—进行中&lt;/li&gt;
 &lt;li&gt;11.邀请码验证页面修改为验证手机号和邀请码&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -339,10 +343,9 @@
 &lt;li&gt;1.福米兑换场&lt;/li&gt;
 &lt;li&gt;2.去评分：未做&lt;/li&gt;
 &lt;li&gt;3.我的福利：保险，确定是不是因为没有数据导致&lt;/li&gt;
-&lt;li&gt;4.我的保障：交通意外险 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.我的保障：交通意外险（ing）&lt;/li&gt;
 &lt;li&gt;5.福享汇：福米兑换场&lt;/li&gt;
-&lt;li&gt;6.我的保障：申请记录列表，删除功能 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;7.我的保障：申请记录修改，使用试算页面逻辑(约两天时间) &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.我的保障：申请记录&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -372,11 +375,7 @@
 &lt;li&gt;16.租房详情：删除more按钮&lt;/li&gt;
 &lt;li&gt;17.租房的分享：分享失败&lt;/li&gt;
 &lt;li&gt;18.活动收藏：收藏或取消后不刷新&lt;/li&gt;
-&lt;li&gt;19.升档页面跟进设计稿修改 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;20.试算页面开发 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;21.我的保障，申请记录列表，删除功能&lt;/li&gt;
-&lt;li&gt;22.我的保障，申请记录修改，使用试算页面逻辑&lt;/li&gt;
-&lt;li&gt;23.我的福利，保险购买记录&lt;/li&gt;
+&lt;li&gt;19.升档页面跟进设计稿修改&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-4:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
