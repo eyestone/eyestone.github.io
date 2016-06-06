@@ -62,6 +62,82 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/discuss-oder/">订单和商品部分底层设计</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 6, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+							 using tags
+							
+								
+							<a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+						
+								 , 
+							<a href="/tags/%E5%95%86%E5%93%81">商品</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h4 id="问题提出:040511b124b80c6ff6c159ebf8c53d4e">问题提出</h4>
+
+<ul>
+<li>如何从商品信息中获取order_process表中的标识位的相关信息</li>
+<li>如何向用户展示详细的商品信息</li>
+</ul>
+
+<h4 id="讨论结果:040511b124b80c6ff6c159ebf8c53d4e">讨论结果</h4>
+
+<ul>
+<li>1.商品种类和卖法的总结如下图：</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/merchandise.png" width = "550"  alt="福米兑换场流程"       align=center /></p>
+
+<ul>
+<li>2.因为卖法涉及到价格计算以及一些业务流程的变化，而一个商品可能涉及到多种卖法，所以讲卖法单独拿出来作为一个表，其中要包括卖法相关的信息和价格。</li>
+<li>3.目前订单部分为了照顾之前商品部分的内容，暂时不处理order_process表中的标识字段。</li>
+<li>4.在第一阶段的order部分内容开发完成之后开始重构商品部分，同时完善订单部分内容。</li>
+</ul>
+
+<h4 id="参与人:040511b124b80c6ff6c159ebf8c53d4e">参与人</h4>
+
+<ul>
+<li>林欣灏</li>
+<li>陆文金</li>
+</ul>
+
+<h4 id="记录:040511b124b80c6ff6c159ebf8c53d4e">记录</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/server-upgrade/">服务器代码的进化史</a></h3>
 						<small><span class="label label-primary">
 							
@@ -981,73 +1057,6 @@ gradle tomcatRunWar
 </ul>
 
 <p><em>recorder: luwj</em></p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/discuss-shendaang/">关于保险升档页面的讨论</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, May 20, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
-							 using tags
-							
-								
-							<a href="/tags/%E4%BF%9D%E9%99%A9">保险</a>
-						
-								 , 
-							<a href="/tags/%E5%8D%87%E6%A1%A3">升档</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<h4 id="不确定点:e5a7cbca26aa9c314aa0f264d65ad094">不确定点</h4>
-
-<ul>
-<li>李艳回忆说马老师要求显示关系</li>
-</ul>
-
-<h4 id="讨论结果:e5a7cbca26aa9c314aa0f264d65ad094">讨论结果</h4>
-
-<ul>
-<li>选择人员部分直接显示人名，用备注的方式显示和用户的关系</li>
-<li>选择人员部分保留一行，可显示多个名字，当要查看选择更多的受益人的时候点开加号，出现浮动选择框（当收受益人只有一个时，加号不显示）</li>
-<li>已选择的保险可以点击修改和删除</li>
-<li>从服务器获取和用户相关的人员的保险购买信息，用来确定其是否满足升档条件</li>
-<li>对于不满足条件的保险项目，app应禁止选择，服务器也要做相应检查</li>
-</ul>
-
-<h4 id="todo:e5a7cbca26aa9c314aa0f264d65ad094">TODO</h4>
-
-<ul>
-<li>按照讨论结果设计界面</li>
-<li>和马老师确定不确定点</li>
-</ul>
-
-<p><em>记录人: 陆文金</em></p>
 
 					
 				</div>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="订单和商品部分底层设计">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>订单和商品部分底层设计 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">生活</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>订单和商品部分底层设计</h3>
+                <span class="label label-primary">Mon, Jun 6, 2016</span> in 
+                
+                
+                <a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+                 using tags
+                
+                
+                <a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+                
+                 , 
+                <a href="/tags/%E5%95%86%E5%93%81">商品</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<h4 id="问题提出:040511b124b80c6ff6c159ebf8c53d4e">问题提出</h4>
+
+<ul>
+<li>如何从商品信息中获取order_process表中的标识位的相关信息</li>
+<li>如何向用户展示详细的商品信息</li>
+</ul>
+
+<h4 id="讨论结果:040511b124b80c6ff6c159ebf8c53d4e">讨论结果</h4>
+
+<ul>
+<li>1.商品种类和卖法的总结如下图：</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/merchandise.png" width = "550"  alt="福米兑换场流程"       align=center /></p>
+
+<ul>
+<li>2.因为卖法涉及到价格计算以及一些业务流程的变化，而一个商品可能涉及到多种卖法，所以讲卖法单独拿出来作为一个表，其中要包括卖法相关的信息和价格。</li>
+<li>3.目前订单部分为了照顾之前商品部分的内容，暂时不处理order_process表中的标识字段。</li>
+<li>4.在第一阶段的order部分内容开发完成之后开始重构商品部分，同时完善订单部分内容。</li>
+</ul>
+
+<h4 id="参与人:040511b124b80c6ff6c159ebf8c53d4e">参与人</h4>
+
+<ul>
+<li>林欣灏</li>
+<li>陆文金</li>
+</ul>
+
+<h4 id="记录:040511b124b80c6ff6c159ebf8c53d4e">记录</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/discuss-oder/" data-title="订单和商品部分底层设计" data-url="http://eyestone.github.io/post/discuss-oder/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
