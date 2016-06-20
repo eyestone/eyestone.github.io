@@ -467,7 +467,7 @@ gradle tomcatRunWar
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;ui:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;ui：&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;ui:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;ui：&lt;/strong&gt;：&lt;/h3&gt;
 
 &lt;h5 id=&#34;待改:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h5&gt;
 
@@ -513,6 +513,9 @@ gradle tomcatRunWar
 &lt;li&gt;8.写签证部分文档&lt;/li&gt;
 &lt;li&gt;9.写福米兑换场相关的接口文档到showdoc &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;10.保险订单需要加入ticket，优先级高 &amp;ndash; &lt;em&gt;done : 不放入ticket，用专门的接口获取&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;11.心愿单接口没有数据&lt;/li&gt;
+&lt;li&gt;12.福米查询接口没有&lt;/li&gt;
+&lt;li&gt;13.代码框架整理 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-1:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
@@ -583,7 +586,7 @@ gradle tomcatRunWar
 &lt;h4 id=&#34;待改-2:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.&lt;/li&gt;
+&lt;li&gt;1.上传商品问题修改 &amp;ndash; &lt;em&gt;ing : 林总&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-2:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
@@ -613,7 +616,7 @@ gradle tomcatRunWar
 &lt;li&gt;6.个人信息右边的编辑图标删除&lt;/li&gt;
 &lt;li&gt;7.反馈：放到个人信息页&lt;/li&gt;
 &lt;li&gt;8.账户余额:修改和效果图一致&lt;/li&gt;
-&lt;li&gt;9.试算页面：添加一人后，不能修改信息&lt;/li&gt;
+&lt;li&gt;9.试算页面：添加一人后，不能修改信息 &amp;ndash; &lt;em&gt;确定不让修改&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;10.升档页面跟进设计稿修改 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;11.邀请码验证页面修改为验证手机号和邀请码&lt;/li&gt;
 &lt;/ul&gt;
@@ -628,8 +631,8 @@ gradle tomcatRunWar
 &lt;li&gt;5.福享汇：福米兑换场&lt;/li&gt;
 &lt;li&gt;6.我的保障：申请记录列表，删除功能 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;7.我的保障：申请记录修改，使用试算页面逻辑(约两天时间) &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;8.福米兑换场首页功能实现 &amp;ndash;&lt;/li&gt;
-&lt;li&gt;9.商品展示：商品列表和商品详情&lt;/li&gt;
+&lt;li&gt;8.福米兑换场首页功能实现 &amp;ndash; &lt;em&gt;目前需求不是很明确，要明确一下&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;9.商品展示：商品列表和商品详情 &amp;ndash; *ing : 有问题 android:两天  *&lt;/li&gt;
 &lt;li&gt;10.购物车
 
 &lt;ul&gt;
@@ -702,6 +705,38 @@ gradle tomcatRunWar
 &lt;li&gt;1.福米兑换场&lt;/li&gt;
 &lt;li&gt;2.签证：暂时没有资源&lt;/li&gt;
 &lt;li&gt;3.邀请码验证页面未做&lt;/li&gt;
+&lt;li&gt;4.福米兑换场首页功能实现 &amp;ndash; &lt;em&gt;目前需求不是很明确，要明确一下&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;5.商品展示：商品列表和商品详情 &amp;ndash; &lt;em&gt;ing :  ios:两天&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.购物车
+
+&lt;ul&gt;
+&lt;li&gt;6.1加入购物车&lt;/li&gt;
+&lt;li&gt;7.2加载购物车&lt;/li&gt;
+&lt;li&gt;7.3修改购物车&lt;/li&gt;
+&lt;li&gt;7.4删除购物车中的商品&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;8.订单
+
+&lt;ul&gt;
+&lt;li&gt;8.1从购物车生成订单&lt;/li&gt;
+&lt;li&gt;8.2直接从商品生成订单&lt;/li&gt;
+&lt;li&gt;8.3订单加载&lt;/li&gt;
+&lt;li&gt;8.4订单修改&lt;/li&gt;
+&lt;li&gt;8.5取消订单&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;9.评论
+
+&lt;ul&gt;
+&lt;li&gt;9.1发表评论&lt;/li&gt;
+&lt;li&gt;9.2查询评论&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;10.支付（目前还没有考虑清楚，所以暂时这样分类）
+
+&lt;ul&gt;
+&lt;li&gt;10.1微信支付&lt;/li&gt;
+&lt;li&gt;10.2阿里支付&lt;/li&gt;
+&lt;li&gt;10.3福米支付&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
