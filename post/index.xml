@@ -621,7 +621,30 @@ gradle tomcatRunWar
 &lt;h4 id=&#34;未做-3:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.福米兑换场&lt;/li&gt;
+&lt;li&gt;1.福米兑换场
+
+&lt;ul&gt;
+&lt;li&gt;1.1福米兑换场首页功能实现 &amp;ndash;&lt;/li&gt;
+&lt;li&gt;1.2商品展示：商品列表和商品详情&lt;/li&gt;
+&lt;li&gt;1.3购物车&lt;/li&gt;
+&lt;li&gt;1.3.1加入购物车&lt;/li&gt;
+&lt;li&gt;1.3.2加载购物车&lt;/li&gt;
+&lt;li&gt;1.3.3修改购物车&lt;/li&gt;
+&lt;li&gt;1.3.4删除购物车中的商品&lt;/li&gt;
+&lt;li&gt;1.4订单&lt;/li&gt;
+&lt;li&gt;1.4.1从购物车生成订单&lt;/li&gt;
+&lt;li&gt;1.4.2直接从商品生成订单&lt;/li&gt;
+&lt;li&gt;1.4.3订单加载&lt;/li&gt;
+&lt;li&gt;1.4.4订单修改&lt;/li&gt;
+&lt;li&gt;1.4.5取消订单&lt;/li&gt;
+&lt;li&gt;1.5评论&lt;/li&gt;
+&lt;li&gt;1.5.1发表评论&lt;/li&gt;
+&lt;li&gt;1.5.2查询评论&lt;/li&gt;
+&lt;li&gt;1.6支付（目前还没有考虑清楚，所以暂时这样分类）&lt;/li&gt;
+&lt;li&gt;1.6.1微信支付&lt;/li&gt;
+&lt;li&gt;1.6.2阿里支付&lt;/li&gt;
+&lt;li&gt;1.6.3福米支付&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;2.去评分：未做&lt;/li&gt;
 &lt;li&gt;3.我的福利：保险，确定是不是因为没有数据导致&lt;/li&gt;
 &lt;li&gt;4.我的保障：交通意外险 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
