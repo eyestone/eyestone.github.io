@@ -125,6 +125,7 @@
 <li>3.我的活动 &ndash; <em>done</em></li>
 <li>4.心愿单 &ndash; <em>done</em></li>
 <li>5.我的特权</li>
+<li>6.商品订单评论页面</li>
 </ul>
 
 <hr />
@@ -147,7 +148,7 @@
 <li>7.写福米兑换场讨论结果文档，包括整个流程 &ndash; <em>done</em></li>
 <li>8.写签证部分文档</li>
 <li>9.写福米兑换场相关的接口文档到showdoc &ndash; <em>done</em></li>
-<li>10.保险订单需要加入ticket，优先级高 &ndash;</li>
+<li>10.保险订单需要加入ticket，优先级高 &ndash; <em>done : 不放入ticket，用专门的接口获取</em></li>
 </ul>
 
 <h4 id="未做-1:84ed0d057c566f207df07d4dbf3355b4"><strong>未做：</strong></h4>
@@ -156,13 +157,53 @@
 <li>1.福米兑换场 &ndash; <em>ing</em>
 
 <ul>
-<li>1.1.梳理福米兑换场业务逻辑</li>
-<li>1.2.梳理福米兑换场部分的代码</li>
-<li>1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类</li>
-<li>1.4.实现controller</li>
-<li>1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。</li>
+<li>1.1.梳理福米兑换场业务逻辑 &ndash; <em>ing</em></li>
+<li>1.2.梳理福米兑换场部分的代码 &ndash; <em>done</em></li>
+<li>1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类 &ndash; <em>done</em></li>
+<li>1.4.实现controller &ndash; <em>done</em></li>
+<li>1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。 &ndash; <em>done</em></li>
 </ul></li>
 <li>2.签证：暂时没有资源</li>
+<li>3.查看阿里支付的文档，确认退款流程 &ndash; <em>done : 可以进行部分退款</em></li>
+<li>4.实现评论功能：
+
+<ul>
+<li>4.1整理评论功能逻辑</li>
+<li>4.2添加数据库中的评论表</li>
+<li>4.3写发表评论接口</li>
+<li>4.4写查询评论接口，包括按照产品查</li>
+</ul></li>
+<li>5.写支付接口
+
+<ul>
+<li>5.1整合支付功能到LaifuPay</li>
+<li>5.2写福米支付函数 &ndash; <em>done</em></li>
+<li>5.3重写支付回调函数，包括成功和失败</li>
+</ul></li>
+<li>6.写购物车接口 &ndash; <em>done</em>
+
+<ul>
+<li>6.1加入购物车 &ndash; <em>done</em></li>
+<li>6.2查询购物车 &ndash; <em>done</em></li>
+<li>6.3删除购物车 &ndash; <em>done</em></li>
+<li>6.4修改购物车 &ndash; <em>done</em></li>
+</ul></li>
+<li>7.写收货地址接口 &ndash; <em>done</em>
+
+<ul>
+<li>7.1添加收货地址 &ndash; <em>done</em></li>
+<li>7.2修改收货地址 &ndash; <em>done</em></li>
+<li>7.3删除收货地址 &ndash; <em>done</em></li>
+<li>7.4设置默认的收货地址 &ndash; <em>done</em></li>
+</ul></li>
+<li>8.写订单接口 &ndash; <em>done</em>
+
+<ul>
+<li>8.1从购物车生成订单 &ndash; <em>done</em></li>
+<li>8.2直接生成订单 &ndash; <em>done</em></li>
+<li>8.3取消订单 &ndash; <em>done</em></li>
+<li>8.4修改订单 &ndash; <em>done</em></li>
+</ul></li>
 </ul>
 
 <hr />

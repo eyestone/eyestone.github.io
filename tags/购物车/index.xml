@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>购物车 on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/%E8%B4%AD%E7%89%A9%E8%BD%A6/</link>
+    <description>Recent content in 购物车 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Jun 2016 09:41:30 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/%E8%B4%AD%E7%89%A9%E8%BD%A6/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>购物车的设计</title>
+            <link>http://eyestone.github.io/post/discuss-shoppingCart/</link>
+            <pubDate>Tue, 14 Jun 2016 09:41:30 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shoppingCart/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;讨论结果&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.点击大的编辑的时候，可以选中圆圈，批量删除&lt;/li&gt;
+&lt;li&gt;2.编辑的时候数量不能小于1&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

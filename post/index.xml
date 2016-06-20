@@ -6,8 +6,27 @@
     <description>Recent content in Posts on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jun 2016 17:23:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jun 2016 09:41:30 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>购物车的设计</title>
+            <link>http://eyestone.github.io/post/discuss-shoppingCart/</link>
+            <pubDate>Tue, 14 Jun 2016 09:41:30 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shoppingCart/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;讨论结果&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.点击大的编辑的时候，可以选中圆圈，批量删除&lt;/li&gt;
+&lt;li&gt;2.编辑的时候数量不能小于1&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -470,6 +489,7 @@ gradle tomcatRunWar
 &lt;li&gt;3.我的活动 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;4.心愿单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;5.我的特权&lt;/li&gt;
+&lt;li&gt;6.商品订单评论页面&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -492,7 +512,7 @@ gradle tomcatRunWar
 &lt;li&gt;7.写福米兑换场讨论结果文档，包括整个流程 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.写签证部分文档&lt;/li&gt;
 &lt;li&gt;9.写福米兑换场相关的接口文档到showdoc &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;10.保险订单需要加入ticket，优先级高 &amp;ndash;&lt;/li&gt;
+&lt;li&gt;10.保险订单需要加入ticket，优先级高 &amp;ndash; &lt;em&gt;done : 不放入ticket，用专门的接口获取&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-1:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
@@ -501,13 +521,53 @@ gradle tomcatRunWar
 &lt;li&gt;1.福米兑换场 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.1.梳理福米兑换场业务逻辑&lt;/li&gt;
-&lt;li&gt;1.2.梳理福米兑换场部分的代码&lt;/li&gt;
-&lt;li&gt;1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类&lt;/li&gt;
-&lt;li&gt;1.4.实现controller&lt;/li&gt;
-&lt;li&gt;1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。&lt;/li&gt;
+&lt;li&gt;1.1.梳理福米兑换场业务逻辑 &amp;ndash; &lt;em&gt;ing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.2.梳理福米兑换场部分的代码 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.4.实现controller &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;2.签证：暂时没有资源&lt;/li&gt;
+&lt;li&gt;3.查看阿里支付的文档，确认退款流程 &amp;ndash; &lt;em&gt;done : 可以进行部分退款&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.实现评论功能：
+
+&lt;ul&gt;
+&lt;li&gt;4.1整理评论功能逻辑&lt;/li&gt;
+&lt;li&gt;4.2添加数据库中的评论表&lt;/li&gt;
+&lt;li&gt;4.3写发表评论接口&lt;/li&gt;
+&lt;li&gt;4.4写查询评论接口，包括按照产品查&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;5.写支付接口
+
+&lt;ul&gt;
+&lt;li&gt;5.1整合支付功能到LaifuPay&lt;/li&gt;
+&lt;li&gt;5.2写福米支付函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;5.3重写支付回调函数，包括成功和失败&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;6.写购物车接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;6.1加入购物车 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.2查询购物车 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.3删除购物车 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;6.4修改购物车 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;7.写收货地址接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;7.1添加收货地址 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;7.2修改收货地址 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;7.3删除收货地址 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;7.4设置默认的收货地址 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;8.写订单接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;8.1从购物车生成订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.2直接生成订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.3取消订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.4修改订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;

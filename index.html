@@ -62,6 +62,50 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/discuss-shoppingCart/">购物车的设计</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 14, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+							 using tags
+							
+								
+							<a href="/tags/%E8%B4%AD%E7%89%A9%E8%BD%A6">购物车</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						<p><strong>讨论结果</strong></p>
+
+<ul>
+<li>1.点击大的编辑的时候，可以选中圆圈，批量删除</li>
+<li>2.编辑的时候数量不能小于1</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/discuss-oder/">订单和商品部分底层设计</a></h3>
 						<small><span class="label label-primary">
 							
@@ -706,6 +750,7 @@ gradle tomcatRunWar
 <li>3.我的活动 &ndash; <em>done</em></li>
 <li>4.心愿单 &ndash; <em>done</em></li>
 <li>5.我的特权</li>
+<li>6.商品订单评论页面</li>
 </ul>
 
 <hr />
@@ -728,7 +773,7 @@ gradle tomcatRunWar
 <li>7.写福米兑换场讨论结果文档，包括整个流程 &ndash; <em>done</em></li>
 <li>8.写签证部分文档</li>
 <li>9.写福米兑换场相关的接口文档到showdoc &ndash; <em>done</em></li>
-<li>10.保险订单需要加入ticket，优先级高 &ndash;</li>
+<li>10.保险订单需要加入ticket，优先级高 &ndash; <em>done : 不放入ticket，用专门的接口获取</em></li>
 </ul>
 
 <h4 id="未做-1:84ed0d057c566f207df07d4dbf3355b4"><strong>未做：</strong></h4>
@@ -737,13 +782,53 @@ gradle tomcatRunWar
 <li>1.福米兑换场 &ndash; <em>ing</em>
 
 <ul>
-<li>1.1.梳理福米兑换场业务逻辑</li>
-<li>1.2.梳理福米兑换场部分的代码</li>
-<li>1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类</li>
-<li>1.4.实现controller</li>
-<li>1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。</li>
+<li>1.1.梳理福米兑换场业务逻辑 &ndash; <em>ing</em></li>
+<li>1.2.梳理福米兑换场部分的代码 &ndash; <em>done</em></li>
+<li>1.3.实现底层代码：将福米支付写到anypay，实现dao，实现service，重写LaifuPay类 &ndash; <em>done</em></li>
+<li>1.4.实现controller &ndash; <em>done</em></li>
+<li>1.5.添加一个获取邮费信息接口，目前两种方式，普邮10块，顺丰23块。 &ndash; <em>done</em></li>
 </ul></li>
 <li>2.签证：暂时没有资源</li>
+<li>3.查看阿里支付的文档，确认退款流程 &ndash; <em>done : 可以进行部分退款</em></li>
+<li>4.实现评论功能：
+
+<ul>
+<li>4.1整理评论功能逻辑</li>
+<li>4.2添加数据库中的评论表</li>
+<li>4.3写发表评论接口</li>
+<li>4.4写查询评论接口，包括按照产品查</li>
+</ul></li>
+<li>5.写支付接口
+
+<ul>
+<li>5.1整合支付功能到LaifuPay</li>
+<li>5.2写福米支付函数 &ndash; <em>done</em></li>
+<li>5.3重写支付回调函数，包括成功和失败</li>
+</ul></li>
+<li>6.写购物车接口 &ndash; <em>done</em>
+
+<ul>
+<li>6.1加入购物车 &ndash; <em>done</em></li>
+<li>6.2查询购物车 &ndash; <em>done</em></li>
+<li>6.3删除购物车 &ndash; <em>done</em></li>
+<li>6.4修改购物车 &ndash; <em>done</em></li>
+</ul></li>
+<li>7.写收货地址接口 &ndash; <em>done</em>
+
+<ul>
+<li>7.1添加收货地址 &ndash; <em>done</em></li>
+<li>7.2修改收货地址 &ndash; <em>done</em></li>
+<li>7.3删除收货地址 &ndash; <em>done</em></li>
+<li>7.4设置默认的收货地址 &ndash; <em>done</em></li>
+</ul></li>
+<li>8.写订单接口 &ndash; <em>done</em>
+
+<ul>
+<li>8.1从购物车生成订单 &ndash; <em>done</em></li>
+<li>8.2直接生成订单 &ndash; <em>done</em></li>
+<li>8.3取消订单 &ndash; <em>done</em></li>
+<li>8.4修改订单 &ndash; <em>done</em></li>
+</ul></li>
 </ul>
 
 <hr />
@@ -997,90 +1082,6 @@ gradle tomcatRunWar
 </ul>
 
 <p><em>记录人:陆文金</em></p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/discuss-shendaang2/">关于保险升档和试算页面细节的讨论</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, May 20, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
-							 using tags
-							
-								
-							<a href="/tags/%E4%BF%9D%E9%99%A9">保险</a>
-						
-								 , 
-							<a href="/tags/%E5%8D%87%E6%A1%A3">升档</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<h4 id="问题提出:aa1486aae297c44767f8d9ba804921d9">问题提出</h4>
-
-<ul>
-<li>对于已签约但是已过期的用户是否算升档</li>
-</ul>
-
-<h4 id="问题演变:aa1486aae297c44767f8d9ba804921d9">问题演变</h4>
-
-<ul>
-<li>用户不知道自己该升档还是该试算的时候，如果要买重疾，必须买够4份意外，但是对于已购2份意外的情况，所以需要历史数据。</li>
-</ul>
-
-<h4 id="需要确定的问题:aa1486aae297c44767f8d9ba804921d9">需要确定的问题</h4>
-
-<ul>
-<li>app鉴别试算和升档：只要买有未过期的已签约保险就算升档，否则算签约</li>
-<li>最终鉴别新申请和升档：线下确定</li>
-</ul>
-
-<h4 id="讨论结果:aa1486aae297c44767f8d9ba804921d9">讨论结果</h4>
-
-<ul>
-<li>界面仍保留现在的方案</li>
-<li>如果不满足升档条件，升档按钮不可点击</li>
-<li>试算页面不显示已申请的历史记录</li>
-<li>升档页面在保险种类下面显示已申请的历史信息供参考</li>
-<li>升档页面计算份数和总量的时候调用历史申请记录</li>
-<li>申请记录：显示企业团险和交通意外险两个大类</li>
-<li>申请记录可以删除</li>
-<li>申请记录可以点击进去，跳转到试算页面，显示份数，提交可更新到服务器</li>
-</ul>
-
-<h4 id="参与人:aa1486aae297c44767f8d9ba804921d9">参与人</h4>
-
-<ul>
-<li>freeopen</li>
-<li>liyan</li>
-<li>luwj</li>
-</ul>
-
-<p><em>recorder: luwj</em></p>
 
 					
 				</div>
