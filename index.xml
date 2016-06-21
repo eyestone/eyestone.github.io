@@ -6,8 +6,97 @@
     <description>Recent content on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jun 2016 09:41:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jun 2016 19:07:30 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>物流和现金流</title>
+            <link>http://eyestone.github.io/post/discuss-shippingAndCash/</link>
+            <pubDate>Tue, 21 Jun 2016 19:07:30 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-shippingAndCash/</guid>
+            <description>
+
+&lt;h4 id=&#34;讨论结果:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;讨论结果&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h5 id=&#34;现金流:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;现金流&lt;/strong&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.流向：
+
+&lt;ul&gt;
+&lt;li&gt;1.1.客户&amp;ndash;&amp;gt;来福：用户付款&lt;/li&gt;
+&lt;li&gt;1.2.来福&amp;ndash;&amp;gt;供应商：月结，如果发生退款的，在月结的时候一并扣除&lt;/li&gt;
+&lt;li&gt;1.3.来福&amp;ndash;&amp;gt;客户：用户申请退款给，在用户付款后2周内可以申请退款&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2.需要与供货商确认和达成的协议：
+
+&lt;ul&gt;
+&lt;li&gt;2.1.月结&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;物流:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;物流&lt;/strong&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.角色：
+
+&lt;ul&gt;
+&lt;li&gt;1.1.客户&lt;/li&gt;
+&lt;li&gt;1.2.来福&lt;/li&gt;
+&lt;li&gt;1.3.供应商&lt;/li&gt;
+&lt;li&gt;1.4.物流&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2.流程：
+
+&lt;ul&gt;
+&lt;li&gt;2.1.购买：用户下单&amp;ndash;&amp;gt;用户付款&amp;ndash;&amp;gt;来福收集订单&amp;ndash;&amp;gt;来福将订单提交给供应商&amp;ndash;&amp;gt;供应商发货&amp;ndash;&amp;gt;物流寄送&amp;ndash;&amp;gt;客户收货&lt;/li&gt;
+&lt;li&gt;2.2.退货1：用户提交退货申请&amp;ndash;&amp;gt;来福反馈退款信息给供应商&amp;ndash;&amp;gt;供应商和客户沟通&amp;ndash;&amp;gt;确认可退款&amp;ndash;&amp;gt;供应商告知来福&amp;ndash;&amp;gt;用户发货&amp;ndash;&amp;gt;物流配送&amp;ndash;&amp;gt;供应商收到货物&amp;ndash;&amp;gt;供应商通知来福&amp;ndash;&amp;gt;来福给用户打款
+-2.3.退货2：用户提交退货申请&amp;ndash;&amp;gt;来福和客户沟通&amp;ndash;&amp;gt;确认可以退款&amp;ndash;&amp;gt;来福告知供应商&amp;ndash;&amp;gt;用户发货&amp;ndash;&amp;gt;快递配送&amp;ndash;&amp;gt;供应商收到货物&amp;ndash;&amp;gt;供应商告知来福&amp;ndash;&amp;gt;来福打款给用户&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;3.问题：
+
+&lt;ul&gt;
+&lt;li&gt;3.1.如果由供应商和客户沟通，需要保证供应商不透露任何自己公司的信息，以保证用户体验&lt;/li&gt;
+&lt;li&gt;3.2.如何保证物流控制和信息对称&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;4.注意事项
+
+&lt;ul&gt;
+&lt;li&gt;4.1.供应商在发货以后应该将运单号和快递方式发送给来福&lt;/li&gt;
+&lt;li&gt;4.2.供应商在发货的时候应该打印一份包含来福，来福的订单号，买家在来福的用户名的单子放在快件中，并在单子上注明单子在退货时一并寄回，否则不能正常退款&lt;/li&gt;
+&lt;li&gt;4.3.用户在退货的时候，需要在app上填写运单号和快递方式&lt;/li&gt;
+&lt;li&gt;4.4.如果由供应商和客户沟通，需要保证供应商不透露任何自己公司的信息，以保证用户体验&lt;/li&gt;
+&lt;li&gt;4.5.需要供应商配合的问题，需要和供应商沟通达成一致，最好形成协议&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;需要增加的功能:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;需要增加的功能&lt;/strong&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.换货&lt;/li&gt;
+&lt;li&gt;2.运单号填写，可以扫描二维码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;参与人:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;参与人&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;李艳&lt;/li&gt;
+&lt;li&gt;林欣灏&lt;/li&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;记录人:8aa69f015727393ae24eff79bcb0fb4c&#34;&gt;&lt;strong&gt;记录人&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
