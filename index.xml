@@ -570,8 +570,8 @@ gradle tomcatRunWar
 &lt;li&gt;8.2直接生成订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.3取消订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.4修改订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;8.5删除订单接口,逻辑删除，不在客户端显示 &amp;ndash;&lt;/li&gt;
-&lt;li&gt;8.6获取订单接口 &amp;ndash;&lt;/li&gt;
+&lt;li&gt;8.5删除订单接口,逻辑删除 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.6获取订单接口,取消的和删除订单不在客户端显示 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
