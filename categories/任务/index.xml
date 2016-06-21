@@ -112,13 +112,13 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;2.签证：暂时没有资源&lt;/li&gt;
 &lt;li&gt;3.查看阿里支付的文档，确认退款流程 &amp;ndash; &lt;em&gt;done : 可以进行部分退款&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;4.实现评论功能：
+&lt;li&gt;4.实现评论功能：&amp;ndash; &lt;em&gt;done&lt;/em&gt;
 
 &lt;ul&gt;
-&lt;li&gt;4.1整理评论功能逻辑&lt;/li&gt;
-&lt;li&gt;4.2添加数据库中的评论表&lt;/li&gt;
-&lt;li&gt;4.3写发表评论接口&lt;/li&gt;
-&lt;li&gt;4.4写查询评论接口，包括按照产品查&lt;/li&gt;
+&lt;li&gt;4.1整理评论功能逻辑 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.2添加数据库中的评论表 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.3写发表评论接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.4写查询评论接口，包括按照产品查 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;5.写支付接口
 
