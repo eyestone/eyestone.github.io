@@ -6,7 +6,7 @@
     <description>Recent content in 任务 on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 May 2016 19:34:32 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jun 2016 12:34:32 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/tags/%E4%BB%BB%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     
       
@@ -14,7 +14,7 @@
           <item>
             <title>任务列表</title>
             <link>http://eyestone.github.io/post/todo-list/</link>
-            <pubDate>Tue, 24 May 2016 19:34:32 +0800</pubDate>
+            <pubDate>Wed, 22 Jun 2016 12:34:32 +0800</pubDate>
             
             <guid>http://eyestone.github.io/post/todo-list/</guid>
             <description>
@@ -169,7 +169,10 @@
 &lt;h4 id=&#34;待改-2:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;待改：&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;1.上传商品问题修改 &amp;ndash; &lt;em&gt;ing : 林总&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;1.测试服务器上传图片问题修改 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;2.商品修改不成功问题 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;3.新增奖券图片录入功能 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;4.调整root权限下图片预览不完整问题 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;未做-2:84ed0d057c566f207df07d4dbf3355b4&#34;&gt;&lt;strong&gt;未做：&lt;/strong&gt;&lt;/h4&gt;
