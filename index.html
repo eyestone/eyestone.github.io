@@ -192,7 +192,6 @@
 <li>5.1整合支付功能到LaifuPay</li>
 <li>5.2写福米支付函数 &ndash; <em>done</em></li>
 <li>5.3重写支付回调函数，包括成功和失败</li>
-<li>5.4写充值接口，包括微信和支付宝，同时要完成通知回调函数</li>
 </ul></li>
 <li>6.写购物车接口 &ndash; <em>done</em>
 
@@ -219,6 +218,20 @@
 <li>8.4修改订单 &ndash; <em>done</em></li>
 <li>8.5删除订单接口,逻辑删除 &ndash; <em>done</em></li>
 <li>8.6获取订单接口,取消的和删除订单不在客户端显示 &ndash; <em>done</em></li>
+</ul></li>
+<li>9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
+
+<ul>
+<li>9.1充福米</li>
+<li>9.2充卡</li>
+<li>修改说明：a.在order_pay表中添加两个字段，order_source用于表明是来自订单的还是充值的，charge_record_uuid用于存储充值记录id；b.charge_record表去掉支付相关信息；c.修改savePayMentInfo函数；d.重写充值接口；e.修改ticket表去掉支付相关字段；f.重写welfare获取接口</li>
+</ul></li>
+<li>10.写退款接口
+
+<ul>
+<li>10.1退款申请接口</li>
+<li>10.2退款申请条件判断接口</li>
+<li>10.3退款返款接口</li>
 </ul></li>
 </ul>
 
