@@ -164,10 +164,16 @@
 &lt;li&gt;10.写退款接口
 
 &lt;ul&gt;
-&lt;li&gt;10.1退款申请接口&lt;/li&gt;
-&lt;li&gt;10.2退款申请条件判断接口:a.订单已支付；b.商品标明可以退款；c.对于虚拟商品需要是未使用;d.订单离付款时间不超过2周&lt;/li&gt;
+&lt;li&gt;10.1退款申请接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;10.2退款申请条件判断接口:a.订单已支付；b.商品标明可以退款；c.对于虚拟商品需要是未使用;d.订单离付款时间不超过2周 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;10.3退款返款接口&lt;/li&gt;
-&lt;li&gt;10.4退款原因列表获取接口&lt;/li&gt;
+&lt;li&gt;10.4退款原因列表获取接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;11.写账单接口
+
+&lt;ul&gt;
+&lt;li&gt;11.1获取对账单列表&lt;/li&gt;
+&lt;li&gt;11.2获取账户数据&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
