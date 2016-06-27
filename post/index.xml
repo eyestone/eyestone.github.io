@@ -128,7 +128,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/li&gt;
 &lt;li&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/li&gt;
-&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况。当为输入框时，记录输入内容。&lt;/li&gt;
+&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;常用活动报名举例&lt;/h3&gt;
