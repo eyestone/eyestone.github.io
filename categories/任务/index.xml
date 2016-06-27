@@ -154,6 +154,28 @@
 &lt;li&gt;8.5删除订单接口,逻辑删除 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.6获取订单接口,取消的和删除订单不在客户端显示 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
+
+&lt;ul&gt;
+&lt;li&gt;9.1充福米&lt;/li&gt;
+&lt;li&gt;9.2充卡&lt;/li&gt;
+&lt;li&gt;修改说明：a.在order_pay表中添加两个字段，order_source用于表明是来自订单的还是充值的，charge_record_uuid用于存储充值记录id；b.charge_record表去掉支付相关信息；c.修改savePayMentInfo函数；d.重写充值接口；e.修改ticket表去掉支付相关字段；f.重写welfare获取接口&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;10.写退款接口
+
+&lt;ul&gt;
+&lt;li&gt;10.1退款申请接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;10.2退款申请条件判断接口:a.订单已支付；b.商品标明可以退款；c.对于虚拟商品需要是未使用;d.订单离付款时间不超过2周 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;10.3退款返款接口&lt;/li&gt;
+&lt;li&gt;10.4退款原因列表获取接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;11.写账单接口
+
+&lt;ul&gt;
+&lt;li&gt;11.1获取对账单列表&lt;/li&gt;
+&lt;li&gt;11.2获取账户数据&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;12.整理用户消息通知相关接口的现状和规划&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
