@@ -6,8 +6,205 @@
     <description>Recent content on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jun 2016 12:34:32 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jun 2016 09:55:59 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>充福米的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-chargefumi/</link>
+            <pubDate>Tue, 28 Jun 2016 09:55:59 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-chargefumi/</guid>
+            <description>
+
+&lt;h4 id=&#34;讨论结果:e2a14ffd4cada7e307e6d010cb9e7f35&#34;&gt;讨论结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在merchandise中添加一个商品，type设置为福米&lt;/li&gt;
+&lt;li&gt;在tags中设置阶梯价格，包括50元，100元，500元&lt;/li&gt;
+&lt;li&gt;充值的时候先生成订单，订单类型设置为充福米；付款的时候判断如果是充福米，则给用户的salary加相应的福米&lt;/li&gt;
+&lt;li&gt;充福米不退款&lt;/li&gt;
+&lt;li&gt;福米充值的订单不显示在用户的订单中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;记录人:e2a14ffd4cada7e307e6d010cb9e7f35&#34;&gt;记录人&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>关于活动报名信息的json格式约定</title>
+            <link>http://eyestone.github.io/post/activity_attend/</link>
+            <pubDate>Mon, 27 Jun 2016 14:44:28 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/activity_attend/</guid>
+            <description>
+
+&lt;p&gt;&lt;em&gt;author : freeopen&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;list&amp;quot;:[
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;性别&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;one&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:11,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;男&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:12,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;女&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;宝宝年龄&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;one&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:21,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;0-2&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:22,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;3-4&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:23,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;5-6&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;陪同家长&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;more&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:31,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;爸爸&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:32,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;妈妈&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:33,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;爷爷&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:34,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;奶奶&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:51,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
+
+&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topic 标题&lt;/li&gt;
+&lt;li&gt;type 控件类型
+
+&lt;ul&gt;
+&lt;li&gt;one   单选&lt;/li&gt;
+&lt;li&gt;more 多选&lt;/li&gt;
+&lt;li&gt;number 仅填数字的输入框&lt;/li&gt;
+&lt;li&gt;text 填文本的输入框&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/li&gt;
+&lt;li&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/li&gt;
+&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;常用活动报名举例&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;list&amp;quot;:[
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;姓名&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:51,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -1049,142 +1246,6 @@ gradle tomcatRunWar
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;em&gt;记录人: 陆文金&lt;/em&gt;&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>github博客使用说明</title>
-            <link>http://eyestone.github.io/post/first/</link>
-            <pubDate>Wed, 18 May 2016 21:20:54 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/first/</guid>
-            <description>
-
-&lt;h3 id=&#34;1-概述:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;1.概述&lt;/h3&gt;
-
-&lt;p&gt;本博客系统由hugo（go语言本地博客系统）结合github pages组成，采用markdown格式编辑，用hugo命令自动生成静态网页，采用git命令行进行发布。&lt;/p&gt;
-
-&lt;p&gt;善用本系统可获得如下好处，一个是本地编辑好过网页编辑，特别是网站很慢网络不稳定的时候; 另一个是markdown 格式的编写，可以让作者不再关注鼠标式的排版问题，真正聚焦于内容创作上。&lt;/p&gt;
-
-&lt;p&gt;博客访问地址为&lt;code&gt;eyestone.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;2-系统安装:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;2.系统安装&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;hugo 安装&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;hugo&lt;/a&gt;,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统&lt;code&gt;brew install hugo&lt;/code&gt;, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;git 安装（略）&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;blog 模版安装&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;将公司共享服务器中blog目录复制到本机&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;第一次使用时，克隆远程库&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd blog
-$ git clone https://github.com/eyestone/eyestone.github.io.git public 
-$ git clone https://github.com/eyestone/blog-content.git content 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;3.用markdown语法撰写博客&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;在blog目录下，运行如下命令行&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;模版文件格式如下&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;+++
-title         = &amp;quot;文章标题&amp;quot;
-tags         = [&amp;quot;标签1&amp;quot;, &amp;quot;标签2&amp;quot;]
-categories    = [&amp;quot;分类1&amp;quot;,&amp;quot;分类2&amp;quot;]
-date        = &amp;quot;2015-01-01&amp;quot;
-+++
-
-你的正文
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这时，使用任意的文本编辑器即可书写博客了。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;博客预览&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;blog目录下运行&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ./show.sh   // mac or linux 平台
-
-$ show      // windows 平台
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;打开网页浏览器，输入地址&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;localhost:1313
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;发布到github&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;手动发布(当前目录为blog 目录)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git pull   //养成习惯，先更新库
-$ hugo
-$ cd public
-$ git add -A
-$ git commit -m &amp;quot;add file title&amp;quot;
-$ git push
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;自动发布&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ./deploy.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;进阶，有兴趣者也可以考虑自行写windows批处理文件.&lt;/p&gt;
-
-&lt;h3 id=&#34;4-one-more-thing:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;4.One more thing&lt;/h3&gt;
-
-&lt;p&gt;时时跟踪文章更新，才是博客系统最有力的功能。
-写文章的同学，每次写完，还要邮件通知其它同事，是不是很麻烦？
-下面仅对苹果手机做简单说明。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;官方浏览器打开本博客地址&lt;/li&gt;
-&lt;li&gt;浏览器最下方选择 分享 图标，再选择 @ 图标&lt;/li&gt;
-&lt;li&gt;再到浏览器的书签图标中点击“订阅”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;android手机的订阅说明，请其它有兴趣的同学继续补充。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;markdown 新功能测试&lt;/p&gt;
-
-&lt;p&gt;-[] hello
--[X] &lt;del&gt;good morning&lt;/del&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-flow&#34;&gt;st=&amp;gt;start: Start:&amp;gt;https://www.zybuluo.com
-io=&amp;gt;inputoutput: verification
-op=&amp;gt;operation: Your Operation
-cond=&amp;gt;condition: Yes or No?
-sub=&amp;gt;subroutine: Your Subroutine
-e=&amp;gt;end
-
-st-&amp;gt;io-&amp;gt;op-&amp;gt;cond
-cond(yes)-&amp;gt;e
-cond(no)-&amp;gt;sub-&amp;gt;io
-&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

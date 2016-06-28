@@ -6,8 +6,38 @@
     <description>Recent content in 讨论 on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Jun 2016 19:07:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jun 2016 09:55:59 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/categories/%E8%AE%A8%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>充福米的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-chargefumi/</link>
+            <pubDate>Tue, 28 Jun 2016 09:55:59 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-chargefumi/</guid>
+            <description>
+
+&lt;h4 id=&#34;讨论结果:e2a14ffd4cada7e307e6d010cb9e7f35&#34;&gt;讨论结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在merchandise中添加一个商品，type设置为福米&lt;/li&gt;
+&lt;li&gt;在tags中设置阶梯价格，包括50元，100元，500元&lt;/li&gt;
+&lt;li&gt;充值的时候先生成订单，订单类型设置为充福米；付款的时候判断如果是充福米，则给用户的salary加相应的福米&lt;/li&gt;
+&lt;li&gt;充福米不退款&lt;/li&gt;
+&lt;li&gt;福米充值的订单不显示在用户的订单中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;记录人:e2a14ffd4cada7e307e6d010cb9e7f35&#34;&gt;记录人&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         

@@ -62,6 +62,256 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/discuss-chargefumi/">充福米的讨论</a></h3>
+						<small><span class="label label-primary">
+							
+								Tue, Jun 28, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+							 using tags
+							
+								
+							<a href="/tags/%E7%A6%8F%E7%B1%B3">福米</a>
+						
+								 , 
+							<a href="/tags/%E5%85%85%E5%80%BC">充值</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h4 id="讨论结果:e2a14ffd4cada7e307e6d010cb9e7f35">讨论结果</h4>
+
+<ul>
+<li>在merchandise中添加一个商品，type设置为福米</li>
+<li>在tags中设置阶梯价格，包括50元，100元，500元</li>
+<li>充值的时候先生成订单，订单类型设置为充福米；付款的时候判断如果是充福米，则给用户的salary加相应的福米</li>
+<li>充福米不退款</li>
+<li>福米充值的订单不显示在用户的订单中</li>
+</ul>
+
+<h4 id="记录人:e2a14ffd4cada7e307e6d010cb9e7f35">记录人</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/activity_attend/">关于活动报名信息的json格式约定</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 27, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E7%BA%A6%E5%AE%9A">约定</a>
+							 using tags
+							
+								
+							<a href="/tags/json">json</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<p><em>author : freeopen</em></p>
+
+<pre><code>{
+    &quot;list&quot;:[
+        {
+            &quot;topic&quot;:&quot;性别&quot;,
+            &quot;type&quot;:&quot;one&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:11,
+                    &quot;tagName&quot;:&quot;男&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:12,
+                    &quot;tagName&quot;:&quot;女&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;宝宝年龄&quot;,
+            &quot;type&quot;:&quot;one&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:21,
+                    &quot;tagName&quot;:&quot;0-2&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:22,
+                    &quot;tagName&quot;:&quot;3-4&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:23,
+                    &quot;tagName&quot;:&quot;5-6&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;陪同家长&quot;,
+            &quot;type&quot;:&quot;more&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:31,
+                    &quot;tagName&quot;:&quot;爸爸&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:32,
+                    &quot;tagName&quot;:&quot;妈妈&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:33,
+                    &quot;tagName&quot;:&quot;爷爷&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                },
+                {
+                    &quot;tagId&quot;:34,
+                    &quot;tagName&quot;:&quot;奶奶&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;手机号码&quot;,
+            &quot;type&quot;:&quot;number&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:41,
+                    &quot;tagName&quot;:&quot;&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;工作单位&quot;,
+            &quot;type&quot;:&quot;text&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:51,
+                    &quot;tagName&quot;:&quot;&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="json格式说明:19e7dc3fb049efb1274e23046f3c468b">json格式说明</h3>
+
+<p>这里的json格式将对应app上不同的可视控件内容，详细如下：</p>
+
+<ul>
+<li>topic 标题</li>
+<li>type 控件类型
+
+<ul>
+<li>one   单选</li>
+<li>more 多选</li>
+<li>number 仅填数字的输入框</li>
+<li>text 填文本的输入框</li>
+</ul></li>
+<li>tagId 自定义的id编号，相当于数组索引，方便代码快速检索</li>
+<li>tagName 当控件类型为 单选 和 多选 时有效，即选项信息</li>
+<li>tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。</li>
+</ul>
+
+<h3 id="常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b">常用活动报名举例</h3>
+
+<pre><code>{
+    &quot;list&quot;:[
+        {
+            &quot;topic&quot;:&quot;姓名&quot;,
+            &quot;type&quot;:&quot;text&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:41,
+                    &quot;tagName&quot;:&quot;&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;手机号码&quot;,
+            &quot;type&quot;:&quot;number&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:41,
+                    &quot;tagName&quot;:&quot;&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        },
+        {
+            &quot;topic&quot;:&quot;工作单位&quot;,
+            &quot;type&quot;:&quot;text&quot;,
+            &quot;tag&quot;:[
+                {
+                    &quot;tagId&quot;:51,
+                    &quot;tagName&quot;:&quot;&quot;,
+                    &quot;tagStatus&quot;:&quot;&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/todo-list/">任务列表</a></h3>
 						<small><span class="label label-primary">
 							
@@ -1101,133 +1351,6 @@ gradle tomcatRunWar
 <p>经检查源码，发现是markdown的解码问题，原理为通过识别markdown标识，解析成对应html格式，而是流程图功能，为markdown扩展功能，用到了html5的矢量图特性。这类的功能增强要么我们自己扩展，要么坐等官方更新。</p>
 
 <p>仅作记录，空了继续补充。</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/tutorial-UseBlogOnWindows/">在windows下使用hugo写博客</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 25, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>
-							
-								 , 
-								<a href="/categories/windows">windows</a>
-							 using tags
-							
-								
-							<a href="/tags/blog">blog</a>
-						
-								 , 
-							<a href="/tags/windows">windows</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<ul>
-<li>运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具</li>
-<li>输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:</li>
-<li>输入 D: 回车  这个是切换到相应的盘</li>
-<li>输入 cd dir 回车  dir为要进入的目录，比如你的blog目录放在D:/blog就直接输入 cd blog</li>
-<li>新建文件 hugo new post/filename.md 这样就会在blog/content/post目录下创建一个filename.md文件</li>
-<li>用文本编辑器打开要编辑的文件进行编辑保存</li>
-<li>在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档</li>
-<li>使用deploy.cmd命令，可以将本地文档同步到服务器</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/discuss-shengdang3/">关于升档页面有未保存的编辑数据时的提交的讨论</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, May 24, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
-							 using tags
-							
-								
-							<a href="/tags/%E5%8D%87%E6%A1%A3">升档</a>
-						
-								 , 
-							<a href="/tags/%E7%BC%96%E8%BE%91">编辑</a>
-						
-								 , 
-							<a href="/tags/%E6%8F%90%E7%A4%BA">提示</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<p><strong>问题提出</strong></p>
-
-<ul>
-<li>按照之前的设计，在点击添加人的时候会默认将当前编辑的人的信息保存</li>
-<li>可是“我”并不想保存这个人的信息</li>
-</ul>
-
-<p><strong>讨论结果</strong></p>
-
-<ul>
-<li>1.人名右边的点击按钮只作为展开人名列表之用</li>
-<li>2.下面的“添加一人”按钮用做保存已编辑的信息</li>
-<li>3.修改已保存的列表中的信息时，如果有未保存的人的信息，提示“放弃|保存”</li>
-<li>4.点击“提交”按钮时，如果有未保存的人的信息，提示“放弃|提交”</li>
-<li>5.如果选择放弃即将未保存的信息忽略，其他信息照常处理</li>
-</ul>
-
-<p><strong>参与人</strong></p>
-
-<ul>
-<li>李艳</li>
-<li>陆文金</li>
-</ul>
-
-<p><strong>记录</strong></p>
-
-<ul>
-<li>陆文金</li>
-</ul>
 
 					
 				</div>
