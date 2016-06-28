@@ -6,8 +6,59 @@
     <description>Recent content in 约定 on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jun 2016 14:44:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jun 2016 19:00:23 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/categories/%E7%BA%A6%E5%AE%9A/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于签证申请填写信息的设计及约定</title>
+            <link>http://eyestone.github.io/post/visa/</link>
+            <pubDate>Tue, 28 Jun 2016 19:00:23 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/visa/</guid>
+            <description>
+
+&lt;h3 id=&#34;原则:2481f61e1439acf1f7fa15709744090c&#34;&gt;原则&lt;/h3&gt;
+
+&lt;p&gt;不破坏原有的数据库和订单设计，将新增的数据采用以下约定的json格式存储到相关备注字段。&lt;/p&gt;
+
+&lt;h3 id=&#34;表字段的对应关系:2481f61e1439acf1f7fa15709744090c&#34;&gt;表字段的对应关系&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;出行日期、发票抬头、电子邮件&lt;/strong&gt; json格式 存入 &lt;strong&gt;order_v2.remark&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;{&amp;quot;out_date&amp;quot; : &amp;quot;2016-06-01&amp;quot;,
+ &amp;quot;invoice&amp;quot; : &amp;quot;xxx公司&amp;quot;,
+ &amp;quot;email&amp;quot; : &amp;quot;xxx@qq.com&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;办理人数&lt;/strong&gt; 存入 &lt;strong&gt;detail.quantity&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;境外旅行意外险&lt;/strong&gt; 存入 &lt;strong&gt;order_v2.delivery_fee&lt;/strong&gt;，这里记录保险单价和人数的乘积
+保险的单价存储为全局变量&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;联系人、联系电话、资料返回地址&lt;/strong&gt; 存入 &lt;strong&gt;user_delivery_v2&lt;/strong&gt; 的对应字段&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;申请人、客户类型&lt;/strong&gt; json数组格式 存入 &lt;strong&gt;order_detail.remark&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;{&amp;quot;applys&amp;quot; : 
+  [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;小燕&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;在职&amp;quot;
+    },
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;小小燕&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;在校学生&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
     
       
         
