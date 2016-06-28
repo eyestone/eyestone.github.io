@@ -6,12 +6,17 @@
     <description>Recent content in Posts on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+<<<<<<< HEAD
     <lastBuildDate>Tue, 28 Jun 2016 09:55:59 +0800</lastBuildDate>
+=======
+    <lastBuildDate>Mon, 27 Jun 2016 14:44:28 +0800</lastBuildDate>
+>>>>>>> 080a86dd8d654a234d09ed8538de58afe17a1f80
     <atom:link href="http://eyestone.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
+<<<<<<< HEAD
             <title>充福米的讨论</title>
             <link>http://eyestone.github.io/post/discuss-chargefumi/</link>
             <pubDate>Tue, 28 Jun 2016 09:55:59 +0800</pubDate>
@@ -42,6 +47,8 @@
       
         
           <item>
+=======
+>>>>>>> 080a86dd8d654a234d09ed8538de58afe17a1f80
             <title>关于活动报名信息的json格式约定</title>
             <link>http://eyestone.github.io/post/activity_attend/</link>
             <pubDate>Mon, 27 Jun 2016 14:44:28 +0800</pubDate>
