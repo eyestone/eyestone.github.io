@@ -25,16 +25,16 @@
 
 &lt;ul&gt;
 &lt;li&gt;一个活动对应一个活动邀请码&lt;/li&gt;
-&lt;li&gt;邀请码在活动保存时自动生成&lt;/li&gt;
-&lt;li&gt;活动保存时，事先判断邀请码是否存在，如果不存在就生成一个。&lt;/li&gt;
 &lt;li&gt;活动结束时，邀请码自动失效&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;设计逻辑:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;设计逻辑&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;延用登录邀请码的数据表invite_code&lt;/li&gt;
-&lt;li&gt;invite_code.company_uuid 字段，存入新增的活动uuid&lt;/li&gt;
+&lt;li&gt;修改活动保存接口，让邀请码在活动保存时自动生成&lt;/li&gt;
+&lt;li&gt;为保证活动邀请码的稳定性，在活动修改后保存时，不能更改邀请码&lt;/li&gt;
+&lt;li&gt;邀请码的保存位置：延用登录邀请码的数据表invite_code&lt;/li&gt;
+&lt;li&gt;活动id的保存位置：invite_code.company_uuid 字段&lt;/li&gt;
 &lt;li&gt;邀请码的生成逻辑采用4位随机数字&lt;/li&gt;
 &lt;li&gt;为了区分邀请的使用场景，当send=1&amp;amp;used=0时，识别为用户注册邀请码；当send=2时，识别为活动邀请码&lt;/li&gt;
 &lt;li&gt;invite_code.used 字段，记录参加的人数&lt;/li&gt;
