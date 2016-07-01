@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="活动邀请码及邀请码报名设计逻辑">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>活动邀请码及邀请码报名设计逻辑 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>活动邀请码及邀请码报名设计逻辑</h3>
+                <span class="label label-primary">Thu, Jun 30, 2016</span> in 
+                
+                
+                <a href="/categories/%E8%AE%BE%E8%AE%A1">设计</a>
+                 using tags
+                
+                
+                <a href="/tags/%E6%B4%BB%E5%8A%A8">活动</a>
+                
+                 , 
+                <a href="/tags/%E9%82%80%E8%AF%B7%E7%A0%81">邀请码</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<p><em>author: freeopen</em></p>
+
+<h4 id="活动邀请码需求:ab7bbc3711d122254f98ee78f425e1c5">活动邀请码需求</h4>
+
+<ul>
+<li>一个活动对应一个活动邀请码</li>
+<li>邀请码在活动保存时自动生成</li>
+<li>活动保存时，事先判断邀请码是否存在，如果不存在就生成一个。</li>
+<li>活动结束时，邀请码自动失效</li>
+</ul>
+
+<h4 id="设计逻辑:ab7bbc3711d122254f98ee78f425e1c5">设计逻辑</h4>
+
+<ul>
+<li>延用登录邀请码的数据表invite_code</li>
+<li>invite_code.company_uuid 字段，存入新增的活动uuid</li>
+<li>邀请码的生成逻辑采用4位随机数字</li>
+<li>为了区分邀请的使用场景，当send=1&amp;used=0时，识别为用户注册邀请码；当send=2时，识别为活动邀请码</li>
+<li>invite_code.used 字段，记录参加的人数</li>
+<li>当活动过期时，将send字段设置为 -1</li>
+</ul>
+
+<hr />
+
+<h4 id="邀请码报名需求:ab7bbc3711d122254f98ee78f425e1c5">邀请码报名需求</h4>
+
+<ul>
+<li>邀请码报名应用于非注册用户，当用户输入邀请码时，弹出填写报名信息页面</li>
+<li>非注册用户填写报名信息时，和注册用户不同的时，需要多填写姓名、电话和公司，其中姓名和电话为必填项</li>
+<li>报名有时需要可支付，支付支持微信、支付宝和福米</li>
+<li>报名有时需要限制为公司专属，即只有该公司的用户才允许报名</li>
+</ul>
+
+<h4 id="设计逻辑-1:ab7bbc3711d122254f98ee78f425e1c5">设计逻辑</h4>
+
+<ul>
+<li>注册用户报名时，报名需填写的信息由后台json格式定义.</li>
+<li>非注册用户采用邀请码报名时，除填写原报名信息外，还需填写姓名、电话和公司等信息</li>
+<li>报名成功后，将报名数据存入新表activity_attend_v2 (因为原activity_attend必须要存user_uuid,只能弃用).</li>
+<li>当活动不需要支付时，不生成订单，报名信息存入 activity_attend_v2.</li>
+<li>当活动需要支付时，在order_v2表生成订单，订单类型为活动</li>
+<li>支付数据永远从新版订单表中读取，采用新的支付接口</li>
+<li>活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块</li>
+</ul>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/activity_invite/" data-title="活动邀请码及邀请码报名设计逻辑" data-url="http://eyestone.github.io/post/activity_invite/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

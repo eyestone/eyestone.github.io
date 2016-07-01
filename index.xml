@@ -6,8 +6,67 @@
     <description>Recent content on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jun 2016 19:00:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jun 2016 17:11:33 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>活动邀请码及邀请码报名设计逻辑</title>
+            <link>http://eyestone.github.io/post/activity_invite/</link>
+            <pubDate>Thu, 30 Jun 2016 17:11:33 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/activity_invite/</guid>
+            <description>
+
+&lt;p&gt;&lt;em&gt;author: freeopen&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;活动邀请码需求:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;活动邀请码需求&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个活动对应一个活动邀请码&lt;/li&gt;
+&lt;li&gt;邀请码在活动保存时自动生成&lt;/li&gt;
+&lt;li&gt;活动保存时，事先判断邀请码是否存在，如果不存在就生成一个。&lt;/li&gt;
+&lt;li&gt;活动结束时，邀请码自动失效&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;设计逻辑:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;设计逻辑&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;延用登录邀请码的数据表invite_code&lt;/li&gt;
+&lt;li&gt;invite_code.company_uuid 字段，存入新增的活动uuid&lt;/li&gt;
+&lt;li&gt;邀请码的生成逻辑采用4位随机数字&lt;/li&gt;
+&lt;li&gt;为了区分邀请的使用场景，当send=1&amp;amp;used=0时，识别为用户注册邀请码；当send=2时，识别为活动邀请码&lt;/li&gt;
+&lt;li&gt;invite_code.used 字段，记录参加的人数&lt;/li&gt;
+&lt;li&gt;当活动过期时，将send字段设置为 -1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;邀请码报名需求:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;邀请码报名需求&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;邀请码报名应用于非注册用户，当用户输入邀请码时，弹出填写报名信息页面&lt;/li&gt;
+&lt;li&gt;非注册用户填写报名信息时，和注册用户不同的时，需要多填写姓名、电话和公司，其中姓名和电话为必填项&lt;/li&gt;
+&lt;li&gt;报名有时需要可支付，支付支持微信、支付宝和福米&lt;/li&gt;
+&lt;li&gt;报名有时需要限制为公司专属，即只有该公司的用户才允许报名&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;设计逻辑-1:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;设计逻辑&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;注册用户报名时，报名需填写的信息由后台json格式定义.&lt;/li&gt;
+&lt;li&gt;非注册用户采用邀请码报名时，除填写原报名信息外，还需填写姓名、电话和公司等信息&lt;/li&gt;
+&lt;li&gt;报名成功后，将报名数据存入新表activity_attend_v2 (因为原activity_attend必须要存user_uuid,只能弃用).&lt;/li&gt;
+&lt;li&gt;当活动不需要支付时，不生成订单，报名信息存入 activity_attend_v2.&lt;/li&gt;
+&lt;li&gt;当活动需要支付时，在order_v2表生成订单，订单类型为活动&lt;/li&gt;
+&lt;li&gt;支付数据永远从新版订单表中读取，采用新的支付接口&lt;/li&gt;
+&lt;li&gt;活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -405,7 +464,7 @@
 &lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
 
 &lt;ul&gt;
-&lt;li&gt;9.1充福米&lt;/li&gt;
+&lt;li&gt;9.1充福米 &amp;ndash; &lt;em&gt;done 需要上传一个福米类型的商品&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;9.2充卡&lt;/li&gt;
 &lt;li&gt;修改说明：a.在order_pay表中添加两个字段，order_source用于表明是来自订单的还是充值的，charge_record_uuid用于存储充值记录id；b.charge_record表去掉支付相关信息；c.修改savePayMentInfo函数；d.重写充值接口；e.修改ticket表去掉支付相关字段；f.重写welfare获取接口&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -420,7 +479,7 @@
 &lt;li&gt;11.写账单接口
 
 &lt;ul&gt;
-&lt;li&gt;11.1获取对账单列表&lt;/li&gt;
+&lt;li&gt;11.1获取对账单列表 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;11.2获取账户数据&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;12.整理用户消息通知相关接口的现状和规划&lt;/li&gt;
@@ -1202,62 +1261,6 @@ gradle tomcatRunWar
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;em&gt;记录人:陆文金&lt;/em&gt;&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>关于保险升档和试算页面细节的讨论</title>
-            <link>http://eyestone.github.io/post/discuss-shendaang2/</link>
-            <pubDate>Fri, 20 May 2016 10:40:29 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/discuss-shendaang2/</guid>
-            <description>
-
-&lt;h4 id=&#34;问题提出:aa1486aae297c44767f8d9ba804921d9&#34;&gt;问题提出&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;对于已签约但是已过期的用户是否算升档&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;问题演变:aa1486aae297c44767f8d9ba804921d9&#34;&gt;问题演变&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;用户不知道自己该升档还是该试算的时候，如果要买重疾，必须买够4份意外，但是对于已购2份意外的情况，所以需要历史数据。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;需要确定的问题:aa1486aae297c44767f8d9ba804921d9&#34;&gt;需要确定的问题&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;app鉴别试算和升档：只要买有未过期的已签约保险就算升档，否则算签约&lt;/li&gt;
-&lt;li&gt;最终鉴别新申请和升档：线下确定&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;讨论结果:aa1486aae297c44767f8d9ba804921d9&#34;&gt;讨论结果&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;界面仍保留现在的方案&lt;/li&gt;
-&lt;li&gt;如果不满足升档条件，升档按钮不可点击&lt;/li&gt;
-&lt;li&gt;试算页面不显示已申请的历史记录&lt;/li&gt;
-&lt;li&gt;升档页面在保险种类下面显示已申请的历史信息供参考&lt;/li&gt;
-&lt;li&gt;升档页面计算份数和总量的时候调用历史申请记录&lt;/li&gt;
-&lt;li&gt;申请记录：显示企业团险和交通意外险两个大类&lt;/li&gt;
-&lt;li&gt;申请记录可以删除&lt;/li&gt;
-&lt;li&gt;申请记录可以点击进去，跳转到试算页面，显示份数，提交可更新到服务器&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;参与人:aa1486aae297c44767f8d9ba804921d9&#34;&gt;参与人&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;freeopen&lt;/li&gt;
-&lt;li&gt;liyan&lt;/li&gt;
-&lt;li&gt;luwj&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;recorder: luwj&lt;/em&gt;&lt;/p&gt;
 </description>
           </item>
         

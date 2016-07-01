@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>活动 on 项目文档库</title>
+    <link>http://eyestone.github.io/tags/%E6%B4%BB%E5%8A%A8/</link>
+    <description>Recent content in 活动 on 项目文档库</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Jun 2016 17:11:33 +0800</lastBuildDate>
+    <atom:link href="http://eyestone.github.io/tags/%E6%B4%BB%E5%8A%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>活动邀请码及邀请码报名设计逻辑</title>
+            <link>http://eyestone.github.io/post/activity_invite/</link>
+            <pubDate>Thu, 30 Jun 2016 17:11:33 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/activity_invite/</guid>
+            <description>
+
+&lt;p&gt;&lt;em&gt;author: freeopen&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;活动邀请码需求:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;活动邀请码需求&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个活动对应一个活动邀请码&lt;/li&gt;
+&lt;li&gt;邀请码在活动保存时自动生成&lt;/li&gt;
+&lt;li&gt;活动保存时，事先判断邀请码是否存在，如果不存在就生成一个。&lt;/li&gt;
+&lt;li&gt;活动结束时，邀请码自动失效&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;设计逻辑:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;设计逻辑&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;延用登录邀请码的数据表invite_code&lt;/li&gt;
+&lt;li&gt;invite_code.company_uuid 字段，存入新增的活动uuid&lt;/li&gt;
+&lt;li&gt;邀请码的生成逻辑采用4位随机数字&lt;/li&gt;
+&lt;li&gt;为了区分邀请的使用场景，当send=1&amp;amp;used=0时，识别为用户注册邀请码；当send=2时，识别为活动邀请码&lt;/li&gt;
+&lt;li&gt;invite_code.used 字段，记录参加的人数&lt;/li&gt;
+&lt;li&gt;当活动过期时，将send字段设置为 -1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;邀请码报名需求:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;邀请码报名需求&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;邀请码报名应用于非注册用户，当用户输入邀请码时，弹出填写报名信息页面&lt;/li&gt;
+&lt;li&gt;非注册用户填写报名信息时，和注册用户不同的时，需要多填写姓名、电话和公司，其中姓名和电话为必填项&lt;/li&gt;
+&lt;li&gt;报名有时需要可支付，支付支持微信、支付宝和福米&lt;/li&gt;
+&lt;li&gt;报名有时需要限制为公司专属，即只有该公司的用户才允许报名&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;设计逻辑-1:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;设计逻辑&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;注册用户报名时，报名需填写的信息由后台json格式定义.&lt;/li&gt;
+&lt;li&gt;非注册用户采用邀请码报名时，除填写原报名信息外，还需填写姓名、电话和公司等信息&lt;/li&gt;
+&lt;li&gt;报名成功后，将报名数据存入新表activity_attend_v2 (因为原activity_attend必须要存user_uuid,只能弃用).&lt;/li&gt;
+&lt;li&gt;当活动不需要支付时，不生成订单，报名信息存入 activity_attend_v2.&lt;/li&gt;
+&lt;li&gt;当活动需要支付时，在order_v2表生成订单，订单类型为活动&lt;/li&gt;
+&lt;li&gt;支付数据永远从新版订单表中读取，采用新的支付接口&lt;/li&gt;
+&lt;li&gt;活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>关于活动报名信息的json格式约定</title>
+            <link>http://eyestone.github.io/post/activity_attend/</link>
+            <pubDate>Mon, 27 Jun 2016 14:44:28 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/activity_attend/</guid>
+            <description>
+
+&lt;p&gt;&lt;em&gt;author : freeopen&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;list&amp;quot;:[
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;性别&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;one&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:11,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;男&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:12,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;女&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;宝宝年龄&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;one&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:21,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;0-2&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:22,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;3-4&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:23,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;5-6&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;陪同家长&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;more&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:31,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;爸爸&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:32,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;妈妈&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:33,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;爷爷&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                },
+                {
+                    &amp;quot;tagId&amp;quot;:34,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;奶奶&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:51,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
+
+&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topic 标题&lt;/li&gt;
+&lt;li&gt;type 控件类型
+
+&lt;ul&gt;
+&lt;li&gt;one   单选&lt;/li&gt;
+&lt;li&gt;more 多选&lt;/li&gt;
+&lt;li&gt;number 仅填数字的输入框&lt;/li&gt;
+&lt;li&gt;text 填文本的输入框&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/li&gt;
+&lt;li&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/li&gt;
+&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;常用活动报名举例&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;list&amp;quot;:[
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;姓名&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:41,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        },
+        {
+            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
+            &amp;quot;tag&amp;quot;:[
+                {
+                    &amp;quot;tagId&amp;quot;:51,
+                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
+                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
+                }
+            ]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

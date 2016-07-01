@@ -157,7 +157,7 @@
 &lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
 
 &lt;ul&gt;
-&lt;li&gt;9.1充福米&lt;/li&gt;
+&lt;li&gt;9.1充福米 &amp;ndash; &lt;em&gt;done 需要上传一个福米类型的商品&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;9.2充卡&lt;/li&gt;
 &lt;li&gt;修改说明：a.在order_pay表中添加两个字段，order_source用于表明是来自订单的还是充值的，charge_record_uuid用于存储充值记录id；b.charge_record表去掉支付相关信息；c.修改savePayMentInfo函数；d.重写充值接口；e.修改ticket表去掉支付相关字段；f.重写welfare获取接口&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -172,7 +172,7 @@
 &lt;li&gt;11.写账单接口
 
 &lt;ul&gt;
-&lt;li&gt;11.1获取对账单列表&lt;/li&gt;
+&lt;li&gt;11.1获取对账单列表 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;11.2获取账户数据&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;12.整理用户消息通知相关接口的现状和规划&lt;/li&gt;
