@@ -62,6 +62,563 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/discuss-order-refund-exchange/">关于订单和退换货重新设计的讨论</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 3, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%BE%E8%AE%A1">设计</a>
+							
+								 , 
+								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+							 using tags
+							
+								
+							<a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+						
+								 , 
+							<a href="/tags/%E9%80%80%E6%8D%A2%E8%B4%A7">退换货</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h4 id="tc-一个馒头引发的血案-之-一个status引发的重构:9879fc507e4f2bad7c8515ceb71674d3">tc：一个馒头引发的血案 之 一个status引发的重构</h4>
+
+<h3 id="设计原则:9879fc507e4f2bad7c8515ceb71674d3">设计原则</h3>
+
+<ul>
+<li>将各个业务模块分离开，保证业务逻辑的独立性</li>
+<li>统一各个表的id，使用java写一个long型的uuid生成算法</li>
+</ul>
+
+<h3 id="订单:9879fc507e4f2bad7c8515ceb71674d3">订单</h3>
+
+<h4 id="1-数据库表修改:9879fc507e4f2bad7c8515ceb71674d3">1.数据库表修改</h4>
+
+<ul>
+<li><p>1.1 order_v2表添加如下字段</p>
+
+<ul>
+<li>is_deleted: boolean 取消后和收到货物后可删除，逻辑删除</li>
+<li>is_canncelled: boolean 未付款之前可以取消</li>
+<li>is_payed: boolean 是否支付</li>
+<li>is_refunding: boolean 是否正在退款，用于表示此订单中是否有商品正在退款</li>
+<li>has_refund_record: boolean 是否有过退款记录</li>
+<li>user_receipt: boolean 用户确认收货</li>
+<li>gmt_user_receipt: DateTime 用户确认收货时间</li>
+<li>order_status: int 0新生成，1已检查，2提交给供应商，3已发货，4确认收货</li>
+<li>gmt_status: string json字符串，用于存储每一个状态发生的时间，每发生一次状态改变增加一个记录</li>
+<li>gmt_expiration: DateTime 订单过期时间，到时间未支付的，过期。如果这个字段为空，表示不过期</li>
+</ul></li>
+
+<li><p>1.2 order_detail表添加如下字段</p>
+
+<ul>
+<li>is_used: boolean 是否以使用，对于虚拟商品有效</li>
+</ul></li>
+
+<li><p>1.3 delivery_method表</p>
+
+<ul>
+<li>添加一个福米价</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 确认收货相关
+
+<ul>
+<li>订单提交给供应商以后10天自动将状态修改为已收货</li>
+<li>自动处理的，同时将用户收货状态和系统收货状态置为已收货</li>
+<li>用户确认收货以后，系统收货状态同时变成已收货</li>
+</ul></li>
+<li>2.2 分单
+
+<ul>
+<li>在后台订单处理系统中，将订单按照商家和用户分单</li>
+</ul></li>
+<li>2.3 ui
+
+<ul>
+<li>在订单上显示：已支付，未支付状态，如果有正在退款的商品，显示退款中，不显示退款完成状态</li>
+<li>在订单上增加“确认收货”按钮，在全部商品都收到的情况下才点，也就是说一旦确认了，就认为所有商品都收到了</li>
+<li>在订单商品中增加退款和换货状态</li>
+</ul></li>
+<li>2.4 其他
+
+<ul>
+<li>对于一些有特殊处理要求的商品，不能和其他商品进入同一个订单，比如有支付截止时间的等等</li>
+</ul></li>
+</ul>
+
+<h4 id="3-需要改动的代码量:9879fc507e4f2bad7c8515ceb71674d3">3.需要改动的代码量</h4>
+
+<ul>
+<li>3.1 订单生成时保存订单状态，直接生成和从购物车生成，合并两个函数的代码 &ndash; 1小时</li>
+<li>3.2 订单支付完成时修改订单状态 &ndash; 2小时，连同之前耦合的支付相关代码一并处理</li>
+<li>3.3 订单生成时取福米价 &ndash; 10分钟</li>
+</ul>
+
+<h3 id="退换货:9879fc507e4f2bad7c8515ceb71674d3">退换货</h3>
+
+<h4 id="1-数据库表修改-1:9879fc507e4f2bad7c8515ceb71674d3">1.数据库表修改</h4>
+
+<ul>
+<li>1.1 refund_apply
+
+<ul>
+<li>去掉refund_detail字段</li>
+<li>增加refund_no: 退款单号</li>
+</ul></li>
+<li>1.2 增加refund_detail表</li>
+<li>1.3 refund_detail
+
+<ul>
+<li>uuid:</li>
+<li>refund_apply_uuid</li>
+<li>gmt_create: datetime 创建时间</li>
+<li>gmt_update: datetime 修改时间</li>
+<li>gmt_refund: datetime 退款时间</li>
+<li>our_remark: string 我们的注释</li>
+<li>order_detail_id：</li>
+<li>delivery_fee_to_user: 寄给用户的运费，换货的时候使用</li>
+<li>to_user_payer: 寄给用户的运费支付方，0表示用户，1表示商家，2表示来福</li>
+<li>delivery_fee_to_busi: 寄给商家的运费，退换货都要用</li>
+<li>to_busi_payer: 寄给商家的运费支付方，同上。注意的是，这里记录的是这笔钱应该由谁出，而不是实际由谁出，如果涉及到要垫付的情况，需要由运营人员自行记录处理。</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理-1:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 退货和换货都保存到这两个表中</li>
+<li>2.2 用户点击退换货按钮，填写原因，上传照片；运营人员电话联系，确认要退换的货物的详情；后台生成退款单；</li>
+<li>2.3 换货由用户和运营人员私下交流决定</li>
+</ul>
+
+<h4 id="3-需要修改的代码量:9879fc507e4f2bad7c8515ceb71674d3">3.需要修改的代码量</h4>
+
+<ul>
+<li>3.1 修改保存退换货函数 &ndash; 1.5小时</li>
+</ul>
+
+<h3 id="卖法:9879fc507e4f2bad7c8515ceb71674d3">卖法</h3>
+
+<h4 id="1-数据库修改:9879fc507e4f2bad7c8515ceb71674d3">1.数据库修改</h4>
+
+<ul>
+<li>1.1 增加一个卖法表sold_method，包括如下字段
+
+<ul>
+<li>uuid: long</li>
+<li>name : string 卖法名称</li>
+<li>source_price : decimal(9,2) 原始价格</li>
+<li>sold_price : decimal(9,2) 卖价</li>
+<li>fumi_price : decimal(9,2) 福米价</li>
+<li>remark : string 备注</li>
+<li>status : int 0表示下架，1表示有效</li>
+</ul></li>
+<li>1.2 增加一个计划表sold_sequence，包括如下字段
+
+<ul>
+<li>uuid : long</li>
+<li>merchandise_uuid: string</li>
+<li>sold_method_uuid: long</li>
+<li>is_default: boolean 是否默认，如果在对应的时间内，没有卖法的，都使用这个卖法</li>
+<li>start_time: datetime 开始时间</li>
+<li>end_time: datetime 结束时间</li>
+<li>status: int 0表示下架，1表示有效，2表示还未到</li>
+</ul></li>
+<li>1.3 merchandise表增加一个卖法id
+
+<ul>
+<li>sold_method : long</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理-2:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 当对应的时间段有卖法的时候，使用对应的卖法，否则使用默认的卖法</li>
+</ul>
+
+<h4 id="3-需要修改的代码:9879fc507e4f2bad7c8515ceb71674d3">3.需要修改的代码</h4>
+
+<ul>
+<li>3.1 管理端上商品，添加卖法和卖法时序</li>
+<li>3.2 取商品的时候，到计划表和卖法表中取</li>
+<li>3.3 生成订单接口函数中取价格获取问题，写一个取价格函数，传入订单的生成时间和商品id，以及其他一些相关参数，来检索价格</li>
+</ul>
+
+<h4 id="记录人:9879fc507e4f2bad7c8515ceb71674d3">记录人</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/PayAndDomain/">支付及签证、活动设计</a></h3>
+						<small><span class="label label-primary">
+							
+								Sun, Jul 3, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%BE%E8%AE%A1">设计</a>
+							 using tags
+							
+								
+							<a href="/tags/%E6%94%AF%E4%BB%98">支付</a>
+						
+								 , 
+							<a href="/tags/%E7%AD%BE%E8%AF%81">签证</a>
+						
+								 , 
+							<a href="/tags/%E6%B4%BB%E5%8A%A8">活动</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h3 id="支付原则:ef35c07f4ca5a63299137b11a5e90f23">支付原则</h3>
+
+<ul>
+<li>独立模块，只从订单获取基本支付信息，不同的支付方式存入不同的表格</li>
+</ul>
+
+<h3 id="支付接口及参数:ef35c07f4ca5a63299137b11a5e90f23">支付接口及参数</h3>
+
+<ul>
+<li>Class Name : AnyPayV2</li>
+
+<li><p>Method Name : PayRequest</p>
+
+<ul>
+<li>和订单表们和支付表 耦合</li>
+<li>支付和退款前的参数封装</li>
+<li>将支付信息写进对应的支付表中</li>
+<li>from：1= 福米兑换场, 2 = Visa, 3 = Activity<br /></li>
+<li>orderId: bigInt(20)</li>
+<li>isRefund: true, false</li>
+<li>payMethod: weixin, alipay, fumi</li>
+<li>return: 针对不同支付封装好参数Map</li>
+<li>注：支付宝直接返回参数map，微信需调用一次回调才能返回</li>
+</ul></li>
+
+<li><p>Method Name : payNotify</p>
+
+<ul>
+<li>回调函数，和支付表耦合</li>
+<li>获取回调通知</li>
+<li>将回调信息补充进对应的支付表中</li>
+<li>兼容 支付 和 退款</li>
+<li>return: rtn_code, rtn_msg 若失败则在rtn_msg中写入错误信息</li>
+<li>注：微信有 2 次回调</li>
+</ul></li>
+
+<li><p>Method Name : payAfter, 支付完成后处理</p>
+
+<ul>
+<li>和订单表们耦合</li>
+<li>根据订单来源进行支付后数据处理</li>
+</ul></li>
+</ul>
+
+<h3 id="支付宝交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23">支付宝交互逻辑及表结构</h3>
+
+<h4 id="支付宝交互流程图:ef35c07f4ca5a63299137b11a5e90f23">支付宝交互流程图</h4>
+
+<p><a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.DWEKRM&amp;treeId=59&amp;articleId=103658&amp;docType=1">doc</a></p>
+
+<h4 id="1-支付请求:ef35c07f4ca5a63299137b11a5e90f23">1. 支付请求</h4>
+
+<ul>
+<li><a href="https://doc.open.alipay.com/doc2/detail?articleId=103663&amp;docType=1&amp;treeId=59">doc</a></li>
+<li>由手机端sdk发起请求，服务器端生成请求数据包</li>
+</ul>
+
+<h4 id="2-异步通知:ef35c07f4ca5a63299137b11a5e90f23">2. 异步通知</h4>
+
+<ul>
+<li>服务器获取支付宝服务器的异步通知</li>
+
+<li><p>更改服务器支付数据</p></li>
+
+<li><p><a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.mKs6tp&amp;treeId=59&amp;articleId=103666&amp;docType=1">doc</a></p></li>
+</ul>
+
+<h4 id="3-获取支付结果:ef35c07f4ca5a63299137b11a5e90f23">3. 获取支付结果</h4>
+
+<ul>
+<li>手机端从支付宝服务器获取支付结果</li>
+<li>将支付结果展示给用户</li>
+</ul>
+
+<h4 id="表结构:ef35c07f4ca5a63299137b11a5e90f23">表结构</h4>
+
+<ul>
+<li>order_id</li>
+<li>from</li>
+
+<li><p>type  pay or refund</p></li>
+
+<li><p>notify_time   通知时间    Date yyyy-MM-dd HH:mm:ss</p></li>
+
+<li><p>notify_type   通知类型    String</p></li>
+
+<li><p>notify_id 通知校验ID  String</p></li>
+
+<li><p>sign_type 签名方式    String</p></li>
+
+<li><p>sign  签名  String</p></li>
+
+<li><p>out_trade_no  商户网站唯一订单号   String(64)</p></li>
+
+<li><p>subject   商品名称    String(128)</p></li>
+
+<li><p>trade_no  支付宝交易号  String(64)</p></li>
+
+<li><p>seller_id 卖家支付宝用户号    String(30)</p></li>
+
+<li><p>seller_email  卖家支付宝账号 String(100)</p></li>
+
+<li><p>buyer_id  买家支付宝用户号    String(30)</p></li>
+
+<li><p>buyer_email   买家支付宝账号 String(100)</p></li>
+
+<li><p>total_fee 交易金额    Number 1yuan</p></li>
+
+<li><p>trade_status  交易状态    String</p></li>
+
+<li><p>refund_status 退款状态    String</p></li>
+
+<li><p>gmt_refund    退款时间    Date</p></li>
+
+<li><p>gmt_payment   交易付款时间  Date</p></li>
+
+<li><p>use_coupon    是否使用红包买家    String(1)</p></li>
+
+<li><p>discount  折扣  String 如有，负数，单位元</p></li>
+</ul>
+
+<p>通知交易状态 trade_status</p>
+
+<ul>
+<li>WAIT_BUYER_PAY    交易创建，等待买家付款。</li>
+<li>TRADE_CLOSED  在指定时间段内未支付时关闭的交易；在交易完成全额退款成功时关闭的交易。</li>
+<li>TRADE_SUCCESS 交易成功，且可对该交易做操作，如：多级分润、退款等。</li>
+<li>TRADE_FINISHED    交易成功且结束，即不可再做任何操作。</li>
+</ul>
+
+<p>退款状态 refund_status</p>
+
+<ul>
+<li>REFUND_SUCCESS 退款成功。全额退款情况：trade_status=TRADE_CLOSED，而refund_status=REFUND_SUCCESS；</li>
+<li>REFUND_CLOSED 退款关闭</li>
+</ul>
+
+<h3 id="微信支付交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23">微信支付交互逻辑及表结构</h3>
+
+<h4 id="微信交互流程图:ef35c07f4ca5a63299137b11a5e90f23">微信交互流程图</h4>
+
+<p><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_3">doc</a></p>
+
+<h4 id="1-生成预支付单:ef35c07f4ca5a63299137b11a5e90f23">1. 生成预支付单</h4>
+
+<p>商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付，详见
+<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1">官方文档</a></p>
+
+<p>手机端发起支付请求， 服务器生成预支付单，返回手机prepay_id 和 sign等</p>
+
+<h4 id="2-app调用支付接口:ef35c07f4ca5a63299137b11a5e90f23">2. App调用支付接口</h4>
+
+<p>app 收到 服务器 传来的 预支付交易会话id和微信返回的签名后，才能发起支付调用，
+详见<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_12&amp;index=2">官方文档</a>
+第一次回调</p>
+
+<h4 id="3-服务器获取支付结果通知:ef35c07f4ca5a63299137b11a5e90f23">3. 服务器获取支付结果通知</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_7&amp;index=3">官方文档</a></li>
+<li>当微信服务器没有收到我方服务应答时，按该时间频率重发通知（通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）</li>
+<li>微信通知从 notify_url 处接受，必须保证该 url 线上可访问</li>
+<li>先从微信的通知数据获得如下信息</li>
+<li>return_code : success 通信成功标识,然后有一大堆返回值</li>
+<li>result_code : success 交易成功标识</li>
+<li>接收完通知后，我方服务器再向微信服务器进行应答，返回 return_code: success, 有问题时，在return_msg 中填写错误信息</li>
+<li>服务器进行支付后的数据处理</li>
+<li>第二次回调</li>
+</ul>
+
+<h4 id="4-完成交易:ef35c07f4ca5a63299137b11a5e90f23">4. 完成交易</h4>
+
+<ul>
+<li>手机端向服务器端查询支付结果</li>
+<li>服务器调用api向微信服务器查询支付结果</li>
+<li>服务器收到支付成功结构后，向手机端返回支付结果</li>
+<li>手机端向用户展示支付结果</li>
+</ul>
+
+<h4 id="5-关闭订单:ef35c07f4ca5a63299137b11a5e90f23">5. 关闭订单</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_3&amp;index=5">官方文档</a></li>
+<li>以下情况需要调用关单接口：商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口。
+注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。</li>
+</ul>
+
+<h4 id="5-申请退款:ef35c07f4ca5a63299137b11a5e90f23">5. 申请退款</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_4&amp;index=6">官方文档</a></li>
+<li>交易时间超过一年的订单无法提交退款；</li>
+<li>微信支付退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。一笔退款失败后重新提交，要采用原来的退款单号。总退款金额不能超过用户实际支付金额。</li>
+<li>需要双向证书</li>
+<li>提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</li>
+</ul>
+
+<h4 id="6-退款查询:ef35c07f4ca5a63299137b11a5e90f23">6. 退款查询</h4>
+
+<ul>
+<li>退款有延时，用来判断是否退款成功</li>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_5&amp;index=7">官方文档</a></li>
+</ul>
+
+<h4 id="表结构设计:ef35c07f4ca5a63299137b11a5e90f23">表结构设计</h4>
+
+<p>字段内容为接口调用的参数，错误状态记录，每种情况的时间记录，和支付信息概要</p>
+
+<ul>
+<li>order_id</li>
+<li>from</li>
+
+<li><p>type  预付单，预付单返回， 支付，支付返回，退款，退款返回，关闭，关闭返回</p></li>
+
+<li><p>应用ID  appid 32 (const)</p></li>
+
+<li><p>商户号   mch_id 32 (const)</p></li>
+
+<li><p>随机字符串 nonce_str 32</p></li>
+
+<li><p>签名    sign 32</p></li>
+
+<li><p>商品描述  body 128</p></li>
+
+<li><p>商户订单号 out_trade_no 32 (from order_id)</p></li>
+
+<li><p>总金额   total_fee Int 单位 分</p></li>
+
+<li><p>终端IP  spbill_create_ip 16</p></li>
+
+<li><p>交易起始时间    time_start 14</p></li>
+
+<li><p>交易过期时间    time_expire 14 交易过期时间</p></li>
+
+<li><p>通知地址  notify_url 256 (const)</p></li>
+
+<li><p>交易类型  trade_type  16</p></li>
+
+<li><p>返回状态码 return_code 16</p></li>
+
+<li><p>返回信息  return_msg 128</p></li>
+
+<li><p>随机字符串 wx_nonce_str 32 (return)</p></li>
+
+<li><p>签名    wx_sign 32 (return) （关键）</p></li>
+
+<li><p>业务结果  result_code  16</p></li>
+
+<li><p>错误代码  err_code 32</p></li>
+
+<li><p>错误代码描述    err_code_des 128</p></li>
+
+<li><p>交易类型  trade_type 16</p></li>
+
+<li><p>预支付交易会话标识 prepay_id 64 (关键)</p></li>
+
+<li><p>用户标识  openid 128</p></li>
+
+<li><p>是否关注公众账号  is_subscribe 1 用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效</p></li>
+
+<li><p>付款银行  bank_type 16</p></li>
+
+<li><p>货币种类  fee_type 8</p></li>
+
+<li><p>现金支付金额    cash_fee int 订单总金额-代金券或立减优惠金额=现金支付金额</p></li>
+
+<li><p>代金券或立减优惠金额    coupon_fee int</p></li>
+
+<li><p>代金券或立减优惠使用数量  coupon_count int</p></li>
+
+<li><p>微信支付订单号   transaction_id 32 (关键)</p></li>
+
+<li><p>支付完成时间    time_end 14</p></li>
+
+<li><p>商户退款单号    out_refund_no   32</p></li>
+
+<li><p>退款金额  refund_fee int</p></li>
+
+<li><p>操作员   op_user_id 32 操作员帐号, 默认为商户号</p></li>
+
+<li><p>微信退款单号    refund_id 32</p></li>
+
+<li><p>退款入账账户    refund_recv_accout 64</p></li>
+
+<li><p>退款状态  refund_status 16</p></li>
+</ul>
+
+<h3 id="签证:ef35c07f4ca5a63299137b11a5e90f23">签证</h3>
+
+<h3 id="活动:ef35c07f4ca5a63299137b11a5e90f23">活动</h3>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/activity_invite/">活动邀请码及邀请码报名设计逻辑</a></h3>
 						<small><span class="label label-primary">
 							
@@ -130,6 +687,14 @@
 <li>当活动需要支付时，在order_v2表生成订单，订单类型为活动</li>
 <li>支付数据永远从新版订单表中读取，采用新的支付接口</li>
 <li>活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块</li>
+</ul>
+
+<hr />
+
+<h4 id="取消活动报名-新增:ab7bbc3711d122254f98ee78f425e1c5">取消活动报名（新增）</h4>
+
+<ul>
+<li>活动报名取消后，需填写取消原因后才能取消。</li>
 </ul>
 
 					
@@ -1074,281 +1639,6 @@
 </ul>
 
 <h4 id="记录:040511b124b80c6ff6c159ebf8c53d4e">记录</h4>
-
-<ul>
-<li>陆文金</li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/server-upgrade/">服务器代码的进化史</a></h3>
-						<small><span class="label label-primary">
-							
-								Fri, Jun 3, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/server">server</a>
-							 using tags
-							
-								
-							<a href="/tags/java">java</a>
-						
-								 , 
-							<a href="/tags/spring">spring</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<p>代码之美如同数学之美，好的代码通常是结构清晰，简单优雅的。
-代码如同生命，需要时间的磨砺和进化，下面将对我们的服务器代码需进化的方向做系列分析。</p>
-
-<h4 id="1-运行零配置:b1e14c958e519618679260e8b94cfa96"><strong>1. 运行零配置</strong></h4>
-
-<p>一般服务器代码需要部署到容器之中才能正常运行，这不太符合拿来即用的原则。本地环境复杂化一向不是我推崇的方法，中国人自有最优秀的设计基因，比如中国的筷子就是比老外的刀叉更优秀的设计，所以复杂的代码系统不仅仅是功能设计，还需要优秀的配置管理。</p>
-
-<p><strong>已搞定</strong></p>
-
-<p>目前，通过对gradle脚本的改造，已经实现“运行零配置”的目标，方法为：</p>
-
-<pre><code>cd welfare
-gradle tomcatRunWar
-</code></pre>
-
-<p>你可以说，上面的代码还不完全是零配置，还需要安装gradle才能运行，当然不是：</p>
-
-<pre><code>cd welfare
-../gradlew tomcatRunWar 
-</code></pre>
-
-<p>gradlew 命令是在project根目录下的命令行，会自动在线下载gradle的运行环境，当然第一次执行时因为下载会比较费时。</p>
-
-<p><strong>待解决的问题</strong></p>
-
-<ul>
-<li>代码中缓存系统memcached关闭后，tomcat启动时仍在不停的连接12345端口，这意味着代码中memcached的连接存在不能关闭的隐患</li>
-</ul>
-
-<hr />
-
-<h4 id="2-session共享:b1e14c958e519618679260e8b94cfa96"><strong>2. session共享</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>session通常记录用户的登录信息，保持用户的登录状态。</p>
-
-<p>现在的session系统采用spring默认的http session，只能自己用，不能分享给别人用，这种情况不利于未来微架构系统的分布式部署。</p>
-
-<p><strong>解决方案</strong></p>
-
-<p>采用spring-session框架, 将session由内存数据库redis接管。</p>
-
-<hr />
-
-<h4 id="3-紧耦合的session和权限管理:b1e14c958e519618679260e8b94cfa96"><strong>3. 紧耦合的session和权限管理</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>为实现标题中的功能，把代码写得到处都是，代价是不易维护，增加各种潜在隐患。</p>
-
-<p><strong>解决方案</strong></p>
-
-<p>采用切面技术将session和权限功能进行接管。</p>
-
-<hr />
-
-<h4 id="4-丑陋的memcached:b1e14c958e519618679260e8b94cfa96"><strong>4. 丑陋的memcached</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>先声明，其实memcached作为一个缓存技术，一点也不丑陋，这里的丑陋是指我们的使用它的代码丑陋。我们的使用方法是先写了一个数据库工具框架，然后在框架中嵌入memcached调用，要对那个表数据缓存，就把该表增加到insert，update，delete三个基本操作中。在很多年前，这样的设计是最优秀的方法之一，但时至今日，这样的设计不够灵活，现在增加一个缓存可以到方法上，简单到增加一个注解即可。</p>
-
-<p>其二，对于缓存系统的使用，我更倾向于被广泛使用且兼容性好的。比如现在redis的被支持率明显高于memcached，很多框架代码缺省支持redis，如果我们想继续使用memcached，必须自行寻找各种支持库，麻烦费时。</p>
-
-<p><strong>解决方案</strong></p>
-
-<p>用redis代替memcached，但由于涉及到数据库处理层的修改，需要保持极度谨慎。</p>
-
-<hr />
-
-<h4 id="5-多环境零配置:b1e14c958e519618679260e8b94cfa96"><strong>5. 多环境零配置</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>现有的代码环境，简单分为开发环境和生产环境，而开发环境指向的域名为laifucard.net,生产环境为.com，在gradle编译时只需要通过snapshot和release参数就能区分产生不同环境的运行时war文件。</p>
-
-<p>但，实际代码的实现方式却不优雅。仅仅是为了在不同编译参数时采用不同的域名，居然在service子项目中写了两个bean，同时还在两个xml文件中分别进行配置，想想就心塞。</p>
-
-<p><strong>解决方案</strong></p>
-
-<ul>
-<li>将代码环境分为 开发环境 生产环境 和 本地开发环境，因为目前的开发环境主要适用于laifucard.net环境</li>
-<li>环境变量写到文本配置文件中，目前主要包括域名配置和数据库配置信息</li>
-<li>由程序自动选择性读取不同的环境变量，可采用spring的profile特性</li>
-<li>gradle脚本增加一个编译选项，命名为local</li>
-</ul>
-
-<hr />
-
-<h4 id="6-自动化测试:b1e14c958e519618679260e8b94cfa96"><strong>6. 自动化测试</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>目前代码并没有养成单元测试的习惯，服务器端的单元测试大量集中于对接口的测试，实现技术主要采用google的mokito框架。</p>
-
-<p><strong>解决方案</strong></p>
-
-<ul>
-<li>针对已有接口写单元测试模板，供大家参考</li>
-<li>gradle脚本增加集成测试编译选项，使其自动化</li>
-</ul>
-
-<hr />
-
-<h4 id="7-代码检查:b1e14c958e519618679260e8b94cfa96"><strong>7. 代码检查</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>目前的代码检查方案是checkstyle,我原来已经做过检查。问题在于该工具的检查深度不够，我们需要更高级的工具帮我们来改善代码质量.</p>
-
-<p><strong>解决方案</strong></p>
-
-<ul>
-<li>启用sonarqube技术，对源码做最全面的检查</li>
-<li>根据检查结果，消除隐患，清除代码冗余</li>
-</ul>
-
-<hr />
-
-<h4 id="8-异步消息系统:b1e14c958e519618679260e8b94cfa96"><strong>8. 异步消息系统</strong></h4>
-
-<p><strong>待解决</strong></p>
-
-<p>服务器系统中有短信通知、邮件通知、app通知等多种通知模式，在现阶段没什么用户的情况下问题不大，但当用户基数上去以后，最好将通知系统由异步消息系统接管，才能进一步提高服务器效率。</p>
-
-<p>所谓异步消息系统就好比一个邮局，服务器程序只需要把通知内容交给邮局，就可以忙自己的其他事情了，剩下的事情都交给邮局自行处理。</p>
-
-<p><strong>解决方案</strong></p>
-
-<ul>
-<li>服务器端部署消息代理系统</li>
-<li>改造msg-push子项目，进行xml文件配置即可</li>
-</ul>
-
-<hr />
-
-<p>(未完，待续)</p>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/common-terms/">术语说明</a></h3>
-						<small><span class="label label-primary">
-							
-								Thu, Jun 2, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E7%BA%A6%E5%AE%9A">约定</a>
-							 using tags
-							
-								
-							<a href="/tags/%E7%BA%A6%E5%AE%9A">约定</a>
-						
-								 , 
-							<a href="/tags/%E6%9C%AF%E8%AF%AD">术语</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						<table>
-<thead>
-<tr>
-<th align="left">术语　　　　 　　　</th>
-<th align="left">解释 　　　</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">订单进程</td>
-<td align="left">指编程相关的流程控制，在订单系统中，涉及到springWebFlow的流程</td>
-</tr>
-
-<tr>
-<td align="left">订单过程</td>
-<td align="left">指一个订单从选购商品到最后成交的用户和系统交互的过程。目前整理的过程包括：选购商品-&gt;加入购物车-&gt;确认订单-&gt;支付订单-&gt;发货-&gt;物流-&gt;签收</td>
-</tr>
-
-<tr>
-<td align="left">付款码</td>
-<td align="left">用于表明用户已购买身份的码。比如用户在我们平台上购买了一个健身卡，平台给用户分配一个付款码，用户凭此付款码就可以到相关的健身房健身。</td>
-</tr>
-
-<tr>
-<td align="left">参与码</td>
-<td align="left">对于一些付费或者有限制条件的活动，用户报名后平台给用户分配一个参与码，用户凭这个码可以参与活动</td>
-</tr>
-
-<tr>
-<td align="left">充福米</td>
-<td align="left">用各种方式为用户账户充入福米</td>
-</tr>
-
-<tr>
-<td align="left">充值</td>
-<td align="left">为各种卡等虚拟商品充值，可以使用福米、支付宝等各种方式</td>
-</tr>
-
-<tr>
-<td align="left">福米充值</td>
-<td align="left">这显然是个坑，概念太模糊，不建议使用</td>
-</tr>
-</tbody>
-</table>
-
-<p>　　</p>
-
-<p><strong>记录</strong></p>
 
 <ul>
 <li>陆文金</li>

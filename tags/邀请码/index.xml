@@ -63,6 +63,14 @@
 &lt;li&gt;支付数据永远从新版订单表中读取，采用新的支付接口&lt;/li&gt;
 &lt;li&gt;活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;取消活动报名-新增:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;取消活动报名（新增）&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;活动报名取消后，需填写取消原因后才能取消。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         

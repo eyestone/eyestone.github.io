@@ -6,8 +6,503 @@
     <description>Recent content in Posts on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 17:11:33 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 03 Jul 2016 15:09:27 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>关于订单和退换货重新设计的讨论</title>
+            <link>http://eyestone.github.io/post/discuss-order-refund-exchange/</link>
+            <pubDate>Sun, 03 Jul 2016 15:09:27 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/discuss-order-refund-exchange/</guid>
+            <description>
+
+&lt;h4 id=&#34;tc-一个馒头引发的血案-之-一个status引发的重构:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;tc：一个馒头引发的血案 之 一个status引发的重构&lt;/h4&gt;
+
+&lt;h3 id=&#34;设计原则:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;设计原则&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将各个业务模块分离开，保证业务逻辑的独立性&lt;/li&gt;
+&lt;li&gt;统一各个表的id，使用java写一个long型的uuid生成算法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;订单:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;订单&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-数据库表修改:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;1.数据库表修改&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1.1 order_v2表添加如下字段&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;is_deleted: boolean 取消后和收到货物后可删除，逻辑删除&lt;/li&gt;
+&lt;li&gt;is_canncelled: boolean 未付款之前可以取消&lt;/li&gt;
+&lt;li&gt;is_payed: boolean 是否支付&lt;/li&gt;
+&lt;li&gt;is_refunding: boolean 是否正在退款，用于表示此订单中是否有商品正在退款&lt;/li&gt;
+&lt;li&gt;has_refund_record: boolean 是否有过退款记录&lt;/li&gt;
+&lt;li&gt;user_receipt: boolean 用户确认收货&lt;/li&gt;
+&lt;li&gt;gmt_user_receipt: DateTime 用户确认收货时间&lt;/li&gt;
+&lt;li&gt;order_status: int 0新生成，1已检查，2提交给供应商，3已发货，4确认收货&lt;/li&gt;
+&lt;li&gt;gmt_status: string json字符串，用于存储每一个状态发生的时间，每发生一次状态改变增加一个记录&lt;/li&gt;
+&lt;li&gt;gmt_expiration: DateTime 订单过期时间，到时间未支付的，过期。如果这个字段为空，表示不过期&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1.2 order_detail表添加如下字段&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;is_used: boolean 是否以使用，对于虚拟商品有效&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1.3 delivery_method表&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;添加一个福米价&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-业务过程梳理:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;2.业务过程梳理&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2.1 确认收货相关
+
+&lt;ul&gt;
+&lt;li&gt;订单提交给供应商以后10天自动将状态修改为已收货&lt;/li&gt;
+&lt;li&gt;自动处理的，同时将用户收货状态和系统收货状态置为已收货&lt;/li&gt;
+&lt;li&gt;用户确认收货以后，系统收货状态同时变成已收货&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2.2 分单
+
+&lt;ul&gt;
+&lt;li&gt;在后台订单处理系统中，将订单按照商家和用户分单&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2.3 ui
+
+&lt;ul&gt;
+&lt;li&gt;在订单上显示：已支付，未支付状态，如果有正在退款的商品，显示退款中，不显示退款完成状态&lt;/li&gt;
+&lt;li&gt;在订单上增加“确认收货”按钮，在全部商品都收到的情况下才点，也就是说一旦确认了，就认为所有商品都收到了&lt;/li&gt;
+&lt;li&gt;在订单商品中增加退款和换货状态&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2.4 其他
+
+&lt;ul&gt;
+&lt;li&gt;对于一些有特殊处理要求的商品，不能和其他商品进入同一个订单，比如有支付截止时间的等等&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-需要改动的代码量:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;3.需要改动的代码量&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;3.1 订单生成时保存订单状态，直接生成和从购物车生成，合并两个函数的代码 &amp;ndash; 1小时&lt;/li&gt;
+&lt;li&gt;3.2 订单支付完成时修改订单状态 &amp;ndash; 2小时，连同之前耦合的支付相关代码一并处理&lt;/li&gt;
+&lt;li&gt;3.3 订单生成时取福米价 &amp;ndash; 10分钟&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;退换货:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;退换货&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-数据库表修改-1:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;1.数据库表修改&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.1 refund_apply
+
+&lt;ul&gt;
+&lt;li&gt;去掉refund_detail字段&lt;/li&gt;
+&lt;li&gt;增加refund_no: 退款单号&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.2 增加refund_detail表&lt;/li&gt;
+&lt;li&gt;1.3 refund_detail
+
+&lt;ul&gt;
+&lt;li&gt;uuid:&lt;/li&gt;
+&lt;li&gt;refund_apply_uuid&lt;/li&gt;
+&lt;li&gt;gmt_create: datetime 创建时间&lt;/li&gt;
+&lt;li&gt;gmt_update: datetime 修改时间&lt;/li&gt;
+&lt;li&gt;gmt_refund: datetime 退款时间&lt;/li&gt;
+&lt;li&gt;our_remark: string 我们的注释&lt;/li&gt;
+&lt;li&gt;order_detail_id：&lt;/li&gt;
+&lt;li&gt;delivery_fee_to_user: 寄给用户的运费，换货的时候使用&lt;/li&gt;
+&lt;li&gt;to_user_payer: 寄给用户的运费支付方，0表示用户，1表示商家，2表示来福&lt;/li&gt;
+&lt;li&gt;delivery_fee_to_busi: 寄给商家的运费，退换货都要用&lt;/li&gt;
+&lt;li&gt;to_busi_payer: 寄给商家的运费支付方，同上。注意的是，这里记录的是这笔钱应该由谁出，而不是实际由谁出，如果涉及到要垫付的情况，需要由运营人员自行记录处理。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-业务过程梳理-1:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;2.业务过程梳理&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2.1 退货和换货都保存到这两个表中&lt;/li&gt;
+&lt;li&gt;2.2 用户点击退换货按钮，填写原因，上传照片；运营人员电话联系，确认要退换的货物的详情；后台生成退款单；&lt;/li&gt;
+&lt;li&gt;2.3 换货由用户和运营人员私下交流决定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-需要修改的代码量:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;3.需要修改的代码量&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;3.1 修改保存退换货函数 &amp;ndash; 1.5小时&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;卖法:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;卖法&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-数据库修改:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;1.数据库修改&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.1 增加一个卖法表sold_method，包括如下字段
+
+&lt;ul&gt;
+&lt;li&gt;uuid: long&lt;/li&gt;
+&lt;li&gt;name : string 卖法名称&lt;/li&gt;
+&lt;li&gt;source_price : decimal(9,2) 原始价格&lt;/li&gt;
+&lt;li&gt;sold_price : decimal(9,2) 卖价&lt;/li&gt;
+&lt;li&gt;fumi_price : decimal(9,2) 福米价&lt;/li&gt;
+&lt;li&gt;remark : string 备注&lt;/li&gt;
+&lt;li&gt;status : int 0表示下架，1表示有效&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.2 增加一个计划表sold_sequence，包括如下字段
+
+&lt;ul&gt;
+&lt;li&gt;uuid : long&lt;/li&gt;
+&lt;li&gt;merchandise_uuid: string&lt;/li&gt;
+&lt;li&gt;sold_method_uuid: long&lt;/li&gt;
+&lt;li&gt;is_default: boolean 是否默认，如果在对应的时间内，没有卖法的，都使用这个卖法&lt;/li&gt;
+&lt;li&gt;start_time: datetime 开始时间&lt;/li&gt;
+&lt;li&gt;end_time: datetime 结束时间&lt;/li&gt;
+&lt;li&gt;status: int 0表示下架，1表示有效，2表示还未到&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.3 merchandise表增加一个卖法id
+
+&lt;ul&gt;
+&lt;li&gt;sold_method : long&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-业务过程梳理-2:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;2.业务过程梳理&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2.1 当对应的时间段有卖法的时候，使用对应的卖法，否则使用默认的卖法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-需要修改的代码:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;3.需要修改的代码&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;3.1 管理端上商品，添加卖法和卖法时序&lt;/li&gt;
+&lt;li&gt;3.2 取商品的时候，到计划表和卖法表中取&lt;/li&gt;
+&lt;li&gt;3.3 生成订单接口函数中取价格获取问题，写一个取价格函数，传入订单的生成时间和商品id，以及其他一些相关参数，来检索价格&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;记录人:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;记录人&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>支付及签证、活动设计</title>
+            <link>http://eyestone.github.io/post/PayAndDomain/</link>
+            <pubDate>Sun, 03 Jul 2016 14:59:31 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/PayAndDomain/</guid>
+            <description>
+
+&lt;h3 id=&#34;支付原则:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;支付原则&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;独立模块，只从订单获取基本支付信息，不同的支付方式存入不同的表格&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;支付接口及参数:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;支付接口及参数&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Class Name : AnyPayV2&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Method Name : PayRequest&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;和订单表们和支付表 耦合&lt;/li&gt;
+&lt;li&gt;支付和退款前的参数封装&lt;/li&gt;
+&lt;li&gt;将支付信息写进对应的支付表中&lt;/li&gt;
+&lt;li&gt;from：1= 福米兑换场, 2 = Visa, 3 = Activity&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;orderId: bigInt(20)&lt;/li&gt;
+&lt;li&gt;isRefund: true, false&lt;/li&gt;
+&lt;li&gt;payMethod: weixin, alipay, fumi&lt;/li&gt;
+&lt;li&gt;return: 针对不同支付封装好参数Map&lt;/li&gt;
+&lt;li&gt;注：支付宝直接返回参数map，微信需调用一次回调才能返回&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Method Name : payNotify&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;回调函数，和支付表耦合&lt;/li&gt;
+&lt;li&gt;获取回调通知&lt;/li&gt;
+&lt;li&gt;将回调信息补充进对应的支付表中&lt;/li&gt;
+&lt;li&gt;兼容 支付 和 退款&lt;/li&gt;
+&lt;li&gt;return: rtn_code, rtn_msg 若失败则在rtn_msg中写入错误信息&lt;/li&gt;
+&lt;li&gt;注：微信有 2 次回调&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Method Name : payAfter, 支付完成后处理&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;和订单表们耦合&lt;/li&gt;
+&lt;li&gt;根据订单来源进行支付后数据处理&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;支付宝交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;支付宝交互逻辑及表结构&lt;/h3&gt;
+
+&lt;h4 id=&#34;支付宝交互流程图:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;支付宝交互流程图&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.DWEKRM&amp;amp;treeId=59&amp;amp;articleId=103658&amp;amp;docType=1&#34;&gt;doc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-支付请求:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;1. 支付请求&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://doc.open.alipay.com/doc2/detail?articleId=103663&amp;amp;docType=1&amp;amp;treeId=59&#34;&gt;doc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;由手机端sdk发起请求，服务器端生成请求数据包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-异步通知:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;2. 异步通知&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;服务器获取支付宝服务器的异步通知&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;更改服务器支付数据&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.mKs6tp&amp;amp;treeId=59&amp;amp;articleId=103666&amp;amp;docType=1&#34;&gt;doc&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-获取支付结果:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;3. 获取支付结果&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;手机端从支付宝服务器获取支付结果&lt;/li&gt;
+&lt;li&gt;将支付结果展示给用户&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;表结构:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;表结构&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;order_id&lt;/li&gt;
+&lt;li&gt;from&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;type  pay or refund&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;notify_time   通知时间    Date yyyy-MM-dd HH:mm:ss&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;notify_type   通知类型    String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;notify_id 通知校验ID  String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;sign_type 签名方式    String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;sign  签名  String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;out_trade_no  商户网站唯一订单号   String(64)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;subject   商品名称    String(128)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;trade_no  支付宝交易号  String(64)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;seller_id 卖家支付宝用户号    String(30)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;seller_email  卖家支付宝账号 String(100)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;buyer_id  买家支付宝用户号    String(30)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;buyer_email   买家支付宝账号 String(100)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;total_fee 交易金额    Number 1yuan&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;trade_status  交易状态    String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;refund_status 退款状态    String&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;gmt_refund    退款时间    Date&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;gmt_payment   交易付款时间  Date&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;use_coupon    是否使用红包买家    String(1)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;discount  折扣  String 如有，负数，单位元&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通知交易状态 trade_status&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;WAIT_BUYER_PAY    交易创建，等待买家付款。&lt;/li&gt;
+&lt;li&gt;TRADE_CLOSED  在指定时间段内未支付时关闭的交易；在交易完成全额退款成功时关闭的交易。&lt;/li&gt;
+&lt;li&gt;TRADE_SUCCESS 交易成功，且可对该交易做操作，如：多级分润、退款等。&lt;/li&gt;
+&lt;li&gt;TRADE_FINISHED    交易成功且结束，即不可再做任何操作。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;退款状态 refund_status&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;REFUND_SUCCESS 退款成功。全额退款情况：trade_status=TRADE_CLOSED，而refund_status=REFUND_SUCCESS；&lt;/li&gt;
+&lt;li&gt;REFUND_CLOSED 退款关闭&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;微信支付交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;微信支付交互逻辑及表结构&lt;/h3&gt;
+
+&lt;h4 id=&#34;微信交互流程图:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;微信交互流程图&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_3&#34;&gt;doc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-生成预支付单:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;1. 生成预支付单&lt;/h4&gt;
+
+&lt;p&gt;商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付，详见
+&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;手机端发起支付请求， 服务器生成预支付单，返回手机prepay_id 和 sign等&lt;/p&gt;
+
+&lt;h4 id=&#34;2-app调用支付接口:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;2. App调用支付接口&lt;/h4&gt;
+
+&lt;p&gt;app 收到 服务器 传来的 预支付交易会话id和微信返回的签名后，才能发起支付调用，
+详见&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_12&amp;amp;index=2&#34;&gt;官方文档&lt;/a&gt;
+第一次回调&lt;/p&gt;
+
+&lt;h4 id=&#34;3-服务器获取支付结果通知:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;3. 服务器获取支付结果通知&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_7&amp;amp;index=3&#34;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;当微信服务器没有收到我方服务应答时，按该时间频率重发通知（通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）&lt;/li&gt;
+&lt;li&gt;微信通知从 notify_url 处接受，必须保证该 url 线上可访问&lt;/li&gt;
+&lt;li&gt;先从微信的通知数据获得如下信息&lt;/li&gt;
+&lt;li&gt;return_code : success 通信成功标识,然后有一大堆返回值&lt;/li&gt;
+&lt;li&gt;result_code : success 交易成功标识&lt;/li&gt;
+&lt;li&gt;接收完通知后，我方服务器再向微信服务器进行应答，返回 return_code: success, 有问题时，在return_msg 中填写错误信息&lt;/li&gt;
+&lt;li&gt;服务器进行支付后的数据处理&lt;/li&gt;
+&lt;li&gt;第二次回调&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;4-完成交易:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;4. 完成交易&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;手机端向服务器端查询支付结果&lt;/li&gt;
+&lt;li&gt;服务器调用api向微信服务器查询支付结果&lt;/li&gt;
+&lt;li&gt;服务器收到支付成功结构后，向手机端返回支付结果&lt;/li&gt;
+&lt;li&gt;手机端向用户展示支付结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;5-关闭订单:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;5. 关闭订单&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_3&amp;amp;index=5&#34;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;以下情况需要调用关单接口：商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口。
+注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;5-申请退款:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;5. 申请退款&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_4&amp;amp;index=6&#34;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;交易时间超过一年的订单无法提交退款；&lt;/li&gt;
+&lt;li&gt;微信支付退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。一笔退款失败后重新提交，要采用原来的退款单号。总退款金额不能超过用户实际支付金额。&lt;/li&gt;
+&lt;li&gt;需要双向证书&lt;/li&gt;
+&lt;li&gt;提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;6-退款查询:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;6. 退款查询&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;退款有延时，用来判断是否退款成功&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_5&amp;amp;index=7&#34;&gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;表结构设计:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;表结构设计&lt;/h4&gt;
+
+&lt;p&gt;字段内容为接口调用的参数，错误状态记录，每种情况的时间记录，和支付信息概要&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;order_id&lt;/li&gt;
+&lt;li&gt;from&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;type  预付单，预付单返回， 支付，支付返回，退款，退款返回，关闭，关闭返回&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;应用ID  appid 32 (const)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商户号   mch_id 32 (const)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;随机字符串 nonce_str 32&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;签名    sign 32&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商品描述  body 128&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商户订单号 out_trade_no 32 (from order_id)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;总金额   total_fee Int 单位 分&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;终端IP  spbill_create_ip 16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;交易起始时间    time_start 14&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;交易过期时间    time_expire 14 交易过期时间&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;通知地址  notify_url 256 (const)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;交易类型  trade_type  16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;返回状态码 return_code 16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;返回信息  return_msg 128&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;随机字符串 wx_nonce_str 32 (return)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;签名    wx_sign 32 (return) （关键）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;业务结果  result_code  16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;错误代码  err_code 32&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;错误代码描述    err_code_des 128&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;交易类型  trade_type 16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;预支付交易会话标识 prepay_id 64 (关键)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;用户标识  openid 128&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;是否关注公众账号  is_subscribe 1 用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;付款银行  bank_type 16&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;货币种类  fee_type 8&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;现金支付金额    cash_fee int 订单总金额-代金券或立减优惠金额=现金支付金额&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;代金券或立减优惠金额    coupon_fee int&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;代金券或立减优惠使用数量  coupon_count int&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;微信支付订单号   transaction_id 32 (关键)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;支付完成时间    time_end 14&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;商户退款单号    out_refund_no   32&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;退款金额  refund_fee int&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;操作员   op_user_id 32 操作员帐号, 默认为商户号&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;微信退款单号    refund_id 32&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;退款入账账户    refund_recv_accout 64&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;退款状态  refund_status 16&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;签证:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;签证&lt;/h3&gt;
+
+&lt;h3 id=&#34;活动:ef35c07f4ca5a63299137b11a5e90f23&#34;&gt;活动&lt;/h3&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -62,6 +557,14 @@
 &lt;li&gt;当活动需要支付时，在order_v2表生成订单，订单类型为活动&lt;/li&gt;
 &lt;li&gt;支付数据永远从新版订单表中读取，采用新的支付接口&lt;/li&gt;
 &lt;li&gt;活动为公司专属时，判断用户的所属公司，对于公司专属的活动，报名时不启动邀请码报名模块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;取消活动报名-新增:ab7bbc3711d122254f98ee78f425e1c5&#34;&gt;取消活动报名（新增）&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;活动报名取消后，需填写取消原因后才能取消。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
@@ -1170,97 +1673,6 @@ gradle tomcatRunWar
 &lt;li&gt;在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档&lt;/li&gt;
 &lt;li&gt;使用deploy.cmd命令，可以将本地文档同步到服务器&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>关于升档页面有未保存的编辑数据时的提交的讨论</title>
-            <link>http://eyestone.github.io/post/discuss-shengdang3/</link>
-            <pubDate>Tue, 24 May 2016 19:10:23 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/discuss-shengdang3/</guid>
-            <description>&lt;p&gt;&lt;strong&gt;问题提出&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;按照之前的设计，在点击添加人的时候会默认将当前编辑的人的信息保存&lt;/li&gt;
-&lt;li&gt;可是“我”并不想保存这个人的信息&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;讨论结果&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;1.人名右边的点击按钮只作为展开人名列表之用&lt;/li&gt;
-&lt;li&gt;2.下面的“添加一人”按钮用做保存已编辑的信息&lt;/li&gt;
-&lt;li&gt;3.修改已保存的列表中的信息时，如果有未保存的人的信息，提示“放弃|保存”&lt;/li&gt;
-&lt;li&gt;4.点击“提交”按钮时，如果有未保存的人的信息，提示“放弃|提交”&lt;/li&gt;
-&lt;li&gt;5.如果选择放弃即将未保存的信息忽略，其他信息照常处理&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;参与人&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;李艳&lt;/li&gt;
-&lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;记录&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>企业用户邀请码验证流程</title>
-            <link>http://eyestone.github.io/post/discuss-loginWorkFlow/</link>
-            <pubDate>Fri, 20 May 2016 10:44:39 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/discuss-loginWorkFlow/</guid>
-            <description>
-
-&lt;h4 id=&#34;流程:c3d737271291e416175d535fdd08de68&#34;&gt;流程&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;企业收集员工的手机号&amp;ndash;&amp;gt;提供到来福&amp;ndash;&amp;gt;从后台录入并分配邀请码（放到invite_code表中）&lt;/li&gt;
-&lt;li&gt;用户打开app&amp;ndash;&amp;gt;点击邀请码验证&amp;ndash;&amp;gt;输入手机号和邀请码&amp;ndash;&amp;gt;查询邀请码存在&amp;ndash;&amp;gt;生成用户&amp;ndash;&amp;gt;关联公司&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;使用场景:c3d737271291e416175d535fdd08de68&#34;&gt;使用场景&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;验证过程中，用户已生成但是未完成信息修改：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;认为用户未完成验证，下次打开app的时候重新进行验证&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-&lt;li&gt;用户使用A手机号获取邀请码完成注册，之后将手机号修改成B。A手机号被另一个人使用来获取邀请码。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;应该让其正常通过验证&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&#34;备注:c3d737271291e416175d535fdd08de68&#34;&gt;备注&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;使用邀请码和激活码用户的区别：使用邀请码验证的用户是那一类信息比较少的，一般指没有身份证号，更多的是只提供了手机号码的一类；使用激活码的用户指信息比较全的用户，一般指包括身份证号都存在的用户，由后台上传用户信息，用户自己激活。&lt;/li&gt;
-&lt;li&gt;激活码目前不适用数据库中的激活码，而是使用短信验证码。&lt;/li&gt;
-&lt;li&gt;使用邀请码的用户不需要再激活。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;记录人:陆文金&lt;/em&gt;&lt;/p&gt;
 </description>
           </item>
         

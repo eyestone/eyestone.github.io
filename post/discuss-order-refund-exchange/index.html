@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="关于订单和退换货重新设计的讨论">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>关于订单和退换货重新设计的讨论 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>关于订单和退换货重新设计的讨论</h3>
+                <span class="label label-primary">Sun, Jul 3, 2016</span> in 
+                
+                
+                <a href="/categories/%E8%AE%BE%E8%AE%A1">设计</a>
+                
+                 , 
+                <a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+                 using tags
+                
+                
+                <a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+                
+                 , 
+                <a href="/tags/%E9%80%80%E6%8D%A2%E8%B4%A7">退换货</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<h4 id="tc-一个馒头引发的血案-之-一个status引发的重构:9879fc507e4f2bad7c8515ceb71674d3">tc：一个馒头引发的血案 之 一个status引发的重构</h4>
+
+<h3 id="设计原则:9879fc507e4f2bad7c8515ceb71674d3">设计原则</h3>
+
+<ul>
+<li>将各个业务模块分离开，保证业务逻辑的独立性</li>
+<li>统一各个表的id，使用java写一个long型的uuid生成算法</li>
+</ul>
+
+<h3 id="订单:9879fc507e4f2bad7c8515ceb71674d3">订单</h3>
+
+<h4 id="1-数据库表修改:9879fc507e4f2bad7c8515ceb71674d3">1.数据库表修改</h4>
+
+<ul>
+<li><p>1.1 order_v2表添加如下字段</p>
+
+<ul>
+<li>is_deleted: boolean 取消后和收到货物后可删除，逻辑删除</li>
+<li>is_canncelled: boolean 未付款之前可以取消</li>
+<li>is_payed: boolean 是否支付</li>
+<li>is_refunding: boolean 是否正在退款，用于表示此订单中是否有商品正在退款</li>
+<li>has_refund_record: boolean 是否有过退款记录</li>
+<li>user_receipt: boolean 用户确认收货</li>
+<li>gmt_user_receipt: DateTime 用户确认收货时间</li>
+<li>order_status: int 0新生成，1已检查，2提交给供应商，3已发货，4确认收货</li>
+<li>gmt_status: string json字符串，用于存储每一个状态发生的时间，每发生一次状态改变增加一个记录</li>
+<li>gmt_expiration: DateTime 订单过期时间，到时间未支付的，过期。如果这个字段为空，表示不过期</li>
+</ul></li>
+
+<li><p>1.2 order_detail表添加如下字段</p>
+
+<ul>
+<li>is_used: boolean 是否以使用，对于虚拟商品有效</li>
+</ul></li>
+
+<li><p>1.3 delivery_method表</p>
+
+<ul>
+<li>添加一个福米价</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 确认收货相关
+
+<ul>
+<li>订单提交给供应商以后10天自动将状态修改为已收货</li>
+<li>自动处理的，同时将用户收货状态和系统收货状态置为已收货</li>
+<li>用户确认收货以后，系统收货状态同时变成已收货</li>
+</ul></li>
+<li>2.2 分单
+
+<ul>
+<li>在后台订单处理系统中，将订单按照商家和用户分单</li>
+</ul></li>
+<li>2.3 ui
+
+<ul>
+<li>在订单上显示：已支付，未支付状态，如果有正在退款的商品，显示退款中，不显示退款完成状态</li>
+<li>在订单上增加“确认收货”按钮，在全部商品都收到的情况下才点，也就是说一旦确认了，就认为所有商品都收到了</li>
+<li>在订单商品中增加退款和换货状态</li>
+</ul></li>
+<li>2.4 其他
+
+<ul>
+<li>对于一些有特殊处理要求的商品，不能和其他商品进入同一个订单，比如有支付截止时间的等等</li>
+</ul></li>
+</ul>
+
+<h4 id="3-需要改动的代码量:9879fc507e4f2bad7c8515ceb71674d3">3.需要改动的代码量</h4>
+
+<ul>
+<li>3.1 订单生成时保存订单状态，直接生成和从购物车生成，合并两个函数的代码 &ndash; 1小时</li>
+<li>3.2 订单支付完成时修改订单状态 &ndash; 2小时，连同之前耦合的支付相关代码一并处理</li>
+<li>3.3 订单生成时取福米价 &ndash; 10分钟</li>
+</ul>
+
+<h3 id="退换货:9879fc507e4f2bad7c8515ceb71674d3">退换货</h3>
+
+<h4 id="1-数据库表修改-1:9879fc507e4f2bad7c8515ceb71674d3">1.数据库表修改</h4>
+
+<ul>
+<li>1.1 refund_apply
+
+<ul>
+<li>去掉refund_detail字段</li>
+<li>增加refund_no: 退款单号</li>
+</ul></li>
+<li>1.2 增加refund_detail表</li>
+<li>1.3 refund_detail
+
+<ul>
+<li>uuid:</li>
+<li>refund_apply_uuid</li>
+<li>gmt_create: datetime 创建时间</li>
+<li>gmt_update: datetime 修改时间</li>
+<li>gmt_refund: datetime 退款时间</li>
+<li>our_remark: string 我们的注释</li>
+<li>order_detail_id：</li>
+<li>delivery_fee_to_user: 寄给用户的运费，换货的时候使用</li>
+<li>to_user_payer: 寄给用户的运费支付方，0表示用户，1表示商家，2表示来福</li>
+<li>delivery_fee_to_busi: 寄给商家的运费，退换货都要用</li>
+<li>to_busi_payer: 寄给商家的运费支付方，同上。注意的是，这里记录的是这笔钱应该由谁出，而不是实际由谁出，如果涉及到要垫付的情况，需要由运营人员自行记录处理。</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理-1:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 退货和换货都保存到这两个表中</li>
+<li>2.2 用户点击退换货按钮，填写原因，上传照片；运营人员电话联系，确认要退换的货物的详情；后台生成退款单；</li>
+<li>2.3 换货由用户和运营人员私下交流决定</li>
+</ul>
+
+<h4 id="3-需要修改的代码量:9879fc507e4f2bad7c8515ceb71674d3">3.需要修改的代码量</h4>
+
+<ul>
+<li>3.1 修改保存退换货函数 &ndash; 1.5小时</li>
+</ul>
+
+<h3 id="卖法:9879fc507e4f2bad7c8515ceb71674d3">卖法</h3>
+
+<h4 id="1-数据库修改:9879fc507e4f2bad7c8515ceb71674d3">1.数据库修改</h4>
+
+<ul>
+<li>1.1 增加一个卖法表sold_method，包括如下字段
+
+<ul>
+<li>uuid: long</li>
+<li>name : string 卖法名称</li>
+<li>source_price : decimal(9,2) 原始价格</li>
+<li>sold_price : decimal(9,2) 卖价</li>
+<li>fumi_price : decimal(9,2) 福米价</li>
+<li>remark : string 备注</li>
+<li>status : int 0表示下架，1表示有效</li>
+</ul></li>
+<li>1.2 增加一个计划表sold_sequence，包括如下字段
+
+<ul>
+<li>uuid : long</li>
+<li>merchandise_uuid: string</li>
+<li>sold_method_uuid: long</li>
+<li>is_default: boolean 是否默认，如果在对应的时间内，没有卖法的，都使用这个卖法</li>
+<li>start_time: datetime 开始时间</li>
+<li>end_time: datetime 结束时间</li>
+<li>status: int 0表示下架，1表示有效，2表示还未到</li>
+</ul></li>
+<li>1.3 merchandise表增加一个卖法id
+
+<ul>
+<li>sold_method : long</li>
+</ul></li>
+</ul>
+
+<h4 id="2-业务过程梳理-2:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
+
+<ul>
+<li>2.1 当对应的时间段有卖法的时候，使用对应的卖法，否则使用默认的卖法</li>
+</ul>
+
+<h4 id="3-需要修改的代码:9879fc507e4f2bad7c8515ceb71674d3">3.需要修改的代码</h4>
+
+<ul>
+<li>3.1 管理端上商品，添加卖法和卖法时序</li>
+<li>3.2 取商品的时候，到计划表和卖法表中取</li>
+<li>3.3 生成订单接口函数中取价格获取问题，写一个取价格函数，传入订单的生成时间和商品id，以及其他一些相关参数，来检索价格</li>
+</ul>
+
+<h4 id="记录人:9879fc507e4f2bad7c8515ceb71674d3">记录人</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/discuss-order-refund-exchange/" data-title="关于订单和退换货重新设计的讨论" data-url="http://eyestone.github.io/post/discuss-order-refund-exchange/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

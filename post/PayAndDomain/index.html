@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="支付及签证、活动设计">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>支付及签证、活动设计 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>支付及签证、活动设计</h3>
+                <span class="label label-primary">Sun, Jul 3, 2016</span> in 
+                
+                
+                <a href="/categories/%E8%AE%BE%E8%AE%A1">设计</a>
+                 using tags
+                
+                
+                <a href="/tags/%E6%94%AF%E4%BB%98">支付</a>
+                
+                 , 
+                <a href="/tags/%E7%AD%BE%E8%AF%81">签证</a>
+                
+                 , 
+                <a href="/tags/%E6%B4%BB%E5%8A%A8">活动</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<h3 id="支付原则:ef35c07f4ca5a63299137b11a5e90f23">支付原则</h3>
+
+<ul>
+<li>独立模块，只从订单获取基本支付信息，不同的支付方式存入不同的表格</li>
+</ul>
+
+<h3 id="支付接口及参数:ef35c07f4ca5a63299137b11a5e90f23">支付接口及参数</h3>
+
+<ul>
+<li>Class Name : AnyPayV2</li>
+
+<li><p>Method Name : PayRequest</p>
+
+<ul>
+<li>和订单表们和支付表 耦合</li>
+<li>支付和退款前的参数封装</li>
+<li>将支付信息写进对应的支付表中</li>
+<li>from：1= 福米兑换场, 2 = Visa, 3 = Activity<br /></li>
+<li>orderId: bigInt(20)</li>
+<li>isRefund: true, false</li>
+<li>payMethod: weixin, alipay, fumi</li>
+<li>return: 针对不同支付封装好参数Map</li>
+<li>注：支付宝直接返回参数map，微信需调用一次回调才能返回</li>
+</ul></li>
+
+<li><p>Method Name : payNotify</p>
+
+<ul>
+<li>回调函数，和支付表耦合</li>
+<li>获取回调通知</li>
+<li>将回调信息补充进对应的支付表中</li>
+<li>兼容 支付 和 退款</li>
+<li>return: rtn_code, rtn_msg 若失败则在rtn_msg中写入错误信息</li>
+<li>注：微信有 2 次回调</li>
+</ul></li>
+
+<li><p>Method Name : payAfter, 支付完成后处理</p>
+
+<ul>
+<li>和订单表们耦合</li>
+<li>根据订单来源进行支付后数据处理</li>
+</ul></li>
+</ul>
+
+<h3 id="支付宝交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23">支付宝交互逻辑及表结构</h3>
+
+<h4 id="支付宝交互流程图:ef35c07f4ca5a63299137b11a5e90f23">支付宝交互流程图</h4>
+
+<p><a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.DWEKRM&amp;treeId=59&amp;articleId=103658&amp;docType=1">doc</a></p>
+
+<h4 id="1-支付请求:ef35c07f4ca5a63299137b11a5e90f23">1. 支付请求</h4>
+
+<ul>
+<li><a href="https://doc.open.alipay.com/doc2/detail?articleId=103663&amp;docType=1&amp;treeId=59">doc</a></li>
+<li>由手机端sdk发起请求，服务器端生成请求数据包</li>
+</ul>
+
+<h4 id="2-异步通知:ef35c07f4ca5a63299137b11a5e90f23">2. 异步通知</h4>
+
+<ul>
+<li>服务器获取支付宝服务器的异步通知</li>
+
+<li><p>更改服务器支付数据</p></li>
+
+<li><p><a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.mKs6tp&amp;treeId=59&amp;articleId=103666&amp;docType=1">doc</a></p></li>
+</ul>
+
+<h4 id="3-获取支付结果:ef35c07f4ca5a63299137b11a5e90f23">3. 获取支付结果</h4>
+
+<ul>
+<li>手机端从支付宝服务器获取支付结果</li>
+<li>将支付结果展示给用户</li>
+</ul>
+
+<h4 id="表结构:ef35c07f4ca5a63299137b11a5e90f23">表结构</h4>
+
+<ul>
+<li>order_id</li>
+<li>from</li>
+
+<li><p>type  pay or refund</p></li>
+
+<li><p>notify_time   通知时间    Date yyyy-MM-dd HH:mm:ss</p></li>
+
+<li><p>notify_type   通知类型    String</p></li>
+
+<li><p>notify_id 通知校验ID  String</p></li>
+
+<li><p>sign_type 签名方式    String</p></li>
+
+<li><p>sign  签名  String</p></li>
+
+<li><p>out_trade_no  商户网站唯一订单号   String(64)</p></li>
+
+<li><p>subject   商品名称    String(128)</p></li>
+
+<li><p>trade_no  支付宝交易号  String(64)</p></li>
+
+<li><p>seller_id 卖家支付宝用户号    String(30)</p></li>
+
+<li><p>seller_email  卖家支付宝账号 String(100)</p></li>
+
+<li><p>buyer_id  买家支付宝用户号    String(30)</p></li>
+
+<li><p>buyer_email   买家支付宝账号 String(100)</p></li>
+
+<li><p>total_fee 交易金额    Number 1yuan</p></li>
+
+<li><p>trade_status  交易状态    String</p></li>
+
+<li><p>refund_status 退款状态    String</p></li>
+
+<li><p>gmt_refund    退款时间    Date</p></li>
+
+<li><p>gmt_payment   交易付款时间  Date</p></li>
+
+<li><p>use_coupon    是否使用红包买家    String(1)</p></li>
+
+<li><p>discount  折扣  String 如有，负数，单位元</p></li>
+</ul>
+
+<p>通知交易状态 trade_status</p>
+
+<ul>
+<li>WAIT_BUYER_PAY    交易创建，等待买家付款。</li>
+<li>TRADE_CLOSED  在指定时间段内未支付时关闭的交易；在交易完成全额退款成功时关闭的交易。</li>
+<li>TRADE_SUCCESS 交易成功，且可对该交易做操作，如：多级分润、退款等。</li>
+<li>TRADE_FINISHED    交易成功且结束，即不可再做任何操作。</li>
+</ul>
+
+<p>退款状态 refund_status</p>
+
+<ul>
+<li>REFUND_SUCCESS 退款成功。全额退款情况：trade_status=TRADE_CLOSED，而refund_status=REFUND_SUCCESS；</li>
+<li>REFUND_CLOSED 退款关闭</li>
+</ul>
+
+<h3 id="微信支付交互逻辑及表结构:ef35c07f4ca5a63299137b11a5e90f23">微信支付交互逻辑及表结构</h3>
+
+<h4 id="微信交互流程图:ef35c07f4ca5a63299137b11a5e90f23">微信交互流程图</h4>
+
+<p><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_3">doc</a></p>
+
+<h4 id="1-生成预支付单:ef35c07f4ca5a63299137b11a5e90f23">1. 生成预支付单</h4>
+
+<p>商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付，详见
+<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1">官方文档</a></p>
+
+<p>手机端发起支付请求， 服务器生成预支付单，返回手机prepay_id 和 sign等</p>
+
+<h4 id="2-app调用支付接口:ef35c07f4ca5a63299137b11a5e90f23">2. App调用支付接口</h4>
+
+<p>app 收到 服务器 传来的 预支付交易会话id和微信返回的签名后，才能发起支付调用，
+详见<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_12&amp;index=2">官方文档</a>
+第一次回调</p>
+
+<h4 id="3-服务器获取支付结果通知:ef35c07f4ca5a63299137b11a5e90f23">3. 服务器获取支付结果通知</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_7&amp;index=3">官方文档</a></li>
+<li>当微信服务器没有收到我方服务应答时，按该时间频率重发通知（通知频率为15/15/30/180/1800/1800/1800/1800/3600，单位：秒）</li>
+<li>微信通知从 notify_url 处接受，必须保证该 url 线上可访问</li>
+<li>先从微信的通知数据获得如下信息</li>
+<li>return_code : success 通信成功标识,然后有一大堆返回值</li>
+<li>result_code : success 交易成功标识</li>
+<li>接收完通知后，我方服务器再向微信服务器进行应答，返回 return_code: success, 有问题时，在return_msg 中填写错误信息</li>
+<li>服务器进行支付后的数据处理</li>
+<li>第二次回调</li>
+</ul>
+
+<h4 id="4-完成交易:ef35c07f4ca5a63299137b11a5e90f23">4. 完成交易</h4>
+
+<ul>
+<li>手机端向服务器端查询支付结果</li>
+<li>服务器调用api向微信服务器查询支付结果</li>
+<li>服务器收到支付成功结构后，向手机端返回支付结果</li>
+<li>手机端向用户展示支付结果</li>
+</ul>
+
+<h4 id="5-关闭订单:ef35c07f4ca5a63299137b11a5e90f23">5. 关闭订单</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_3&amp;index=5">官方文档</a></li>
+<li>以下情况需要调用关单接口：商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口。
+注意：订单生成后不能马上调用关单接口，最短调用时间间隔为5分钟。</li>
+</ul>
+
+<h4 id="5-申请退款:ef35c07f4ca5a63299137b11a5e90f23">5. 申请退款</h4>
+
+<ul>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_4&amp;index=6">官方文档</a></li>
+<li>交易时间超过一年的订单无法提交退款；</li>
+<li>微信支付退款支持单笔交易分多次退款，多次退款需要提交原支付订单的商户订单号和设置不同的退款单号。一笔退款失败后重新提交，要采用原来的退款单号。总退款金额不能超过用户实际支付金额。</li>
+<li>需要双向证书</li>
+<li>提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。</li>
+</ul>
+
+<h4 id="6-退款查询:ef35c07f4ca5a63299137b11a5e90f23">6. 退款查询</h4>
+
+<ul>
+<li>退款有延时，用来判断是否退款成功</li>
+<li><a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_5&amp;index=7">官方文档</a></li>
+</ul>
+
+<h4 id="表结构设计:ef35c07f4ca5a63299137b11a5e90f23">表结构设计</h4>
+
+<p>字段内容为接口调用的参数，错误状态记录，每种情况的时间记录，和支付信息概要</p>
+
+<ul>
+<li>order_id</li>
+<li>from</li>
+
+<li><p>type  预付单，预付单返回， 支付，支付返回，退款，退款返回，关闭，关闭返回</p></li>
+
+<li><p>应用ID  appid 32 (const)</p></li>
+
+<li><p>商户号   mch_id 32 (const)</p></li>
+
+<li><p>随机字符串 nonce_str 32</p></li>
+
+<li><p>签名    sign 32</p></li>
+
+<li><p>商品描述  body 128</p></li>
+
+<li><p>商户订单号 out_trade_no 32 (from order_id)</p></li>
+
+<li><p>总金额   total_fee Int 单位 分</p></li>
+
+<li><p>终端IP  spbill_create_ip 16</p></li>
+
+<li><p>交易起始时间    time_start 14</p></li>
+
+<li><p>交易过期时间    time_expire 14 交易过期时间</p></li>
+
+<li><p>通知地址  notify_url 256 (const)</p></li>
+
+<li><p>交易类型  trade_type  16</p></li>
+
+<li><p>返回状态码 return_code 16</p></li>
+
+<li><p>返回信息  return_msg 128</p></li>
+
+<li><p>随机字符串 wx_nonce_str 32 (return)</p></li>
+
+<li><p>签名    wx_sign 32 (return) （关键）</p></li>
+
+<li><p>业务结果  result_code  16</p></li>
+
+<li><p>错误代码  err_code 32</p></li>
+
+<li><p>错误代码描述    err_code_des 128</p></li>
+
+<li><p>交易类型  trade_type 16</p></li>
+
+<li><p>预支付交易会话标识 prepay_id 64 (关键)</p></li>
+
+<li><p>用户标识  openid 128</p></li>
+
+<li><p>是否关注公众账号  is_subscribe 1 用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效</p></li>
+
+<li><p>付款银行  bank_type 16</p></li>
+
+<li><p>货币种类  fee_type 8</p></li>
+
+<li><p>现金支付金额    cash_fee int 订单总金额-代金券或立减优惠金额=现金支付金额</p></li>
+
+<li><p>代金券或立减优惠金额    coupon_fee int</p></li>
+
+<li><p>代金券或立减优惠使用数量  coupon_count int</p></li>
+
+<li><p>微信支付订单号   transaction_id 32 (关键)</p></li>
+
+<li><p>支付完成时间    time_end 14</p></li>
+
+<li><p>商户退款单号    out_refund_no   32</p></li>
+
+<li><p>退款金额  refund_fee int</p></li>
+
+<li><p>操作员   op_user_id 32 操作员帐号, 默认为商户号</p></li>
+
+<li><p>微信退款单号    refund_id 32</p></li>
+
+<li><p>退款入账账户    refund_recv_accout 64</p></li>
+
+<li><p>退款状态  refund_status 16</p></li>
+</ul>
+
+<h3 id="签证:ef35c07f4ca5a63299137b11a5e90f23">签证</h3>
+
+<h3 id="活动:ef35c07f4ca5a63299137b11a5e90f23">活动</h3>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/PayAndDomain/" data-title="支付及签证、活动设计" data-url="http://eyestone.github.io/post/PayAndDomain/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
