@@ -188,6 +188,12 @@
 &lt;li&gt;3.2 取商品的时候，到计划表和卖法表中取&lt;/li&gt;
 &lt;li&gt;3.3 生成订单接口函数中取价格获取问题，写一个取价格函数，传入订单的生成时间和商品id，以及其他一些相关参数，来检索价格&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h4 id=&#34;记录人:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;记录人&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;陆文金&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
