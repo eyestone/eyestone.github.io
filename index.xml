@@ -25,7 +25,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;将各个业务模块分离开，保证业务逻辑的独立性&lt;/li&gt;
-&lt;li&gt;统一各个表的id，使用java写一个long型的uuid生成算法&lt;/li&gt;
+&lt;li&gt;统一各个表的id，使用java写一个long型的uuid生成算法 &amp;ndash; 改所有表的uuid为非自增，同时修改&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;订单:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;订单&lt;/h3&gt;
@@ -59,6 +59,8 @@
 &lt;ul&gt;
 &lt;li&gt;添加一个福米价&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1.4 order_process表改成对应order_detail,order_process的内容可以合并到卖法中&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;2-业务过程梳理:9879fc507e4f2bad7c8515ceb71674d3&#34;&gt;2.业务过程梳理&lt;/h4&gt;
@@ -963,6 +965,8 @@
 &lt;li&gt;8.4修改订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.5删除订单接口,逻辑删除 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.6获取订单接口,取消的和删除订单不在客户端显示 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;8.7确认收货接口&lt;/li&gt;
+&lt;li&gt;8.8写自动处理订单收货状态的模块&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
 
