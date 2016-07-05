@@ -96,7 +96,7 @@
 
 <ul>
 <li>将各个业务模块分离开，保证业务逻辑的独立性</li>
-<li>统一各个表的id，使用java写一个long型的uuid生成算法</li>
+<li>统一各个表的id，使用java写一个long型的uuid生成算法 &ndash; 改所有表的uuid为非自增，同时修改</li>
 </ul>
 
 <h3 id="订单:9879fc507e4f2bad7c8515ceb71674d3">订单</h3>
@@ -130,6 +130,8 @@
 <ul>
 <li>添加一个福米价</li>
 </ul></li>
+
+<li><p>1.4 order_process表改成对应order_detail,order_process的内容可以合并到卖法中</p></li>
 </ul>
 
 <h4 id="2-业务过程梳理:9879fc507e4f2bad7c8515ceb71674d3">2.业务过程梳理</h4>
@@ -194,7 +196,9 @@
 <li>delivery_fee_to_user: 寄给用户的运费，换货的时候使用</li>
 <li>to_user_payer: 寄给用户的运费支付方，0表示用户，1表示商家，2表示来福</li>
 <li>delivery_fee_to_busi: 寄给商家的运费，退换货都要用</li>
-<li>to_busi_payer: 寄给商家的运费支付方，同上。注意的是，这里记录的是这笔钱应该由谁出，而不是实际由谁出，如果涉及到要垫付的情况，需要由运营人员自行记录处理。</li>
+<li>to_busi_payer:</li>
+<li>refund_fee: decimal 总价</li>
+<li>寄给商家的运费支付方，同上。注意的是，这里记录的是这笔钱应该由谁出，而不是实际由谁出，如果涉及到要垫付的情况，需要由运营人员自行记录处理。</li>
 </ul></li>
 </ul>
 
@@ -383,6 +387,18 @@
 <ul>
 <li>手机端从支付宝服务器获取支付结果</li>
 <li>将支付结果展示给用户</li>
+</ul>
+
+<h4 id="4-退款请求:ef35c07f4ca5a63299137b11a5e90f23">4. 退款请求</h4>
+
+<ul>
+<li><a href="https://doc.open.alipay.com/doc2/detail?treeId=66&amp;articleId=103600&amp;docType=1">doc</a></li>
+</ul>
+
+<h4 id="5-退款通知:ef35c07f4ca5a63299137b11a5e90f23">5. 退款通知</h4>
+
+<ul>
+<li><a href="https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.5zeLrC&amp;treeId=66&amp;articleId=103601&amp;docType=1">doc</a></li>
 </ul>
 
 <h4 id="表结构:ef35c07f4ca5a63299137b11a5e90f23">表结构</h4>
@@ -1202,6 +1218,8 @@
 <li>8.4修改订单 &ndash; <em>done</em></li>
 <li>8.5删除订单接口,逻辑删除 &ndash; <em>done</em></li>
 <li>8.6获取订单接口,取消的和删除订单不在客户端显示 &ndash; <em>done</em></li>
+<li>8.7确认收货接口</li>
+<li>8.8写自动处理订单收货状态的模块</li>
 </ul></li>
 <li>9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
 
