@@ -124,9 +124,9 @@
 &lt;li&gt;5.写支付接口
 
 &lt;ul&gt;
-&lt;li&gt;5.1整合支付功能到LaifuPay&lt;/li&gt;
+&lt;li&gt;5.1整合支付功能到LaifuPay &amp;ndash; &lt;em&gt;done 重构了支付部分的代码，独立成一个模块，包括存储支付信息的表&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;5.2写福米支付函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;5.3重写支付回调函数，包括成功和失败&lt;/li&gt;
+&lt;li&gt;5.3重写支付回调函数，包括成功和失败 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;6.写购物车接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
 
@@ -153,10 +153,10 @@
 &lt;li&gt;8.4修改订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.5删除订单接口,逻辑删除 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.6获取订单接口,取消的和删除订单不在客户端显示 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;8.7确认收货接口&lt;/li&gt;
+&lt;li&gt;8.7确认收货接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.8写自动处理订单收货状态的模块&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
+&lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
 
 &lt;ul&gt;
 &lt;li&gt;9.1充福米 &amp;ndash; &lt;em&gt;done 需要上传一个福米类型的商品&lt;/em&gt;&lt;/li&gt;
