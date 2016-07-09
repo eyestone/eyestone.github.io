@@ -62,6 +62,82 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/discuss-oder/">订单和商品部分底层设计</a></h3>
+						<small><span class="label label-primary">
+							
+								Mon, Jun 6, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
+							 using tags
+							
+								
+							<a href="/tags/%E8%AE%A2%E5%8D%95">订单</a>
+						
+								 , 
+							<a href="/tags/%E5%95%86%E5%93%81">商品</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h4 id="问题提出:040511b124b80c6ff6c159ebf8c53d4e">问题提出</h4>
+
+<ul>
+<li>如何从商品信息中获取order_process表中的标识位的相关信息</li>
+<li>如何向用户展示详细的商品信息</li>
+</ul>
+
+<h4 id="讨论结果:040511b124b80c6ff6c159ebf8c53d4e">讨论结果</h4>
+
+<ul>
+<li>1.商品种类和卖法的总结如下图：</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/eyestone/eyestone.github.io/master/img/merchandise.png" width = "550"  alt="福米兑换场流程"       align=center /></p>
+
+<ul>
+<li>2.因为卖法涉及到价格计算以及一些业务流程的变化，而一个商品可能涉及到多种卖法，所以讲卖法单独拿出来作为一个表，其中要包括卖法相关的信息和价格。</li>
+<li>3.目前订单部分为了照顾之前商品部分的内容，暂时不处理order_process表中的标识字段。</li>
+<li>4.在第一阶段的order部分内容开发完成之后开始重构商品部分，同时完善订单部分内容。</li>
+</ul>
+
+<h4 id="参与人:040511b124b80c6ff6c159ebf8c53d4e">参与人</h4>
+
+<ul>
+<li>林欣灏</li>
+<li>陆文金</li>
+</ul>
+
+<h4 id="记录:040511b124b80c6ff6c159ebf8c53d4e">记录</h4>
+
+<ul>
+<li>陆文金</li>
+</ul>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/server-upgrade/">服务器代码的进化史</a></h3>
 						<small><span class="label label-primary">
 							
@@ -854,167 +930,6 @@ gradle tomcatRunWar
 	
 
         
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/first/">github博客使用说明</a></h3>
-						<small><span class="label label-primary">
-							
-								Wed, May 18, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E6%95%99%E7%A8%8B">教程</a>
-							 using tags
-							
-								
-							<a href="/tags/blog">blog</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<h3 id="1-概述:e8fb9c67eba912c72729806db31eaa1b">1.概述</h3>
-
-<p>本博客系统由hugo（go语言本地博客系统）结合github pages组成，采用markdown格式编辑，用hugo命令自动生成静态网页，采用git命令行进行发布。</p>
-
-<p>善用本系统可获得如下好处，一个是本地编辑好过网页编辑，特别是网站很慢网络不稳定的时候; 另一个是markdown 格式的编写，可以让作者不再关注鼠标式的排版问题，真正聚焦于内容创作上。</p>
-
-<p>博客访问地址为<code>eyestone.github.io</code></p>
-
-<h3 id="2-系统安装:e8fb9c67eba912c72729806db31eaa1b">2.系统安装</h3>
-
-<p><strong>hugo 安装</strong></p>
-
-<p><a href="https://github.com/spf13/hugo/releases">hugo</a>,根据上述链接下载自己操作系统匹配的版本，如windows下载hugo_0.15_windows_amd64.zip，mac系统<code>brew install hugo</code>, windows环境下解压文件后，建议将hugo命令所在目录设置到系统环境变量。</p>
-
-<p><strong>git 安装（略）</strong></p>
-
-<p><strong>blog 模版安装</strong></p>
-
-<p>将公司共享服务器中blog目录复制到本机</p>
-
-<p><strong>第一次使用时，克隆远程库</strong></p>
-
-<pre><code>$ cd blog
-$ git clone https://github.com/eyestone/eyestone.github.io.git public 
-$ git clone https://github.com/eyestone/blog-content.git content 
-</code></pre>
-
-<h3 id="3-用markdown语法撰写博客:e8fb9c67eba912c72729806db31eaa1b">3.用markdown语法撰写博客</h3>
-
-<p><strong>在blog目录下，运行如下命令行</strong></p>
-
-<pre><code>$ hugo new post/filename.md  //将在content/post/目录下自动生成blog模板文件
-</code></pre>
-
-<p><strong>模版文件格式如下</strong></p>
-
-<pre><code>+++
-title         = &quot;文章标题&quot;
-tags         = [&quot;标签1&quot;, &quot;标签2&quot;]
-categories    = [&quot;分类1&quot;,&quot;分类2&quot;]
-date        = &quot;2015-01-01&quot;
-+++
-
-你的正文
-</code></pre>
-
-<p>这时，使用任意的文本编辑器即可书写博客了。</p>
-
-<p><strong>博客预览</strong></p>
-
-<p>blog目录下运行</p>
-
-<pre><code>$ ./show.sh   // mac or linux 平台
-
-$ show      // windows 平台
-</code></pre>
-
-<p>打开网页浏览器，输入地址</p>
-
-<pre><code>localhost:1313
-</code></pre>
-
-<p><strong>发布到github</strong></p>
-
-<ul>
-<li>手动发布(当前目录为blog 目录)</li>
-</ul>
-
-<pre><code>$ git pull   //养成习惯，先更新库
-$ hugo
-$ cd public
-$ git add -A
-$ git commit -m &quot;add file title&quot;
-$ git push
-</code></pre>
-
-<ul>
-<li>自动发布</li>
-</ul>
-
-<pre><code>$ ./deploy.sh
-</code></pre>
-
-<p>进阶，有兴趣者也可以考虑自行写windows批处理文件.</p>
-
-<h3 id="4-one-more-thing:e8fb9c67eba912c72729806db31eaa1b">4.One more thing</h3>
-
-<p>时时跟踪文章更新，才是博客系统最有力的功能。
-写文章的同学，每次写完，还要邮件通知其它同事，是不是很麻烦？
-下面仅对苹果手机做简单说明。</p>
-
-<ul>
-<li>官方浏览器打开本博客地址</li>
-<li>浏览器最下方选择 分享 图标，再选择 @ 图标</li>
-<li>再到浏览器的书签图标中点击“订阅”</li>
-</ul>
-
-<p>android手机的订阅说明，请其它有兴趣的同学继续补充。</p>
-
-<hr />
-
-<p>经测试，还是在手机上安装专用的RSS订阅软件比较好，苹果手机推荐Newsify.</p>
-
-<hr />
-
-<p>markdown 新功能测试</p>
-
-<p>-[] hello
--[X] <del>good morning</del></p>
-
-<pre><code class="language-flow">st=&gt;start: Start:&gt;https://www.zybuluo.com
-io=&gt;inputoutput: verification
-op=&gt;operation: Your Operation
-cond=&gt;condition: Yes or No?
-sub=&gt;subroutine: Your Subroutine
-e=&gt;end
-
-st-&gt;io-&gt;op-&gt;cond
-cond(yes)-&gt;e
-cond(no)-&gt;sub-&gt;io
-</code></pre>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -1040,12 +955,15 @@ cond(no)-&gt;sub-&gt;io
         class="active"><a href="/page/2/">2</a></li>
         
         <li
-        class="disabled">
-        <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        >
+        <a href="/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/3/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
