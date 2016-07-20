@@ -405,6 +405,30 @@
 
 &lt;p&gt;&lt;em&gt;author : freeopen&lt;/em&gt;&lt;/p&gt;
 
+&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
+
+&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topic 标题&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;type 控件类型&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;one       单选&lt;/li&gt;
+&lt;li&gt;more      多选&lt;/li&gt;
+&lt;li&gt;number    数字输入框&lt;/li&gt;
+&lt;li&gt;text      文本输入框&lt;/li&gt;
+&lt;li&gt;date      日期输入框&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;pre&gt;&lt;code&gt;{
     &amp;quot;list&amp;quot;:[
         {
@@ -473,84 +497,12 @@
         {
             &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
             &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
+            &amp;quot;tag&amp;quot;:[]
         },
         {
-            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:51,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        }
-    ]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
-
-&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;topic 标题&lt;/li&gt;
-&lt;li&gt;type 控件类型
-
-&lt;ul&gt;
-&lt;li&gt;one   单选&lt;/li&gt;
-&lt;li&gt;more 多选&lt;/li&gt;
-&lt;li&gt;number 仅填数字的输入框&lt;/li&gt;
-&lt;li&gt;text 填文本的输入框&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/li&gt;
-&lt;li&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/li&gt;
-&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;常用活动报名举例&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-    &amp;quot;list&amp;quot;:[
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;姓名&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        },
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        },
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:51,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
+            &amp;quot;topic&amp;quot;:&amp;quot;可参加日期&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;date&amp;quot;,
+            &amp;quot;tag&amp;quot;:[]
         }
     ]
 }

@@ -6,8 +6,219 @@
     <description>Recent content on 项目文档库</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jul 2016 15:09:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Jul 2016 14:08:46 +0800</lastBuildDate>
     <atom:link href="http://eyestone.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>工作规范和流程</title>
+            <link>http://eyestone.github.io/post/common-RegulationAndProcedure/</link>
+            <pubDate>Wed, 20 Jul 2016 14:08:46 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/common-RegulationAndProcedure/</guid>
+            <description>
+
+&lt;h4 id=&#34;原则:c3e286e1cff4e00881e394d6c749f320&#34;&gt;原则&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;够用 + 最小化&lt;/li&gt;
+&lt;li&gt;方便他人，送人玫瑰手留余香&lt;/li&gt;
+&lt;li&gt;有问必有答&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;邮箱:c3e286e1cff4e00881e394d6c749f320&#34;&gt;邮箱&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;重要的事情需要从邮件进行沟通&lt;/li&gt;
+&lt;li&gt;收到邮件务必在第一时间回复&lt;/li&gt;
+&lt;li&gt;每天至少查看n次邮箱，n&amp;gt;0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;github博客:c3e286e1cff4e00881e394d6c749f320&#34;&gt;github博客&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用于讨论确定事宜和工作规范文档&lt;/li&gt;
+&lt;li&gt;时常查看&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;github:c3e286e1cff4e00881e394d6c749f320&#34;&gt;github *&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用于代码管理和任务管理&lt;/li&gt;
+&lt;li&gt;github代码管理
+
+&lt;ul&gt;
+&lt;li&gt;有重要修改的时候必须提交一次代码&lt;/li&gt;
+&lt;li&gt;原则上每天必须提交一次代码&lt;/li&gt;
+&lt;li&gt;其他的协商决定提交&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;github任务管理
+
+&lt;ul&gt;
+&lt;li&gt;1.充分分析依赖资源，主要是执行人和前置任务&lt;/li&gt;
+&lt;li&gt;2.将任务以issue的形式发布到github：描述任务尽量详细，避免任务接收者还要再来询问；描述清楚验收标准；如果是其他任务的前置任务一并说明；&lt;/li&gt;
+&lt;li&gt;3.相关人员接受任务后进行comment回复，以便确认任务处于何种状态&lt;/li&gt;
+&lt;li&gt;4.如果开发过程中遇到问题，及时在相关issue下说明具体情况，给出自己的分析结果和可能造成任务延时情况，并@相关人员&lt;/li&gt;
+&lt;li&gt;5.任务完成后在issue下面说明完成的情况，注明是否会有潜在的问题，然后关闭任务&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;github任务模板
+
+&lt;ul&gt;
+&lt;li&gt;标题:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt; 模块 - 标题内容
+ 模块：ios、android、server、project ...
+ 举例：server - 修改默认地址删除逻辑
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;内容：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt; 关键字
+ exec：执行人，参与人，一般将首要执行人写在最前面
+ confirm：任务确认和关闭人
+ deadline：截止时间
+ tasks：任务详情
+ comment：备注
+
+ 举例：
+ project - 整理项目总结资料
+
+ exec: 陆文金
+ confirm: 林总 &amp;amp; 陆文金
+ deadline：2016-07-24 22:00:00
+ tasks:
+ 1.整理代码风格和注释说明
+ 2.在showdoc上建立android和ios目录，并写范文和要求
+ 3.修改github使用规范文档
+ 4.整理培训的方案文档
+ 5.整理需要使用到的工具和技术列表
+
+ comment：
+ 5会在总结会之后给出
+ 此任务需要在项目总结会之前完成
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;总结&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt; 任务已完成
+ 1.见showdoc上相关项目的“基本原则”目录下的编码规范，ios阅读readme
+ 2.同1
+ 3.见eyestone.github.io上的《工作规范和流程》
+ 4.同3
+ 5.在总结会之后给出
+ 注：文档大多是例子，需要不断修改进化
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;培训:c3e286e1cff4e00881e394d6c749f320&#34;&gt;培训&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主题模式，收集问题，针对问题培训&lt;/li&gt;
+&lt;li&gt;设计场景，动手操作&lt;/li&gt;
+&lt;li&gt;抽象的东西一起培训，具体的东西单独培训&lt;/li&gt;
+&lt;li&gt;培训后需要由被培训人出文档，将培训的内容整理清楚作为正式文档保存&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;建议:c3e286e1cff4e00881e394d6c749f320&#34;&gt;建议&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1.讨论&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.1.提出问题&lt;/li&gt;
+&lt;li&gt;1.2.总结思考确定是否确实需要讨论&lt;/li&gt;
+&lt;li&gt;1.3.整理讨论的点&lt;/li&gt;
+&lt;li&gt;1.4.组织相关人员讨论&lt;/li&gt;
+&lt;li&gt;1.5.讨论结果形成文字，发布到相关位置&lt;/li&gt;
+&lt;li&gt;1.6.邮件通知相关人员查看&lt;/li&gt;
+&lt;li&gt;1.7.有疑问则继续讨论知道定稿&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2.会议&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2.1.会前每个人将要提的问题准备一份书面报告，回答以下问题：&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt; 究竟出了什么问题?
+ 问题的起因是什么？
+ 这个问题能找到哪些解决方案？
+ 你自己建议用哪一种方法？
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>支付和任务部分的测试计划</title>
+            <link>http://eyestone.github.io/post/task-testPayAndBusiness/</link>
+            <pubDate>Fri, 08 Jul 2016 17:16:00 +0800</pubDate>
+            
+            <guid>http://eyestone.github.io/post/task-testPayAndBusiness/</guid>
+            <description>
+
+&lt;h3 id=&#34;app:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;app&lt;/h3&gt;
+
+&lt;h4 id=&#34;ios:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;ios&lt;/h4&gt;
+
+&lt;h4 id=&#34;android:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;android&lt;/h4&gt;
+
+&lt;h3 id=&#34;付款:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;付款&lt;/h3&gt;
+
+&lt;h4 id=&#34;福米:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;福米&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.生成单商品订单，检查order和order_detail表中数据状态是否正确，同时检查运费和总价计算是否正确&lt;/li&gt;
+&lt;li&gt;2.生成多商品订单，检查order和order_detail表中数据状态是否正确，同时检查运费和总价计算是否正确&lt;/li&gt;
+&lt;li&gt;3.同时需要测试包括有福米充值券，卡盟，实体商品的订单，其中福米充值券只能生成单商品的订单，其他的商品可以重复&lt;/li&gt;
+&lt;li&gt;4.（注：此条不能使用福米支付，如果支付成功视为错误）对订单福米充值订单进行支付，检查user表中salary字段是否计算正确，bills表中是否进入了一个充值项，charge_record表中是否增加一项充值记录，tiket表中不应该有记录产生&lt;/li&gt;
+&lt;li&gt;5.对含有虚拟商品的订单进行支付，检查bills表中是否增加一条福米消费记录，ticket表中是否增加一条记录，user表中的salary字段是否发生相应的扣款&lt;/li&gt;
+&lt;li&gt;6.订单支付后，检查order表和order_detail表的支付状态是否正确&lt;/li&gt;
+&lt;li&gt;7.订单支付后，在不修改order表的status_Code字段的情况下，检查是否可以确认收货&lt;/li&gt;
+&lt;li&gt;8.将order表的status_code字段修改成0，1的时候，用户应该不能确认收货，对于2，3，4的状态用户应该可以确认收货&lt;/li&gt;
+&lt;li&gt;9.订单支付后未收货的情况下，应该不能取消和删除订单&lt;/li&gt;
+&lt;li&gt;10.订单未支付的情况应该可以删除或取消，订单付款后的任何情况，应该不能取消，可以删除&lt;/li&gt;
+&lt;li&gt;11.订单取消后可以在app显示，订单删除后不在app显示&lt;/li&gt;
+&lt;li&gt;12.订单支付后，检查fm_bills表中应该存在相关的支付记录&lt;/li&gt;
+&lt;li&gt;13.其他细节，比如价格显示等，综合ui、ue和技术一起查看&lt;/li&gt;
+&lt;li&gt;14.android和ios同样进行以上操作，检查数据是否一致&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;支付宝:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;支付宝&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.除了检查的表变为ali_bill外其他同 福米&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;微信:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;微信&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.除了检查的表变为wx_bill外其他同 福米&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;退款:5550fe9ce3af975bd574ab3257486fb7&#34;&gt;退款&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.只有在用户确认收货以后才能执行退款&lt;/li&gt;
+&lt;li&gt;2.用户点击退款申请按钮后，在refundApply表中生成一个申请记录&lt;/li&gt;
+&lt;li&gt;3.在管理端打开退款管理页面，应该有一条相应的退款申请记录，同时orver_v2表中的相应订单状态变为有申请中的退款申请&lt;/li&gt;
+&lt;li&gt;4.在后端确认退款以后，相应的refundApply记录状态变为已退款，同时order_v2表中相应的记录变为无申请中的退款申请，并且有过退款申请记录&lt;/li&gt;
+&lt;li&gt;5.在后端确认退款以后，如果退款失败，则对于所有的表没有改变，同时相应支付方式的bills表中增加一条失败记录&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -680,6 +891,30 @@
 
 &lt;p&gt;&lt;em&gt;author : freeopen&lt;/em&gt;&lt;/p&gt;
 
+&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
+
+&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topic 标题&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;type 控件类型&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;one       单选&lt;/li&gt;
+&lt;li&gt;more      多选&lt;/li&gt;
+&lt;li&gt;number    数字输入框&lt;/li&gt;
+&lt;li&gt;text      文本输入框&lt;/li&gt;
+&lt;li&gt;date      日期输入框&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;pre&gt;&lt;code&gt;{
     &amp;quot;list&amp;quot;:[
         {
@@ -748,84 +983,12 @@
         {
             &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
             &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
+            &amp;quot;tag&amp;quot;:[]
         },
         {
-            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:51,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        }
-    ]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;json格式说明:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;json格式说明&lt;/h3&gt;
-
-&lt;p&gt;这里的json格式将对应app上不同的可视控件内容，详细如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;topic 标题&lt;/li&gt;
-&lt;li&gt;type 控件类型
-
-&lt;ul&gt;
-&lt;li&gt;one   单选&lt;/li&gt;
-&lt;li&gt;more 多选&lt;/li&gt;
-&lt;li&gt;number 仅填数字的输入框&lt;/li&gt;
-&lt;li&gt;text 填文本的输入框&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;tagId 自定义的id编号，相当于数组索引，方便代码快速检索&lt;/li&gt;
-&lt;li&gt;tagName 当控件类型为 单选 和 多选 时有效，即选项信息&lt;/li&gt;
-&lt;li&gt;tagStatus  当类型为单选和多选时，记录用户的选中情况, 其中为1时，表示缺省值，另外用户选中时为1，取消时为0。当为输入框时，记录输入内容。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;常用活动报名举例:19e7dc3fb049efb1274e23046f3c468b&#34;&gt;常用活动报名举例&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-    &amp;quot;list&amp;quot;:[
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;姓名&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        },
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;手机号码&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;number&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:41,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
-        },
-        {
-            &amp;quot;topic&amp;quot;:&amp;quot;工作单位&amp;quot;,
-            &amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,
-            &amp;quot;tag&amp;quot;:[
-                {
-                    &amp;quot;tagId&amp;quot;:51,
-                    &amp;quot;tagName&amp;quot;:&amp;quot;&amp;quot;,
-                    &amp;quot;tagStatus&amp;quot;:&amp;quot;&amp;quot;
-                }
-            ]
+            &amp;quot;topic&amp;quot;:&amp;quot;可参加日期&amp;quot;,
+            &amp;quot;type&amp;quot;:&amp;quot;date&amp;quot;,
+            &amp;quot;tag&amp;quot;:[]
         }
     ]
 }
@@ -950,9 +1113,9 @@
 &lt;li&gt;5.写支付接口
 
 &lt;ul&gt;
-&lt;li&gt;5.1整合支付功能到LaifuPay&lt;/li&gt;
+&lt;li&gt;5.1整合支付功能到LaifuPay &amp;ndash; &lt;em&gt;done 重构了支付部分的代码，独立成一个模块，包括存储支付信息的表&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;5.2写福米支付函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;5.3重写支付回调函数，包括成功和失败&lt;/li&gt;
+&lt;li&gt;5.3重写支付回调函数，包括成功和失败 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;6.写购物车接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
 
@@ -979,10 +1142,10 @@
 &lt;li&gt;8.4修改订单 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.5删除订单接口,逻辑删除 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.6获取订单接口,取消的和删除订单不在客户端显示 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;8.7确认收货接口&lt;/li&gt;
+&lt;li&gt;8.7确认收货接口 &amp;ndash; &lt;em&gt;done&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;8.8写自动处理订单收货状态的模块&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数
+&lt;li&gt;9.写充值接口，包括微信和支付宝，同时要完成通知回调函数 &amp;ndash; &lt;em&gt;done&lt;/em&gt;
 
 &lt;ul&gt;
 &lt;li&gt;9.1充福米 &amp;ndash; &lt;em&gt;done 需要上传一个福米类型的商品&lt;/em&gt;&lt;/li&gt;
@@ -1649,47 +1812,6 @@ gradle tomcatRunWar
 
 &lt;ul&gt;
 &lt;li&gt;陆文金&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>关于hugo中markdown格式的兼容性问题</title>
-            <link>http://eyestone.github.io/post/hugo-issues/</link>
-            <pubDate>Tue, 31 May 2016 10:21:34 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/hugo-issues/</guid>
-            <description>&lt;p&gt;目前hugo并不兼容markdown的高级格式功能，比如todo list和流程图。&lt;/p&gt;
-
-&lt;p&gt;经检查源码，发现是markdown的解码问题，原理为通过识别markdown标识，解析成对应html格式，而是流程图功能，为markdown扩展功能，用到了html5的矢量图特性。这类的功能增强要么我们自己扩展，要么坐等官方更新。&lt;/p&gt;
-
-&lt;p&gt;仅作记录，空了继续补充。&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>在windows下使用hugo写博客</title>
-            <link>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</link>
-            <pubDate>Wed, 25 May 2016 11:45:30 +0800</pubDate>
-            
-            <guid>http://eyestone.github.io/post/tutorial-UseBlogOnWindows/</guid>
-            <description>&lt;ul&gt;
-&lt;li&gt;运行框（开始按钮旁边的小框框）输入cmd，回车打开命令行工具&lt;/li&gt;
-&lt;li&gt;输入cd D: 回车  这个是跳转到相关的磁盘，如果是E盘，就输入E:&lt;/li&gt;
-&lt;li&gt;输入 D: 回车  这个是切换到相应的盘&lt;/li&gt;
-&lt;li&gt;输入 cd dir 回车  dir为要进入的目录，比如你的blog目录放在D:/blog就直接输入 cd blog&lt;/li&gt;
-&lt;li&gt;新建文件 hugo new post/filename.md 这样就会在blog/content/post目录下创建一个filename.md文件&lt;/li&gt;
-&lt;li&gt;用文本编辑器打开要编辑的文件进行编辑保存&lt;/li&gt;
-&lt;li&gt;在命令行输入show.cmd，然后在浏览器输入localhost:1313即可查看本地的文档&lt;/li&gt;
-&lt;li&gt;使用deploy.cmd命令，可以将本地文档同步到服务器&lt;/li&gt;
 &lt;/ul&gt;
 </description>
           </item>
