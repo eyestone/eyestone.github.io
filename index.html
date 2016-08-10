@@ -62,6 +62,87 @@
 			<div class="row">
 				
 				<div class="col-md-offset-1 col-md-10">
+					<h3><a href="http://eyestone.github.io/post/OrderStatusCode/">订单状态定义</a></h3>
+						<small><span class="label label-primary">
+							
+								Wed, Aug 10, 2016
+							</span>&nbsp;in
+							
+								
+								<a href="/categories/design">design</a>
+							 using tags
+							
+								
+							<a href="/tags/%E8%AE%BE%E8%AE%A1">设计</a>
+						
+								 , 
+							<a href="/tags/%E7%BA%A6%E5%AE%9A">约定</a>
+						
+					</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<br>
+					
+						
+
+<h4 id="订单状态statuscode字段定义:51c52f7cdf5319be87f3b47510797f06">订单状态StatusCode字段定义</h4>
+
+<p>注：已约定的不会变化，但会根据业务发展有增补</p>
+
+<pre><code>    /*****************订单状态***********************/
+    public static final Integer DELETE          = 0;//删除,仅逻辑删除，app不显示 
+    public static final Integer NOT_PAY         = 1;//等待买家付款 
+    public static final Integer BUYER_PAYED     = 2;//商户端:买家已付款 / app端:等待卖家发货
+
+    public static final Integer SELLER_SEND     = 3;//app:卖家已发货
+    public static final Integer BUYER_RECEIVED  = 4;//商户端:买家已收货
+    public static final Integer EVALUATED       = 5;//已评价
+    public static final Integer RE_EVALUATED    = 6;//追加评价
+    public static final Integer CANCEL          = 7;// 取消
+    public static final Integer SUBMIT_BUSI     = 10;//订单提交给供应商
+
+    /*****************交易状态***********************/
+    public static final Integer TRADE_SUCCESS   = 8;//交易成功
+    public static final Integer TRADE_CLOSE     = 9;//交易关闭
+
+    /*****************退款状态***********************/
+    public static final Integer REFUND_APPLY    = 11;//申请退款
+    public static final Integer REFUND_AGREE    = 12;//同意退款
+    public static final Integer REFUND_SUCCESS  = 13;//退款成功
+    public static final Integer REFUND_CLOSE    = 14;//退款关闭
+
+    /*****************换货状态***********************/
+    public static final Integer EXCHANGE_APPLY  = 21;//申请换货
+    public static final Integer EXCHANGE_AGREE  = 22;//同意换货
+    public static final Integer EXCHANGE_SUCCESS= 23;//换货成功
+    public static final Integer EXCHANGE_CLOSE  = 24;//换货关闭
+
+    /*****************退货退款状态**********************/
+    public static final Integer RETURN_APPLY    = 31;//申请退货
+    public static final Integer RETURN_AGREE    = 32;//同意退货
+    public static final Integer RETURN_SUCCESS  = 33;//退货成功
+    public static final Integer RETURN_CLOSE    = 34;//退货关闭
+</code></pre>
+
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+		
+	
+
+        
+            	
+		
+			<div class="row">
+				
+				<div class="col-md-offset-1 col-md-10">
 					<h3><a href="http://eyestone.github.io/post/common-RegulationAndProcedure/">工作规范和流程</a></h3>
 						<small><span class="label label-primary">
 							
@@ -1637,134 +1718,6 @@
 <li>10.2阿里支付</li>
 <li>10.3福米支付</li>
 </ul></li>
-</ul>
-
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-		
-	
-
-        
-            	
-		
-			<div class="row">
-				
-				<div class="col-md-offset-1 col-md-10">
-					<h3><a href="http://eyestone.github.io/post/discuss-shippingAndCash/">物流和现金流</a></h3>
-						<small><span class="label label-primary">
-							
-								Tue, Jun 21, 2016
-							</span>&nbsp;in
-							
-								
-								<a href="/categories/%E8%AE%A8%E8%AE%BA">讨论</a>
-							 using tags
-							
-								
-							<a href="/tags/%E7%89%A9%E6%B5%81">物流</a>
-						
-								 , 
-							<a href="/tags/%E7%8E%B0%E9%87%91%E6%B5%81">现金流</a>
-						
-								 , 
-							<a href="/tags/%E9%80%80%E6%AC%BE">退款</a>
-						
-					</small>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10">
-					<br>
-					
-						
-
-<h4 id="讨论结果:8aa69f015727393ae24eff79bcb0fb4c"><strong>讨论结果</strong></h4>
-
-<h5 id="现金流:8aa69f015727393ae24eff79bcb0fb4c"><strong>现金流</strong></h5>
-
-<ul>
-<li>1.流向：
-
-<ul>
-<li>1.1.客户&ndash;&gt;来福：用户付款</li>
-<li>1.2.来福&ndash;&gt;供应商：月结，如果发生退款的，在月结的时候一并扣除</li>
-<li>1.3.来福&ndash;&gt;客户：用户申请退款给，在用户付款后2周内可以申请退款</li>
-</ul></li>
-<li>2.需要与供货商确认和达成的协议：
-
-<ul>
-<li>2.1.月结</li>
-</ul></li>
-</ul>
-
-<h5 id="物流:8aa69f015727393ae24eff79bcb0fb4c"><strong>物流</strong></h5>
-
-<ul>
-<li>1.角色：
-
-<ul>
-<li>1.1.客户</li>
-<li>1.2.来福</li>
-<li>1.3.供应商</li>
-<li>1.4.物流</li>
-</ul></li>
-<li>2.流程：
-
-<ul>
-<li>2.1.购买：用户下单&ndash;&gt;用户付款&ndash;&gt;来福收集订单&ndash;&gt;来福将订单提交给供应商&ndash;&gt;供应商发货&ndash;&gt;物流寄送&ndash;&gt;客户收货</li>
-<li>2.2.退货1：用户提交退货申请&ndash;&gt;来福反馈退款信息给供应商&ndash;&gt;供应商和客户沟通&ndash;&gt;确认可退款&ndash;&gt;供应商告知来福&ndash;&gt;用户发货&ndash;&gt;物流配送&ndash;&gt;供应商收到货物&ndash;&gt;供应商通知来福&ndash;&gt;来福给用户打款</li>
-<li>2.3.退货2：用户提交退货申请&ndash;&gt;来福和客户沟通&ndash;&gt;确认可以退款&ndash;&gt;来福告知供应商&ndash;&gt;用户发货&ndash;&gt;快递配送&ndash;&gt;供应商收到货物&ndash;&gt;供应商告知来福&ndash;&gt;来福打款给用户</li>
-</ul></li>
-<li>3.问题：
-
-<ul>
-<li>3.1.如果由供应商和客户沟通，需要保证供应商不透露任何自己公司的信息，以保证用户体验</li>
-<li>3.2.如何保证物流控制和信息对称</li>
-</ul></li>
-<li>4.注意事项
-
-<ul>
-<li>4.1.供应商在发货以后应该将运单号和快递方式发送给来福</li>
-<li>4.2.供应商在发货的时候应该打印一份包含来福，来福的订单号，买家在来福的用户名的单子放在快件中，并在单子上注明单子在退货时一并寄回，否则不能正常退款</li>
-<li>4.3.用户在退货的时候，需要在app上填写运单号和快递方式</li>
-<li>4.4.如果由供应商和客户沟通，需要保证供应商不透露任何自己公司的信息，以保证用户体验</li>
-<li>4.5.需要供应商配合的问题，需要和供应商沟通达成一致，最好形成协议</li>
-</ul></li>
-</ul>
-
-<h5 id="需要增加的功能:8aa69f015727393ae24eff79bcb0fb4c"><strong>需要增加的功能</strong></h5>
-
-<ul>
-<li>1.换货</li>
-<li>2.运单号填写，可以扫描二维码</li>
-</ul>
-
-<h4 id="趣玩退货流程:8aa69f015727393ae24eff79bcb0fb4c"><strong>趣玩退货流程</strong></h4>
-
-<ul>
-<li>1.一般商品在20元一下已经无法二次销售的，可以和买家协商争取直接给予一定补偿来处理，这类你自己退了款的，需要记录好分销流水号和订单号，和处理情况，需要有买家的拍照为证，然后可以找负责分销的人士给退费。</li>
-<li>2.商品在20元以上，确实因为质量问题需要退换货的，需退换的订单，请务必在退换货单子上注明客户的姓名、电话、退换原因与需求，否则可能会被延迟或无法处理如商品有质量问题，请于收货后7天内联系分销客服(7天之内无理由退换货)，核实无误后全额退/换，否则擅自寄回的物品将不予以处理（见易订货通知栏中提供的地址）；质量问题运费买家垫付。非质量问题，退换货运费均由买家承担（来回两个运费）！</li>
-<li>3.客户需要退换货的情况，请先与我们联系，以确定该商品的处理方式（如：让客户寄给库房退换，或者赔偿一定费用让客户自行处理）。请确定进行退款操作后立即联系我们，以便我们能在第一时间得知该情况进行操作（尤其是刚付款就取消的订单）。</li>
-</ul>
-
-<h4 id="参与人:8aa69f015727393ae24eff79bcb0fb4c"><strong>参与人</strong></h4>
-
-<ul>
-<li>李艳</li>
-<li>林欣灏</li>
-<li>陆文金</li>
-</ul>
-
-<h4 id="记录人:8aa69f015727393ae24eff79bcb0fb4c"><strong>记录人</strong></h4>
-
-<ul>
-<li>陆文金</li>
 </ul>
 
 					

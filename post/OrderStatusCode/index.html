@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="订单状态定义">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>订单状态定义 &middot; 项目文档库</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://eyestone.github.io/css/theme/flatly.css">
+    
+
+    <link rel="stylesheet" href="http://eyestone.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://eyestone.github.io/css/style.css">
+
+
+    
+    <script src="http://eyestone.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://eyestone.github.io/js/bootstrap.min-3.3.5.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+    <link href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/default.min.css" rel="stylesheet">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="项目文档库" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://eyestone.github.io">项目文档库</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://eyestone.github.io">首页</a></li>
+                    <li><a href="http://eyestone.github.io/post/">文章</a></li>
+                    <li><a href="http://eyestone.github.io/life/">Life</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="container col-md-9">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <h3>订单状态定义</h3>
+                <span class="label label-primary">Wed, Aug 10, 2016</span> in 
+                
+                
+                <a href="/categories/design">design</a>
+                 using tags
+                
+                
+                <a href="/tags/%E8%AE%BE%E8%AE%A1">设计</a>
+                
+                 , 
+                <a href="/tags/%E7%BA%A6%E5%AE%9A">约定</a>
+                
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <br>
+            
+
+<h4 id="订单状态statuscode字段定义:51c52f7cdf5319be87f3b47510797f06">订单状态StatusCode字段定义</h4>
+
+<p>注：已约定的不会变化，但会根据业务发展有增补</p>
+
+<pre><code>    /*****************订单状态***********************/
+    public static final Integer DELETE          = 0;//删除,仅逻辑删除，app不显示 
+    public static final Integer NOT_PAY         = 1;//等待买家付款 
+    public static final Integer BUYER_PAYED     = 2;//商户端:买家已付款 / app端:等待卖家发货
+
+    public static final Integer SELLER_SEND     = 3;//app:卖家已发货
+    public static final Integer BUYER_RECEIVED  = 4;//商户端:买家已收货
+    public static final Integer EVALUATED       = 5;//已评价
+    public static final Integer RE_EVALUATED    = 6;//追加评价
+    public static final Integer CANCEL          = 7;// 取消
+    public static final Integer SUBMIT_BUSI     = 10;//订单提交给供应商
+
+    /*****************交易状态***********************/
+    public static final Integer TRADE_SUCCESS   = 8;//交易成功
+    public static final Integer TRADE_CLOSE     = 9;//交易关闭
+
+    /*****************退款状态***********************/
+    public static final Integer REFUND_APPLY    = 11;//申请退款
+    public static final Integer REFUND_AGREE    = 12;//同意退款
+    public static final Integer REFUND_SUCCESS  = 13;//退款成功
+    public static final Integer REFUND_CLOSE    = 14;//退款关闭
+
+    /*****************换货状态***********************/
+    public static final Integer EXCHANGE_APPLY  = 21;//申请换货
+    public static final Integer EXCHANGE_AGREE  = 22;//同意换货
+    public static final Integer EXCHANGE_SUCCESS= 23;//换货成功
+    public static final Integer EXCHANGE_CLOSE  = 24;//换货关闭
+
+    /*****************退货退款状态**********************/
+    public static final Integer RETURN_APPLY    = 31;//申请退货
+    public static final Integer RETURN_AGREE    = 32;//同意退货
+    public static final Integer RETURN_SUCCESS  = 33;//退货成功
+    public static final Integer RETURN_CLOSE    = 34;//退货关闭
+</code></pre>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <section id="comments" class="themeform">
+    <div class="ds-thread" data-thread-key="/post/OrderStatusCode/" data-title="订单状态定义" data-url="http://eyestone.github.io/post/OrderStatusCode/"></div>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"Zen"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+    </script>
+</section>
+
+</div>
+
+<div class="col-md-3 panel panel-success">
+    <ul id="tree" class="ztree" style="list-style-type:none"></ul>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="http://eyestone.github.io/css/zTreeStyle.css" type="text/css">
+<script src="http://eyestone.github.io/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="http://eyestone.github.io/js/ztree_toc.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#tree').ztree_toc({
+            is_posion_top:false,
+            is_expand_all: true
+        });
+    });
+
+</script>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy;  ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://eyestone.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                    
+                        <a href="https://github.com/eyestone" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
